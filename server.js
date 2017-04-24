@@ -45,6 +45,8 @@ var server = http.createServer(function(request, response) {
   serverWorking(response, absPath);
 });
 
+//http.createServer("Server created on port 3000.").listen(3000);
+
 var port_number = server.listen(process.env.PORT || 3000, listen);
 
 function listen() {

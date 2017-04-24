@@ -36,7 +36,7 @@ var allVehicles = [{
     "details": {
         "manufacturer": "Citroen",
         "model": "C3",
-        "registrationPlate": "B 58 PKA",
+        "registrationPlate": "B-58-PKA",
         "vin": "VF7FCK6EK8A001151",
         "engineCapacity": "1200",
         "fuelType": "Petrol",
@@ -45,7 +45,7 @@ var allVehicles = [{
         "kilometrage": 10000
     },
     "trips": [{
-        "id": "B 58 PKA-0000",
+        "id": "B-58-PKA-0000",
         "driver": {
             "firstName": "John",
             "lastName": "Doe",
@@ -63,7 +63,7 @@ var allVehicles = [{
         },
         "distance": 160
 		}, {
-        "id": "B 58 PKA-0001",
+        "id": "B-58-PKA-0001",
         "driver": {
             "firstName": "John",
             "lastName": "Doe",
@@ -85,7 +85,7 @@ var allVehicles = [{
     "details": {
         "manufacturer": "Ford",
         "model": "Transit",
-        "registrationPlate": "B 58 PKB",
+        "registrationPlate": "B-58-PKB",
         "vin": "VF7FCK6EK8A00112",
         "engineCapacity": "1700",
         "fuelType": "Diesel",
@@ -94,7 +94,7 @@ var allVehicles = [{
         "kilometrage": 20000
     },
     "trips": [{
-        "id": "B 58 PKB-0000",
+        "id": "B-58-PKB-0000",
         "driver": {
             "firstName": "Anna",
             "lastName": "Craig",
@@ -116,7 +116,7 @@ var allVehicles = [{
     "details": {
         "manufacturer": "Mitsubishi",
         "model": "Pajero",
-        "registrationPlate": "B 58 PKC",
+        "registrationPlate": "B-58-PKC",
         "vin": "VF7FCK6EK8A001153",
         "engineCapacity": "3200",
         "fuelType": "Diesel",
@@ -125,7 +125,7 @@ var allVehicles = [{
         "kilometrage": 30000
     },
     "trips": [{
-        "id": "B 58 PKC-0000",
+        "id": "B-58-PKC-0000",
         "driver": {
             "firstName": "Michael",
             "lastName": "Douglas",
@@ -147,7 +147,7 @@ var allVehicles = [{
     "details": {
         "manufacturer": "Tesla",
         "model": "Model S",
-        "registrationPlate": "B 58 PKD",
+        "registrationPlate": "B-58-PKD",
         "vin": "VF7FCK6EK8A001154",
         "engineCapacity": "0",
         "fuelType": "Electric",
@@ -156,7 +156,7 @@ var allVehicles = [{
         "kilometrage": 40000
     },
     "trips": [{
-        "id": "B 58 PKD-0000",
+        "id": "B-58-PKD-0000",
         "driver": {
             "firstName": "Richard",
             "lastName": "Gere",

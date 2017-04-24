@@ -122,23 +122,6 @@ function viewVehicleTrips() {
     //$("[data-toggle=tooltip]").tooltip();
 }
 
-// Transform lat/long into address
-function getAddress(myLatitude, myLongitude, row, col) {
-    var geocoder = new google.maps.Geocoder(); // create a geocoder object
-    var location = new google.maps.LatLng(myLatitude, myLongitude); // turn coordinates into an object
-    geocoder.geocode({
-        'latLng': location
-    }, function (results, status) {
-        if (status === google.maps.GeocoderStatus.OK) { // if geocode success
-            var table = document.getElementById("tripsTable");
-            table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
-        } else {
-            alert("Geocode failure: " + status); // alert any other error(s)
-            return false;
-        }
-    });
-}
-
 function addTripsToTable(trip, index) {
     // date/time format: yyyy-MM-dd HH:mm:ss
     var startDate = trip.startDate;
@@ -162,6 +145,23 @@ function addTripsToTable(trip, index) {
 
     getAddress(trip.startLocation.lat, trip.startLocation.long, index, 2);
     getAddress(trip.stopLocation.lat, trip.stopLocation.long, index, 4);
+}
+
+// Transform lat/long into address
+function getAddress(myLatitude, myLongitude, row, col) {
+    var geocoder = new google.maps.Geocoder(); // create a geocoder object
+    var location = new google.maps.LatLng(myLatitude, myLongitude); // turn coordinates into an object
+    geocoder.geocode({
+        'latLng': location
+    }, function (results, status) {
+        if (status === google.maps.GeocoderStatus.OK) { // if geocode success
+            var table = document.getElementById("tripsTable");
+            table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
+        } else {
+            alert("Geocode failure: " + status); // alert any other error(s)
+            return false;
+        }
+    });
 }
 
 function initMap(tripID) {
