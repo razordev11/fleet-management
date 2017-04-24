@@ -1,20 +1,16 @@
 {
     "name": "fleet-management",
     "version": "1.0.0",
-    "description": "Fleet Management Website",
+    "description": "Fleet Management website",
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server.js"
     },
     "author": "Andrei Ulinici",
-    "license": "MIT",
+    "license": "ISC",
     "dependencies": {
         "cors": "^2.7.1",
         "express": "^4.15.2"
-    },
-    "engines": {
-        "node": "~6.10.2",
-        "npm": "~4.5.0"
     }
 }
