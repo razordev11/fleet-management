@@ -1,54 +1,24 @@
-var http = require("http");
-var fs = require("fs");
-var path = require("path");
-var mime = require("mime");
+// Using express: http://expressjs.com/
+var express = require('express');
+// Create the app
+var app = express();
 
-function send404(response) {
-  response.writeHead(404, {"Content-type" : "text/plain"});
-  response.write("Error 404: resource not found");
-  response.end();
-}
+// File System for loading the list of words
+var fs = require('fs');
 
-function sendPage(response, filePath, fileContents) {
-  response.writeHead(200, {"Content-type" : mime.lookup(path.basename(filePath))});
-  response.end(fileContents);
-}
+// Cors for allowing "cross origin resources"
+// https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
+var cors = require('cors');
+app.use(cors());
 
-// handler.js
-function serverWorking(response, absPath) {
-  fs.exists(absPath, function(exists) {
-    if (exists) {
-      fs.readFile(absPath, function(err, data) {
-        if (err) {
-          send404(response)
-        } else {
-          sendPage(response, absPath, data);
-        }
-      });
-    } else {
-      send404(response);
-    }
-  });
-}
+// This is for hosting files
+app.use(express.static('public'));
 
-// create-server.js
-var server = http.createServer(function(request, response) {
-  var filePath = false;
+// Set up the server
+// process.env.PORT is related to deploying on heroku
+var server = app.listen(process.env.PORT || 3000, listen);
 
-  if (request.url == '/') {
-    filePath = "public/index.html";
-  } else {
-    filePath = "public" + request.url;
-  }
-
-  var absPath = "./" + filePath;
-  serverWorking(response, absPath);
-});
-
-//http.createServer("Server created on port 3000.").listen(3000);
-
-var port_number = server.listen(process.env.PORT || 3000, listen);
-
+// This call back just tells us that the server has started
 function listen() {
     var host = server.address().address;
     var port = server.address().port;
