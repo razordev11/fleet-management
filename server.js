@@ -12,7 +12,7 @@ var cors = require('cors');
 app.use(cors());
 
 // This is for hosting files
-app.use(express.static('public'));
+app.use(express.static('Public'));
 
 // Set up the server
 // process.env.PORT is related to deploying on heroku
