@@ -1,6 +1,6 @@
 function initializeVehiclesPage() {
     for (var i = 0; i < vehicles.length; i++) {
-        addVehicleToTable(vehicles[i]);
+        addVehicleToTable(vehicles[i], i + 1);
     }
 
     $("[data-toggle=tooltip]").tooltip();
@@ -29,30 +29,29 @@ function addVehicle() {
     localStorage.setItem('localStorageVehicles', JSON.stringify(vehicles));
 }
 
-function addVehicleToTable(vehicle) {
+function addVehicleToTable(vehicle, index) {
     var editSpan = $('<span>').addClass('glyphicon glyphicon-pencil');
     var deleteSpan = $('<span>').addClass('glyphicon glyphicon-trash');
     var tripsSpan = $('<span>').addClass('glyphicon glyphicon-road');
     var editButton = $('<button>').addClass('btn btn-primary btn-md').attr('data-toggle', 'modal').attr('data-title', 'Edit').attr('data-target', '#editVehicleModal').append(editSpan).click(editVehicle);
     var deleteButton = $('<button>').addClass('btn btn-danger btn-md').attr('data-toggle', 'modal').attr('data-title', 'Delete').attr('data-target', '#deleteVehicleModal').append(deleteSpan).click(deleteVehicle);
     var tripsButton = $('<button>').addClass('btn btn-success btn-md').append(tripsSpan).click(viewVehicleTrips);
-    var editVehicleButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
-    var deleteVehicleButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
-    var viewVehicleTripsButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View vehicle trips').append(tripsButton);
-    var vin = vehicle.details.vin;
-    
-    $('#vehiclesTable').find('tbody').append($('<tr>').append($('<td>').text(vehicle.details.manufacturer)));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.model));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.registrationPlate));
-    $('#vehiclesTable tr:last').append($('<td>').text(vin));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.engineCapacity));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.fuelType));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.horsepower));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.fuelConsumption));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.kilometrage));
-    $('#vehiclesTable tr:last').append($('<td>').append(viewVehicleTripsButton));
-    $('#vehiclesTable tr:last').append($('<td>').append(editVehicleButton));
-    $('#vehiclesTable tr:last').append($('<td>').append(deleteVehicleButton));
+    var editVehicleButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
+    var deleteVehicleButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
+    var viewVehicleTripsButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View vehicle trips').append(tripsButton);
+
+    $('#vehiclesTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label', 'Manufacturer').text(vehicle.details.manufacturer)));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Model').text(vehicle.details.model));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Registration plate').text(vehicle.details.registrationPlate));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'VIN').text(vehicle.details.vin));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Engine capacity').text(vehicle.details.engineCapacity));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Fuel Type').text(vehicle.details.fuelType));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Horsepower').text(vehicle.details.horsepower));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Fuel consumption').text(vehicle.details.fuelConsumption));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Kilometrage').text(vehicle.details.kilometrage));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Trips').append(viewVehicleTripsButton));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Edit vehicle').append(editVehicleButton));
+    $('#vehiclesTable tr:last').append($('<td>').attr('data-label', 'Delete vehicle').append(deleteVehicleButton));
 }
 
 function editVehicle() {
@@ -81,12 +80,10 @@ function editVehicle() {
         vehicles[rowID].details.fuelConsumption = $('#editVehicleFuelConsumption :input').val();
         vehicles[rowID].details.kilometrage = Number($('#editVehicleKilometrage :input').val());
 
-        var vin = vehicles[rowID].details.vin;
-        
         vehicleRow.cells[0].innerHTML = vehicles[rowID].details.manufacturer;
         vehicleRow.cells[1].innerHTML = vehicles[rowID].details.model;
         vehicleRow.cells[2].innerHTML = vehicles[rowID].details.registrationPlate;
-        vehicleRow.cells[3].innerHTML = vin;
+        vehicleRow.cells[3].innerHTML = vehicles[rowID].details.vin;
         vehicleRow.cells[4].innerHTML = vehicles[rowID].details.engineCapacity;
         vehicleRow.cells[5].innerHTML = vehicles[rowID].details.fuelType;
         vehicleRow.cells[6].innerHTML = vehicles[rowID].details.horsepower;
@@ -99,11 +96,18 @@ function editVehicle() {
 
 function deleteVehicle() {
     var $vehicleRow = $(this).closest('tr');
-    var rowID = $vehicleRow.index();
 
     $('#deleteVehicle').click(function () {
+        var rowID = $vehicleRow.index();
+        var vehicleRow = $("#vehiclesTable tbody")[0].rows[rowID];
         $vehicleRow.remove();
         vehicles.splice(rowID, 1);
+
+        /* TODO: Add # to table
+        var rowCount = $('#vehiclesTable tbody tr').length;
+        for (var i = rowID; i < rowCount; i++) {
+            $('#vehiclesTable tbody')[0].rows[i].cells[0].innerHTML = i+1;
+        }*/
         localStorage.setItem('localStorageVehicles', JSON.stringify(vehicles));
     });
 }

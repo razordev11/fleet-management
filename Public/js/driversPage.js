@@ -29,18 +29,18 @@ function addDriverToTable(driver) {
     var deleteSpan = $('<span>').addClass('glyphicon glyphicon-trash');
     var editButton = $('<button>').addClass('btn btn-primary btn-md').attr('data-toggle', 'modal').attr('data-title', 'Edit').attr('data-target', '#editDriverModal').append(editSpan).click(editDriver);
     var deleteButton = $('<button>').addClass('btn btn-danger btn-md').attr('data-toggle', 'modal').attr('data-title', 'Delete').attr('data-target', '#deleteDriverModal').append(deleteSpan).click(deleteDriver);
-    var editDriverButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
-    var deleteDriverButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
+    var editDriverButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
+    var deleteDriverButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
 
-    $('#driversTable').find('tbody').append($('<tr>').append($('<td>').text(driver.firstName)));
-    $('#driversTable tr:last').append($('<td>').text(driver.lastName));
-    $('#driversTable tr:last').append($('<td>').text(driver.id));
-    $('#driversTable tr:last').append($('<td>').text(driver.address));
-    $('#driversTable tr:last').append($('<td>').text(driver.email));
-    $('#driversTable tr:last').append($('<td>').text(driver.phoneNumber));
-    $('#driversTable tr:last').append($('<td>').text(driver.distanceTraveled));
-    $('#driversTable tr:last').append($('<td>').append(editDriverButton));
-    $('#driversTable tr:last').append($('<td>').append(deleteDriverButton));
+    $('#driversTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label','First name').text(driver.firstName)));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','Last name').text(driver.lastName));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','ID').text(driver.id));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','Address').text(driver.address));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','Email').text(driver.email));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','Phone number').text(driver.phoneNumber));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','Distance traveled').text(driver.distanceTraveled));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','Edit driver').append(editDriverButton));
+    $('#driversTable tr:last').append($('<td>').attr('data-label','Delete driver').append(deleteDriverButton));
 }
 
 function editDriver() {

@@ -1,7 +1,9 @@
-html, body, container-fluid {
+html,
+body,
+container-fluid {
     margin: 0px;
     padding: 0px;
-	height: 100%;
+    height: 100%;
     font-family: verdana;
 }
 
@@ -113,10 +115,44 @@ html, body, container-fluid {
     transition: all 1s ease;
 }
 
-@media (max-width: 767px) {
+.container-fluid {
+    height: 100%;
+}
+
+table {
+    border: 1px solid #ccc;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table tr {
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+table th,
+table td {
+    padding: 15px;
+    text-align: center;
+}
+
+table th {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.operations {
+    margin: 0;
+}
+
+@media only screen and (max-width: 768px) {
     .nav-side-menu {
         position: relative;
-        width: 100%;        
+        width: 100%;
         /*margin-bottom: 10px;*/
     }
     .nav-side-menu .toggle-btn {
@@ -138,42 +174,63 @@ html, body, container-fluid {
         padding-left: 20px;
         line-height: 50px !important;
     }
-    h2 {
-        font-size: 18px;
+    table {
+        border: 0;
     }
-    #driversPage {
-        font-size: 11px;
+    table thead {
+        display: none;
     }
-    #vehiclesPage {
-        font-size: 11px;
+    table tr {
+        margin-bottom: 25px;
+        display: block;
+        border-bottom: 2px solid #ddd;
+    }
+    table td {
+        display: block;
+        text-align: right;
+        font-size: 14px;
+        border-bottom: 1px dotted #ccc;
+    }
+    table td:last-child {
+        border-bottom: 0;
+    }
+    table td:before {
+        content: attr(data-label);
+        float: left;
+        /*text-transform: uppercase;*/
+        font-weight: bold;
+    }
+    #homePage {
+        background-image: url(../images/FleetManagementCloud.jpg);
+        height: 100%;
+        margin-left: -15px;
+        margin-right: -15px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
 
-@media (min-width: 767px) {
+@media only screen and (min-width: 768px) {
     .nav-side-menu {
         height: 100%;
         width: 230px;
     }
     .nav-side-menu .menu-list .menu-content {
         display: block;
-    }    
+    }
     .container-fluid {
         margin-left: 230px;
     }
-}
-
-.container-fluid {
-	height: 100%;
-}
-
-#homePage {
-	background-image: url(../images/FMSBackground.jpg);
-	height: 100%;
-	margin: -15px;
-	margin-top: 0px;
-	background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    #homePage {
+        background-image: url(../images/FMSBackground.jpg);
+        height: 100%;
+        margin-left: -15px;
+        margin-right: -15px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
 }
 
 #mapCanvas {
@@ -187,8 +244,8 @@ html, body, container-fluid {
     width: 300px;
 }
 
-#reportsVehicleDistanceTraveled, #reportsDriverDistanceTraveled {
+#reportsVehicleDistanceTraveled,
+#reportsDriverDistanceTraveled {
     font-size: 15px;
     color: #4CAF50;
 }
-
