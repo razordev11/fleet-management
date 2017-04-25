@@ -142,13 +142,13 @@ function addTripsToTable(trip, index) {
     });
     var viewTripButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View trip').append(tripButton);
 
-    $('#tripsTable').find('tbody').append($('<tr>').append($('<td>').text(trip.driver.firstName + ' ' + trip.driver.lastName)));
-    $('#tripsTable tr:last').append($('<td>').text(startDate));
-    $('#tripsTable tr:last').append($('<td>').text(trip.startLocation.lat, trip.startLocation.long));
-    $('#tripsTable tr:last').append($('<td>').text(stopDate));
-    $('#tripsTable tr:last').append($('<td>').text(trip.stopLocation.lat, trip.stopLocation.long));
-    $('#tripsTable tr:last').append($('<td>').text(trip.distance));
-    $('#tripsTable tr:last').append($('<td>').append(viewTripButton));
+    $('#tripsTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label','Driver').text(trip.driver.firstName + ' ' + trip.driver.lastName)));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label','Start date').text(startDate));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label','Start location').text(trip.startLocation.lat, trip.startLocation.long));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label','Stop date').text(stopDate));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label','Stop location').text(trip.stopLocation.lat, trip.stopLocation.long));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label','Trip distance').text(trip.distance));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label','Trips').append(viewTripButton));
 
     getAddress(trip.startLocation.lat, trip.startLocation.long, index, 2);
     getAddress(trip.stopLocation.lat, trip.stopLocation.long, index, 4);
