@@ -235,7 +235,7 @@ table th {
 
 #mapCanvas {
     height: 400px;
-    width: 530px;
+    width: auto;
 }
 
 .reports-vehicle-registration-plate,
