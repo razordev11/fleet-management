@@ -11,8 +11,6 @@ html, body, container-fluid {
     background-color: #2e353d;
     position: fixed;
     top: 0px;
-    width: 230px;
-    height: 100%;
     color: #e1ffff;
 }
 
@@ -118,8 +116,8 @@ html, body, container-fluid {
 @media (max-width: 767px) {
     .nav-side-menu {
         position: relative;
-        width: 100%;
-        margin-bottom: 10px;
+        width: 100%;        
+        /*margin-bottom: 10px;*/
     }
     .nav-side-menu .toggle-btn {
         display: block;
@@ -140,12 +138,25 @@ html, body, container-fluid {
         padding-left: 20px;
         line-height: 50px !important;
     }
+    h2 {
+        font-size: 18px;
+    }
+    #driversPage {
+        font-size: 11px;
+    }
+    #vehiclesPage {
+        font-size: 11px;
+    }
 }
 
 @media (min-width: 767px) {
+    .nav-side-menu {
+        height: 100%;
+        width: 230px;
+    }
     .nav-side-menu .menu-list .menu-content {
         display: block;
-    }
+    }    
     .container-fluid {
         margin-left: 230px;
     }

@@ -39,11 +39,12 @@ function addVehicleToTable(vehicle) {
     var editVehicleButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
     var deleteVehicleButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
     var viewVehicleTripsButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View vehicle trips').append(tripsButton);
-
+    var vin = vehicle.details.vin;
+    
     $('#vehiclesTable').find('tbody').append($('<tr>').append($('<td>').text(vehicle.details.manufacturer)));
     $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.model));
     $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.registrationPlate));
-    $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.vin));
+    $('#vehiclesTable tr:last').append($('<td>').text(vin));
     $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.engineCapacity));
     $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.fuelType));
     $('#vehiclesTable tr:last').append($('<td>').text(vehicle.details.horsepower));
@@ -80,10 +81,12 @@ function editVehicle() {
         vehicles[rowID].details.fuelConsumption = $('#editVehicleFuelConsumption :input').val();
         vehicles[rowID].details.kilometrage = Number($('#editVehicleKilometrage :input').val());
 
+        var vin = vehicles[rowID].details.vin;
+        
         vehicleRow.cells[0].innerHTML = vehicles[rowID].details.manufacturer;
         vehicleRow.cells[1].innerHTML = vehicles[rowID].details.model;
         vehicleRow.cells[2].innerHTML = vehicles[rowID].details.registrationPlate;
-        vehicleRow.cells[3].innerHTML = vehicles[rowID].details.vin;
+        vehicleRow.cells[3].innerHTML = vin;
         vehicleRow.cells[4].innerHTML = vehicles[rowID].details.engineCapacity;
         vehicleRow.cells[5].innerHTML = vehicles[rowID].details.fuelType;
         vehicleRow.cells[6].innerHTML = vehicles[rowID].details.horsepower;
