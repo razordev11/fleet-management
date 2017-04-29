@@ -174,27 +174,27 @@ table th {
         padding-left: 20px;
         line-height: 50px !important;
     }
-    table {
+    table#driversTable, table#vehiclesTable {
         border: 0;
     }
-    table thead {
+    table#driversTable thead, table#vehiclesTable thead {
         display: none;
     }
-    table tr {
+    table#driversTable tr, table#vehiclesTable tr {
         margin-bottom: 25px;
         display: block;
         border-bottom: 2px solid #ddd;
     }
-    table td {
+    table#driversTable td, table#vehiclesTable td {
         display: block;
         text-align: right;
         font-size: 14px;
         border-bottom: 1px dotted #ccc;
     }
-    table td:last-child {
+    table#driversTable td:last-child, table#vehiclesTable td:last-child {
         border-bottom: 0;
     }
-    table td:before {
+    table#driversTable td:before, table#vehiclesTable td:before {
         content: attr(data-label);
         float: left;
         /*text-transform: uppercase;*/
@@ -239,13 +239,25 @@ table th {
 }
 
 .reports-vehicle-registration-plate,
-.reports-driver-name,
-.reports-date-time {
+.reports-driver-name {
     width: 300px;
+}
+
+.reports-date-time {
+    width: 265px;
 }
 
 #reportsVehicleDistanceTraveled,
 #reportsDriverDistanceTraveled {
     font-size: 15px;
     color: #4CAF50;
+}
+
+.bd-callout {
+    padding: 1.25rem;
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+    border-left: 3px solid #5bc0de;
+    border-left-width: .25rem;
+    border-radius: .5rem;
 }

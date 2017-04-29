@@ -20,13 +20,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
+
     <script type="text/javascript" src="js/data.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/driversPage.js"></script>
     <script type="text/javascript" src="js/vehiclesPage.js"></script>
     <script type="text/javascript" src="js/reportsPage.js"></script>
-	<script type="text/javascript" src="js/moment.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap-datetimepicker.min.js"></script>
 </head>
 
 <body>
@@ -76,7 +77,9 @@
         <div id="driversPage">
             <h2>Drivers Page</h2>
             <p>Here you can view all registered drivers.</p>
+            
             <br>
+            
             <table class="table table-condensed" id="driversTable">
                 <thead>
                     <tr>
@@ -99,7 +102,9 @@
         <div id="addDriverPage">
             <h2>Add driver</h2>
             <p>Here you can add a new driver.</p>
+            
             <br>
+            
             <form class="form-horizontal" id="addDriverForm" onsubmit="return addDriver();">
                 <div class="form-group">
                     <label class="col-md-2 control-label">First name</label>
@@ -137,17 +142,22 @@
                         <input type="text" class="form-control" placeholder="E.g. 0732166222">
                     </div>
                 </div>
+                
                 <br>
+                
                 <button class="col-md-offset-2 btn btn-default" id="addDriverButton">Submit</button>
             </form>
 
             <br>
+            
         </div>
 
         <div id="vehiclesPage">
             <h2>Vehicles Page</h2>
             <p>Here you can view all registered vehicles.</p>
+            
             <br>
+            
             <table class="table table-condensed" id="vehiclesTable">
                 <thead>
                     <tr>
@@ -173,7 +183,9 @@
         <div id="addVehiclePage">
             <h2>Add vehicle</h2>
             <p>Here you can add a new vehicle.</p>
+            
             <br>
+            
             <form class="form-horizontal" id="addVehicleForm" onsubmit="return addVehicle();">
                 <div class="form-group">
                     <label class="col-md-2 control-label">Manufacturer</label>
@@ -229,17 +241,22 @@
                         <input type="text" class="form-control" placeholder="E.g. 65000">
                     </div>
                 </div>
+                
                 <br>
+                
                 <button class="col-md-offset-2 btn btn-default" id="addVehicleButton">Submit</button>
             </form>
 
             <br>
+            
         </div>
 
         <div id="viewVehicleTripsPage">
             <h2>Vehicle Trips Page</h2>
             <p>Here you can view vehicle trips.</p>
+            
             <br>
+            
             <table class="table table-condensed" id="tripsTable">
                 <thead>
                     <tr>
@@ -260,13 +277,15 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <button type="button" class="close"><span class="glyphicon glyphicon-success"></span></button>
-                            <h4 class="modal-title custom_align" id="Heading">Trip</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                            <h4 class="modal-title custom_align" id="Heading">Vehicle Trip</h4>
                         </div>
                         <div class="modal-body">
                             <div id="mapCanvas"></div>
                         </div>
-                        <div class="modal-footer "></div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success center-block" data-dismiss="modal" aign="center"><span></span>Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -275,10 +294,17 @@
         <div id="reportsPage">
             <h2>Reports Page</h2>
             <p>Here you view custom reports.</p>
+            
             <br><br>
-            <div class="col-md-6">
-                <p><i>Distance traveled by vehicle</i></p>
+
+            <div class="col-md-6 bd-callout">
+                <p>
+                    <i>Distance traveled by vehicle: </i>
+                    <span id="reportsVehicleDistanceTraveled"></span>
+                    <span> km</span>
+                </p>
                 <select class="reports-vehicle-registration-plate" id="reportsVehicleRegistrationPlate"></select>
+                
                 <br><br>
 
                 <p>From date:</p>
@@ -291,7 +317,7 @@
                     </div>
                 </div>
 
-                <p>To date</p>
+                <p>To date:</p>
                 <div class="form-group">
                     <div class='input-group date' id='reportsVehicleStopDate'>
                         <input type='text' class="form-control" />
@@ -300,18 +326,16 @@
                         </span>
                     </div>
                 </div>
-
-                <div>
-                    <span>Distance: </span>
-                    <span id="reportsVehicleDistanceTraveled"></span>
-                    <span> km</span>
-                </div>
-                <br><br>
             </div>
-
-            <div class="col-md-6">
-                <p><i>Distance traveled by driver</i></p>
+            
+            <div class="col-md-6 bd-callout">
+                <p>
+                    <i>Distance traveled by driver: </i>
+                    <span id="reportsDriverDistanceTraveled"></span>
+                    <span> km</span>
+                </p>
                 <select class="reports-driver-name" id="reportsDriverName"></select>
+                
                 <br><br>
 
                 <p>From date:</p>
@@ -333,15 +357,10 @@
                         </span>
                     </div>
                 </div>
-
-                <div>
-                    <span>Distance: </span>
-                    <span id="reportsDriverDistanceTraveled"></span>
-                    <span> km</span>
-                </div>
-                <br>
             </div>
         </div>
+        
+        <br>
 
     </div>
     <!-- END container -->
