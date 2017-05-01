@@ -1,6 +1,5 @@
 html,
-body,
-container-fluid {
+body {
     margin: 0px;
     padding: 0px;
     height: 100%;
@@ -116,33 +115,8 @@ container-fluid {
 }
 
 .container-fluid {
+    
     height: 100%;
-}
-
-table {
-    border: 1px solid #ccc;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    border-collapse: collapse;
-    border-spacing: 0;
-}
-
-table tr {
-    margin-bottom: 5px;
-    border: 1px solid #ddd;
-    padding: 5px;
-}
-
-table th,
-table td {
-    padding: 15px;
-    text-align: center;
-}
-
-table th {
-    font-size: 14px;
-    letter-spacing: 1px;
 }
 
 .operations {
@@ -174,27 +148,39 @@ table th {
         padding-left: 20px;
         line-height: 50px !important;
     }
-    table#driversTable, table#vehiclesTable {
+    table#driversTable,
+    table#vehiclesTable,
+    table#tripsTable {
         border: 0;
     }
-    table#driversTable thead, table#vehiclesTable thead {
+    table#driversTable thead,
+    table#vehiclesTable thead,
+    table#tripsTable thead {
         display: none;
     }
-    table#driversTable tr, table#vehiclesTable tr {
+    table#driversTable tr,
+    table#vehiclesTable tr,
+    table#tripsTable tr {
         margin-bottom: 25px;
         display: block;
         border-bottom: 2px solid #ddd;
     }
-    table#driversTable td, table#vehiclesTable td {
+    table#driversTable td,
+    table#vehiclesTable td,
+    table#tripsTable td {
         display: block;
         text-align: right;
         font-size: 14px;
         border-bottom: 1px dotted #ccc;
-    }
-    table#driversTable td:last-child, table#vehiclesTable td:last-child {
+    }   
+    table#driversTable td:last-child,
+    table#vehiclesTable td:last-child,
+    table#tripsTable td:last-child {
         border-bottom: 0;
     }
-    table#driversTable td:before, table#vehiclesTable td:before {
+    table#driversTable td:before,
+    table#vehiclesTable td:before,
+    table#tripsTable td:before {
         content: attr(data-label);
         float: left;
         /*text-transform: uppercase;*/
@@ -205,6 +191,7 @@ table th {
         height: 100%;
         margin-left: -15px;
         margin-right: -15px;
+        margin-bottom: -20px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -222,12 +209,35 @@ table th {
     .container-fluid {
         margin-left: 230px;
     }
+    table {
+        border: 1px solid #ccc;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    table tr {
+        margin-bottom: 5px;
+        border: 1px solid #ddd;
+        padding: 5px;
+    }
+    table th,
+    table td {
+        padding: 15px;
+        text-align: center;
+    }
+    table th {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
     #homePage {
         background-image: url(../images/FMSBackground.jpg);
         height: 100%;
         margin-left: -15px;
         margin-right: -15px;
-        background-position: 25% 20%;
+        margin-bottom: -20px;
+        background-position: 50% 30%;
         background-repeat: no-repeat;
         background-size: cover;
     }
@@ -256,7 +266,7 @@ table th {
 .bd-callout {
     padding: 1.25rem;
     margin-top: 1.25rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 2.25rem;
     border-left: 3px solid #5bc0de;
     border-left-width: .25rem;
     border-radius: .5rem;

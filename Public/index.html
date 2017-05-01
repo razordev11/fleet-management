@@ -77,9 +77,9 @@
         <div id="driversPage">
             <h2>Drivers Page</h2>
             <p>Here you can view all registered drivers.</p>
-            
+
             <br>
-            
+
             <table class="table table-condensed" id="driversTable">
                 <thead>
                     <tr>
@@ -102,9 +102,9 @@
         <div id="addDriverPage">
             <h2>Add driver</h2>
             <p>Here you can add a new driver.</p>
-            
+
             <br>
-            
+
             <form class="form-horizontal" id="addDriverForm" onsubmit="return addDriver();">
                 <div class="form-group">
                     <label class="col-md-2 control-label">First name</label>
@@ -142,22 +142,22 @@
                         <input type="text" class="form-control" placeholder="E.g. 0732166222">
                     </div>
                 </div>
-                
+
                 <br>
-                
+
                 <button class="col-md-offset-2 btn btn-default" id="addDriverButton">Submit</button>
             </form>
 
             <br>
-            
+
         </div>
 
         <div id="vehiclesPage">
             <h2>Vehicles Page</h2>
             <p>Here you can view all registered vehicles.</p>
-            
+
             <br>
-            
+
             <table class="table table-condensed" id="vehiclesTable">
                 <thead>
                     <tr>
@@ -183,9 +183,9 @@
         <div id="addVehiclePage">
             <h2>Add vehicle</h2>
             <p>Here you can add a new vehicle.</p>
-            
+
             <br>
-            
+
             <form class="form-horizontal" id="addVehicleForm" onsubmit="return addVehicle();">
                 <div class="form-group">
                     <label class="col-md-2 control-label">Manufacturer</label>
@@ -241,22 +241,22 @@
                         <input type="text" class="form-control" placeholder="E.g. 65000">
                     </div>
                 </div>
-                
+
                 <br>
-                
+
                 <button class="col-md-offset-2 btn btn-default" id="addVehicleButton">Submit</button>
             </form>
 
             <br>
-            
+
         </div>
 
         <div id="viewVehicleTripsPage">
             <h2>Vehicle Trips Page</h2>
             <p>Here you can view vehicle trips.</p>
-            
+
             <br>
-            
+
             <table class="table table-condensed" id="tripsTable">
                 <thead>
                     <tr>
@@ -273,7 +273,7 @@
                 </tbody>
             </table>
 
-            <div class="modal" id="viewTripModal">
+            <div class="modal" id="viewTripModal" tabindex="-1" role="dialog" aria-labelledby="view-trip" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -294,8 +294,8 @@
         <div id="reportsPage">
             <h2>Reports Page</h2>
             <p>Here you view custom reports.</p>
-            
-            <br><br>
+
+            <br>
 
             <div class="col-md-6 bd-callout">
                 <p>
@@ -304,7 +304,7 @@
                     <span> km</span>
                 </p>
                 <select class="reports-vehicle-registration-plate" id="reportsVehicleRegistrationPlate"></select>
-                
+
                 <br><br>
 
                 <p>From date:</p>
@@ -327,7 +327,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-md-6 bd-callout">
                 <p>
                     <i>Distance traveled by driver: </i>
@@ -335,7 +335,7 @@
                     <span> km</span>
                 </p>
                 <select class="reports-driver-name" id="reportsDriverName"></select>
-                
+
                 <br><br>
 
                 <p>From date:</p>
@@ -359,7 +359,7 @@
                 </div>
             </div>
         </div>
-        
+
         <br>
 
     </div>
@@ -367,12 +367,12 @@
 
 
 
-    <div class="modal fade" id="editDriverModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+    <div class="modal fade" id="editDriverModal" tabindex="-1" role="dialog" aria-labelledby="edit-driver" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                    <h4 class="modal-title custom_align" id="Heading">Edit driver</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group" id="editDriverFirstName">
@@ -403,8 +403,8 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="deleteDriverModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<!-- Problem: with modal, the delete function is called twice.
+    <div class="modal fade" id="deleteDriverModal" tabindex="-1" role="dialog" aria-labelledby="delete-driver" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -423,13 +423,13 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="editVehicleModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+-->
+    <div class="modal fade" id="editVehicleModal" tabindex="-1" role="dialog" aria-labelledby="edit-vehicle" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
+                    <h4 class="modal-title custom_align" id="Heading">Edit vehicle</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group" id="editVehicleManufacturer">
@@ -466,8 +466,8 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="deleteVehicleModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+<!-- Problem: with modal, the delete function is called twice.
+    <div class="modal fade" id="deleteVehicleModal" tabindex="-1" role="dialog" aria-labelledby="delete-vehicle" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -486,7 +486,7 @@
             </div>
         </div>
     </div>
-
+-->
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyDsJTbaW1r7umF7glryQiT1zdhliqBRhRs" async defer></script>
 </body>
 

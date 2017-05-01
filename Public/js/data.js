@@ -30,6 +30,30 @@ var allDrivers = [{
     "email": "richard.gere@gmail.com",
     "phoneNumber": "0732166224",
     "distanceTraveled": 120
+	}, {
+    "firstName": "Katy",
+    "lastName": "Perry",
+    "id": "2850329135415",
+    "address": "Unirii 5, Bucharest",
+    "email": "richard.gere@gmail.com",
+    "phoneNumber": "0732166225",
+    "distanceTraveled": 0
+	}, {
+    "firstName": "Sam",
+    "lastName": "Smith",
+    "id": "1860329135416",
+    "address": "Unirii 6, Bucharest",
+    "email": "sam.smith@gmail.com",
+    "phoneNumber": "0732166226",
+    "distanceTraveled": 0
+	}, {
+    "firstName": "Will",
+    "lastName": "Smith",
+    "id": "1870329135417",
+    "address": "Unirii 7, Bucharest",
+    "email": "will.smith@gmail.com",
+    "phoneNumber": "0732166227",
+    "distanceTraveled": 0
 	}];
 
 var allVehicles = [{
@@ -51,17 +75,17 @@ var allVehicles = [{
             "lastName": "Doe",
             "id": "1810329135411"
         },
-        "startDate": "2017-03-21T13:28:06.419Z",
-        "stopDate": "2017-03-21T16:28:00.000Z",
+        "startDate": "2017-04-29T13:28:06.419Z",
+        "stopDate": "2017-04-29T15:40:00.000Z",
         "startLocation": {
-            "lat": "44.4378043",
-            "long": "26.0245982"
+            "lat": "44.4447497",
+            "long": "26.0532043"
         },
         "stopLocation": {
-            "lat": "44.3338331",
-            "long": "28.0247929"
+            "lat": "44.3428213",
+            "long": "28.0332143"
         },
-        "distance": 160
+        "distance": 171
 		}, {
         "id": "B-58-PKA-0001",
         "driver": {
@@ -69,17 +93,17 @@ var allVehicles = [{
             "lastName": "Doe",
             "id": "1810329135411"
         },
-        "startDate": "2017-03-22T10:28:06.419Z",
-        "stopDate": "2017-03-22T13:28:06.419Z",
+        "startDate": "2017-04-30T10:28:06.000Z",
+        "stopDate": "2017-04-30T11:20:06.000Z",
         "startLocation": {
-            "lat": "44.2462965",
-            "long": "28.2683479"
+            "lat": "44.3428213",
+            "long": "28.0332143"
         },
         "stopLocation": {
-            "lat": "44.1812565",
-            "long": "28.5592996"
+            "lat": "44.2037834",
+            "long": "28.6335817"
         },
-        "distance": 40
+        "distance": 67
 		}]
 	}, {
     "details": {
@@ -100,17 +124,35 @@ var allVehicles = [{
             "lastName": "Craig",
             "id": "2820329135412"
         },
-        "startDate": "2017-03-20T09:28:06.419Z",
-        "stopDate": "2017-03-20T12:28:06.419Z",
+        "startDate": "2017-04-20T08:00:00.000Z",
+        "stopDate": "2017-04-20T10:00:00.000Z",
         "startLocation": {
-            "lat": "44.2462965",
-            "long": "28.2683479"
+            "lat": "44.4305693",
+            "long": "25.9884191"
         },
         "stopLocation": {
-            "lat": "44.1812565",
-            "long": "28.5592996"
+            "lat": "45.3485837",
+            "long": "25.5483056"
         },
-        "distance": 40
+        "distance": 131
+		}, {
+        "id": "B-58-PKB-0001",
+        "driver": {
+            "firstName": "Anna",
+            "lastName": "Craig",
+            "id": "2820329135412"
+        },
+        "startDate": "2017-04-21T09:00:00.000Z",
+        "stopDate": "2017-04-21T10:00:00.000Z",
+        "startLocation": {
+            "lat": "45.3485837",
+            "long": "25.5483056"
+        },
+        "stopLocation": {
+            "lat": "45.6423991",
+            "long": "25.5885519"
+        },
+        "distance": 47
 		}]
 	}, {
     "details": {
@@ -131,17 +173,53 @@ var allVehicles = [{
             "lastName": "Douglas",
             "id": "1830329135413"
         },
-        "startDate": "2017-03-10T13:28:06.419Z",
-        "stopDate": "2017-03-10T18:28:06.419Z",
+        "startDate": "2017-04-10T11:28:06.419Z",
+        "stopDate": "2017-04-10T11:50:06.419Z",
         "startLocation": {
-            "lat": "45.3410878",
-            "long": "25.5164496"
+            "lat": "44.4354447",
+            "long": "26.1016731"
         },
         "stopLocation": {
-            "lat": "44.4378043",
-            "long": "26.0245982"
+            "lat": "44.4357327",
+            "long": "26.0477521"
         },
-        "distance": 130
+        "distance": 5
+		}, {
+        "id": "B-58-PKC-0001",
+        "driver": {
+            "firstName": "Michael",
+            "lastName": "Douglas",
+            "id": "1830329135413"
+        },
+        "startDate": "2017-04-10T13:20:06.419Z",
+        "stopDate": "2017-04-10T13:40:06.419Z",
+         "startLocation": {
+            "lat": "44.4357327",
+            "long": "26.0477521"
+        },
+        "stopLocation": {
+            "lat": "44.439188",
+            "long": "26.102132"
+        },
+        "distance": 5.6
+		}, {
+        "id": "B-58-PKC-0002",
+        "driver": {
+            "firstName": "Michael",
+            "lastName": "Douglas",
+            "id": "1830329135413"
+        },
+        "startDate": "2017-03-10T17:00:06.419Z",
+        "stopDate": "2017-03-10T17:20:06.419Z",
+         "startLocation": {
+            "lat": "44.439188",
+            "long": "26.102132"
+        },
+        "stopLocation": {
+            "lat": "44.556222",
+            "long": "26.072101"
+        },
+        "distance": 15.4
 		}]
 	}, {
     "details": {
@@ -162,16 +240,16 @@ var allVehicles = [{
             "lastName": "Gere",
             "id": "1840329135414"
         },
-        "startDate": "2017-04-10T10:28:06.419Z",
-        "stopDate": "2017-04-10T13:28:06.419Z",
+        "startDate": "2017-04-15T00:00:00.000Z",
+        "stopDate": "2017-04-15T18:35:00.000Z",
         "startLocation": {
-            "lat": "44.4378043",
-            "long": "26.0245982"
+            "lat": "44.43056",
+            "long": "25.98907"
         },
         "stopLocation": {
-            "lat": "44.8559646",
-            "long": "24.8384835"
+            "lat": "52.5657575",
+            "long": "13.5401957"
         },
-        "distance": 120
+        "distance": 1717
 		}]
 	}]

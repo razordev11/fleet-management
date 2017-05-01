@@ -100,7 +100,8 @@ $(document).ready(function () {
 });
 
 function initializeDriversToLocalStorage() {
-    if (localStorage.getItem('localStorageDrivers') === null) {
+    if (localStorage.getItem('localStorageDrivers') === null ||                         localStorage.getItem('localStorageDrivers') === '[]') {
+        // When table empties, localStorageDrivers is '[]'; here it repopulates
         // Put the object into local storage
         localStorage.setItem('localStorageDrivers', JSON.stringify(allDrivers));
     }
@@ -111,7 +112,9 @@ function initializeDriversToLocalStorage() {
 }
 
 function initializeVehiclesToLocalStorage() {
-    if (localStorage.getItem('localStorageVehicles') === null) {
+    if (localStorage.getItem('localStorageVehicles') === null || 
+       localStorage.getItem('localStorageVehicles') === '[]') {
+        // When table empties, localStorageVehicles is '[]'; here it repopulates
         // Put the object into local storage
         localStorage.setItem('localStorageVehicles', JSON.stringify(allVehicles));
     }

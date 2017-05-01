@@ -97,19 +97,18 @@ function editVehicle() {
 function deleteVehicle() {
     var $vehicleRow = $(this).closest('tr');
 
-    $('#deleteVehicle').click(function () {
-        var rowID = $vehicleRow.index();
-        var vehicleRow = $("#vehiclesTable tbody")[0].rows[rowID];
-        $vehicleRow.remove();
-        vehicles.splice(rowID, 1);
+    //$('#deleteVehicle').click(function () {
+    var rowID = $vehicleRow.index();
+    $vehicleRow.remove();
+    vehicles.splice(rowID, 1);
 
-        /* TODO: Add # to table
-        var rowCount = $('#vehiclesTable tbody tr').length;
-        for (var i = rowID; i < rowCount; i++) {
-            $('#vehiclesTable tbody')[0].rows[i].cells[0].innerHTML = i+1;
-        }*/
-        localStorage.setItem('localStorageVehicles', JSON.stringify(vehicles));
-    });
+    /* TODO: Add # to table
+    var rowCount = $('#vehiclesTable tbody tr').length;
+    for (var i = rowID; i < rowCount; i++) {
+        $('#vehiclesTable tbody')[0].rows[i].cells[0].innerHTML = i+1;
+    }*/
+    localStorage.setItem('localStorageVehicles', JSON.stringify(vehicles));
+    //});
 }
 
 function viewVehicleTrips() {
@@ -140,35 +139,62 @@ function addTripsToTable(trip, index) {
     var tripButton = $('<button>').addClass('btn btn-success btn-md').attr('data-toggle', 'modal').attr('data-title', 'View trip').append(tripSpan).on('click', function () {
         initMap(trip.id);
     });
-    var viewTripButton = $('<p>').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View trip').append(tripButton);
+    var viewTripButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'View trip').append(tripButton);
 
-    $('#tripsTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label','Driver').text(trip.driver.firstName + ' ' + trip.driver.lastName)));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label','Start date').text(startDate));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label','Start location').text(trip.startLocation.lat, trip.startLocation.long));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label','Stop date').text(stopDate));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label','Stop location').text(trip.stopLocation.lat, trip.stopLocation.long));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label','Trip distance').text(trip.distance));
-    $('#tripsTable tr:last').append($('<td>').attr('data-label','Trips').append(viewTripButton));
+    $('#tripsTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label', 'Driver').text(trip.driver.firstName + ' ' + trip.driver.lastName)));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Start date').text(startDate));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Start location').text(trip.startLocation.lat + ', ' + trip.startLocation.long));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Stop date').text(stopDate));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Stop location').text(trip.stopLocation.lat + ', ' + trip.stopLocation.long));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Trip distance').text(trip.distance));
+    $('#tripsTable tr:last').append($('<td>').attr('data-label', 'Trips').append(viewTripButton));
 
     getAddress(trip.startLocation.lat, trip.startLocation.long, index, 2);
     getAddress(trip.stopLocation.lat, trip.stopLocation.long, index, 4);
+}
+
+function sleep(milliseconds) {
+    var start = new Date().getTime();
+    for (var i = 0; i < 1e7; i++) {
+        if ((new Date().getTime() - start) > milliseconds) {
+            break;
+        }
+    }
 }
 
 // Transform lat/long into address
 function getAddress(myLatitude, myLongitude, row, col) {
     var geocoder = new google.maps.Geocoder(); // create a geocoder object
     var location = new google.maps.LatLng(myLatitude, myLongitude); // turn coordinates into an object
-    geocoder.geocode({
-        'latLng': location
-    }, function (results, status) {
-        if (status === google.maps.GeocoderStatus.OK) { // if geocode success
-            var table = document.getElementById("tripsTable");
-            table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
-        } else {
-            alert("Geocode failure: " + status); // alert any other error(s)
-            return false;
-        }
-    });
+
+    if (row > 0 && row % 2 === 0 && col === 4) {
+        // Avoid more than 5 requests in a second, otherwise Geocode failure: OVER_QUERY_LIMIT
+        setTimeout(function () {
+            geocoder.geocode({
+                'latLng': location
+            }, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) { // if geocode success
+                    var table = document.getElementById("tripsTable");
+                    table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
+                } else {
+                    alert("Geocode failure: " + status); // alert any other error(s)
+                    return false;
+                }
+            });
+        }, 1100);
+    } else {
+        geocoder.geocode({
+            'latLng': location
+        }, function (results, status) {
+            if (status === google.maps.GeocoderStatus.OK) { // if geocode success
+                var table = document.getElementById("tripsTable");
+                table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
+            } else {
+                alert("Geocode failure: " + status); // alert any other error(s)
+                return false;
+            }
+        });
+    }
 }
 
 function initMap(tripID) {

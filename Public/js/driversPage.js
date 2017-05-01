@@ -28,24 +28,24 @@ function addDriverToTable(driver) {
     var editSpan = $('<span>').addClass('glyphicon glyphicon-pencil');
     var deleteSpan = $('<span>').addClass('glyphicon glyphicon-trash');
     var editButton = $('<button>').addClass('btn btn-primary btn-md').attr('data-toggle', 'modal').attr('data-title', 'Edit').attr('data-target', '#editDriverModal').append(editSpan).click(editDriver);
-    var deleteButton = $('<button>').addClass('btn btn-danger btn-md').attr('data-toggle', 'modal').attr('data-title', 'Delete').attr('data-target', '#deleteDriverModal').append(deleteSpan).click(deleteDriver);
+    var deleteButton = $('<button>').addClass('btn btn-danger btn-md').append(deleteSpan).click(deleteDriver);
     var editDriverButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Edit').append(editButton);
     var deleteDriverButton = $('<p>').addClass('operations').attr('data-placement', 'top').attr('data-toggle', 'tooltip').attr('title', 'Delete').append(deleteButton);
 
-    $('#driversTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label','First name').text(driver.firstName)));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','Last name').text(driver.lastName));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','ID').text(driver.id));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','Address').text(driver.address));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','Email').text(driver.email));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','Phone number').text(driver.phoneNumber));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','Distance traveled').text(driver.distanceTraveled));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','Edit driver').append(editDriverButton));
-    $('#driversTable tr:last').append($('<td>').attr('data-label','Delete driver').append(deleteDriverButton));
+    $('#driversTable').find('tbody').append($('<tr>').append($('<td>').attr('data-label', 'First name').text(driver.firstName)));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'Last name').text(driver.lastName));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'ID').text(driver.id));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'Address').text(driver.address));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'Email').text(driver.email));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'Phone number').text(driver.phoneNumber));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'Distance traveled').text(driver.distanceTraveled));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'Edit driver').append(editDriverButton));
+    $('#driversTable tr:last').append($('<td>').attr('data-label', 'Delete driver').append(deleteDriverButton));
 }
 
 function editDriver() {
     var rowID = $(this).closest('tr').index();
-    var $driverRow = $(this).closest("tr");
+
     $('#editDriverFirstName :input').attr('value', drivers[rowID].firstName);
     $('#editDriverLastName :input').attr('value', drivers[rowID].lastName);
     $('#editDriverID :input').attr('value', drivers[rowID].id);
@@ -53,6 +53,8 @@ function editDriver() {
     $('#editDriverEmail :input').attr('value', drivers[rowID].email);
     $('#editDriverPhoneNumber :input').attr('value', drivers[rowID].phoneNumber);
     $('#editDriverDistanceTraveled :input').attr('value', drivers[rowID].distanceTraveled);
+
+    console.log('Edit id ' + rowID);
 
     $('#editDriverButton').click(function () {
         var driverRow = $("#driversTable tbody")[0].rows[rowID];
@@ -78,12 +80,12 @@ function editDriver() {
 }
 
 function deleteDriver() {
-    var $driverRow = $(this).closest('tr');
-    var rowID = $driverRow.index();
+    var driverRow = $(this).closest('tr');
 
-    $('#deleteDriver').click(function () {
-        $driverRow.remove();
-        drivers.splice(rowID, 1);
-        localStorage.setItem('localStorageDrivers', JSON.stringify(drivers));
-    });
+    //$('#deleteDriver').click(function () {
+    var rowID = driverRow.index();
+    drivers.splice(rowID, 1);
+    driverRow.remove();
+    localStorage.setItem('localStorageDrivers', JSON.stringify(drivers));
+    //});
 }
