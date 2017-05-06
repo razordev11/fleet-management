@@ -18,6 +18,10 @@ app.use(express.static('Public'));
 // process.env.PORT is related to deploying on heroku
 var server = app.listen(process.env.PORT || 3000, listen);
 
+if (process.env.OS == 'Windows_NT') {
+    require('child_process').spawn('explorer', ['http://localhost:3000']);
+}
+
 // This call back just tells us that the server has started
 function listen() {
     var host = server.address().address;
