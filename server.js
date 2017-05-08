@@ -1,5 +1,6 @@
 // Using express: http://expressjs.com/
 var express = require('express');
+
 // Create the app
 var app = express();
 
@@ -13,6 +14,32 @@ app.use(cors());
 
 // This is for hosting files
 app.use(express.static('Public'));
+
+var mysql = require('mysql');
+var connection = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    database: 'db'
+});
+
+connection.connect(function (err) {
+    if (err) {
+        console.error('error connecting: ' + err.stack);
+        return;
+    }
+    
+    console.log('connected as id ' + connection.threadId);
+});
+
+connection.query('SELECT * FROM DB', function (error, results, fields) {
+    if (error) throw error;
+    console.log(results);
+});
+
+connection.end();
+//app.get('/', function(req, resp) {});
+
 
 // Set up the server
 // process.env.PORT is related to deploying on heroku

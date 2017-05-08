@@ -1,16 +1,21 @@
 {
     "name": "fleet-management",
-    "version": "1.0.0",
+    "version": "1.0.1",
+    "author": "Andrei Ulinici",
+    "license": "MIT",
     "description": "Fleet Management website",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/andreiulinici/fleet-management.git"
+    }
     "main": "server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node server.js"
     },
-    "author": "Andrei Ulinici",
-    "license": "MIT",
     "dependencies": {
         "cors": "^2.7.1",
-        "express": "^4.15.2"
+        "express": "^4.15.2",
+        "mysql": "^2.13.0"
     }
 }
