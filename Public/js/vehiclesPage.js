@@ -167,22 +167,8 @@ function getAddress(myLatitude, myLongitude, row, col) {
     var geocoder = new google.maps.Geocoder(); // create a geocoder object
     var location = new google.maps.LatLng(myLatitude, myLongitude); // turn coordinates into an object
 
-    if (row > 0 && row % 2 === 0 && col === 4) {
-        // Avoid more than 5 requests in a second, otherwise Geocode failure: OVER_QUERY_LIMIT
-        setTimeout(function () {
-            geocoder.geocode({
-                'latLng': location
-            }, function (results, status) {
-                if (status === google.maps.GeocoderStatus.OK) { // if geocode success
-                    var table = document.getElementById("tripsTable");
-                    table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
-                } else {
-                    alert("Geocode failure: " + status); // alert any other error(s)
-                    return false;
-                }
-            });
-        }, 1100);
-    } else {
+    // Avoid more than 5 requests in a second, otherwise Geocode failure: OVER_QUERY_LIMIT
+    setTimeout(function () {
         geocoder.geocode({
             'latLng': location
         }, function (results, status) {
@@ -190,11 +176,28 @@ function getAddress(myLatitude, myLongitude, row, col) {
                 var table = document.getElementById("tripsTable");
                 table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
             } else {
-                alert("Geocode failure: " + status); // alert any other error(s)
-                return false;
+                sleep(1000);
+                geocoder.geocode({
+                    'latLng': location
+                }, function (results, status) {
+                    if (status === google.maps.GeocoderStatus.OK) { // if geocode success
+                        var table = document.getElementById("tripsTable");
+                        table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
+                    } else {
+                        sleep(1000);
+                        geocoder.geocode({
+                            'latLng': location
+                        }, function (results, status) {
+                            if (status === google.maps.GeocoderStatus.OK) { // if geocode success
+                                var table = document.getElementById("tripsTable");
+                                table.rows[row + 1].cells[col].innerHTML = results[0].formatted_address;
+                            }
+                        });
+                    }
+                });
             }
-        });
-    }
+        })
+    }, 1000);
 }
 
 function initMap(tripID) {
