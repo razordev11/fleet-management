@@ -18,9 +18,10 @@ app.use(express.static('Public'));
 var mysql = require('mysql');
 var connection = mysql.createConnection({
     host: 'localhost',
+    port: 3306,
     user: 'root',
-    password: 'password',
-    database: 'db'
+    password: 'l33t-SQL2017',
+    database: 'fleet_management'
 });
 
 connection.connect(function (err) {
@@ -32,7 +33,7 @@ connection.connect(function (err) {
     console.log('connected as id ' + connection.threadId);
 });
 
-connection.query('SELECT * FROM DB', function (error, results, fields) {
+connection.query('SELECT * FROM fleet_management.driver', function (error, results, fields) {
     if (error) throw error;
     console.log(results);
 });
