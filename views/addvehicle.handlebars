@@ -1,0 +1,74 @@
+<div id="addVehiclePage">
+    <h2>Add vehicle</h2>
+    <p>Here you can add a new vehicle.</p>
+
+    <br> {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}} {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+
+    <form action="/vehicles/create" method="post" class="form-horizontal" id="addVehicleForm">
+        <div class="form-group">
+            <label class="col-md-2 control-label">Manufacturer</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Manufacturer" name="manufacturer" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Model</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Model" name="model" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Registration plate</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="E.g. B-01-ABC" name="registrationPlate" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">VIN</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="17 characters" name="vin" pattern="[a-zA-Z0-9]{17}" maxlength="17" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Engine capacity</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="E.g. 1200" name="engineCapacity" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Fuel type</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="E.g. Petrol" name="fuelType" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Horsepower</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Horsepower" name="horsepower" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Fuel consumption</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="L/100 km or kWh" name="fuelConsumption" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Kilometrage</label>
+            <div class="col-md-4">
+                <input type="number" class="form-control" placeholder="E.g. 65000" name="kilometrage" required>
+            </div>
+        </div>
+        <br>
+        <div class="form-group center">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" id="addVehicleButton">Submit</button>
+            </div>
+        </div>
+    </form>
+    <br>
+</div>

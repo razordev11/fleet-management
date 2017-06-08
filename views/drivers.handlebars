@@ -1,0 +1,137 @@
+<div id="driversPage">
+    <h2>Drivers Page</h2>
+    <p>Here you can view all registered drivers.</p>
+
+    <br> {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}} {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+
+    <table class="table table-condensed" id="driversTable">
+        <thead>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>National ID</th>
+                <th>Address</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Distance traveled</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each items}}
+            <tr>
+                <td data-label="First name">{{ this.firstName }}</td>
+                <td data-label="Last name">{{ this.lastName }}</td>
+                <td data-label="National ID">{{ this.nationalId }}</td>
+                <td data-label="Address">{{ this.address }}</td>
+                <td data-label="Email">{{ this.email }}</td>
+                <td data-label="Phone number">{{ this.phoneNumber }}</td>
+                <td data-label="Distance traveled">{{ this.distanceTraveled }}</td>
+                <td data-label="Edit driver">
+                    <p class="operations" title="Edit">
+                        <button class="btn btn-primary btn-md" data-toggle="modal" data-title="Edit" data-target="#editDriverModal" onclick="editDriver(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </p>
+                </td>
+                <td data-label="Delete driver">
+                    {{!-- Without confirmation:
+                    <p class="operations" title="Delete">
+                        <a href="/drivers/delete/{{ this._id }}">
+                            <button class="btn btn-danger btn-md">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </a>
+                    </p>--}}
+                    <p class="operations" title="Delete">
+                        <button class="btn btn-danger btn-md" data-toggle="modal" data-title="Edit" data-target="#deleteDriverModal" onclick="deleteDriver(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </p>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+
+    <br>
+</div>
+
+<div class="modal fade" id="editDriverModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <h4 class="modal-title custom_align" id="Heading">Edit driver</h4>
+            </div>
+            <form method="post" id="editDriverForm">
+                <div class="modal-body">
+                    <div class="form-group" id="editDriverFirstName">
+                        <input type="text" class="form-control" name="firstName" title="First Name" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group" id="editDriverLastName">
+                        <input type="text" class="form-control" name="lastName" title="Last Name" placeholder="Last Name" required>
+                    </div>
+                    <div class="form-group" id="editDriverNationalId">
+                        <input type="text" class="form-control" name="nationalId" title="National ID" placeholder="National ID" required>
+                    </div>
+                    <div class="form-group" id="editDriverAddress">
+                        <input type="text" class="form-control" name="address" title="Address" placeholder="Address" required>
+                    </div>
+                    <div class="form-group" id="editDriverEmail">
+                        <input type="text" class="form-control" name="email" title="Email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group" id="editDriverPhoneNumber">
+                        <input type="text" class="form-control" name="phoneNumber" title="Phone number" placeholder="Phone number" required>
+                    </div>
+                    <div class="form-group" id="editDriverDistanceTraveled">
+                        <input type="number" class="form-control" name="distanceTraveled" title="Distance traveled" placeholder="Distance traveled" required>
+                    </div>
+                </div>
+                <div class="modal-footer form-group">
+                    <button type="submit" class="btn btn-warning btn-md" style="width: 100%;">
+                        <span class="glyphicon glyphicon-ok-sign"></span> Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteDriverModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+            </div>
+            <form method="get">
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete
+                        <b><span id="deleteDriverFullName"></b>?</span>
+                    </div>
+                    <div class="modal-footer form-group">
+                        <a id="deleteDriverHref">
+                            <button type="button" class="btn btn-success" id="deleteDriver">
+                                <span class="glyphicon glyphicon-ok-sign"></span> Yes
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove"></span> No
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

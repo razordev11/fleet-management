@@ -1,7 +1,9 @@
 <h2 class="page-header">Register</h2>
-{{#if errors}} {{#each errors}}
+
+<br> {{#if errors}} {{#each errors}}
 <div class="alert alert-danger">{{msg}}</div>
 {{/each}} {{/if}}
+
 <form method="post" action="/users/register" class="form">
     <div class="form-group">
         <label>Name</label>

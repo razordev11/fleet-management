@@ -2,105 +2,53 @@ var drivers = initializeDriversToLocalStorage();
 var vehicles = initializeVehiclesToLocalStorage();
 
 $(document).ready(function () {
-    $("#homePage").show();
-    $("#driversPage").hide();
-    $("#addDriverPage").hide();
-    $("#vehiclesPage").hide();
-    $("#addVehiclePage").hide();
-    $("#viewVehicleTripsPage").hide();
-    $("#reportsPage").hide();
-    $('.menu-list ul li').removeClass("active");
-    $('.sub-menu li').removeClass("active");
-    $('#homePageHeader').addClass("active");
-
-    initializeDriversPage();
-    initializeVehiclesPage();
+    // $('.menu-list ul li').removeClass("active");
+    // $('.sub-menu li').removeClass("active");
+    // $('#homePageHeader').addClass("active");
     initializeReportsPage();
 
     $("#homePageHeader").click(function () {
-        $("#homePage").show();
-        $("#driversPage").hide();
-        $("#addDriverPage").hide();
-        $("#vehiclesPage").hide();
-        $("#addVehiclePage").hide();
-        $("#viewVehicleTripsPage").hide();
-        $("#reportsPage").hide();
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
     });
 
     $("#driversPageHeader").click(function () {
-        $("#homePage").hide();
-        $("#driversPage").show();
-        $("#addDriverPage").hide();
-        $("#vehiclesPage").hide();
-        $("#addVehiclePage").hide();
-        $("#viewVehicleTripsPage").hide();
-        $("#reportsPage").hide();
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
     });
 
     $("#addDriverHeader").click(function () {
-        $("#homePage").hide();
-        $("#driversPage").hide();
-        $("#addDriverPage").show();
-        $("#vehiclesPage").hide();
-        $("#addVehiclePage").hide();
-        $("#viewVehicleTripsPage").hide();
-        $("#reportsPage").hide();
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
     });
 
     $("#vehiclesPageHeader").click(function () {
-        $("#homePage").hide();
-        $("#driversPage").hide();
-        $("#addDriverPage").hide();
-        $("#vehiclesPage").show();
-        $("#addVehiclePage").hide();
-        $("#viewVehicleTripsPage").hide();
-        $("#reportsPage").hide();
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
     });
 
     $("#addVehicleHeader").click(function () {
-        $("#homePage").hide();
-        $("#driversPage").hide();
-        $("#addDriverPage").hide();
-        $("#vehiclesPage").hide();
-        $("#addVehiclePage").show();
-        $("#viewVehicleTripsPage").hide();
-        $("#reportsPage").hide();
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
     });
-    
+
     $("#reportsPageHeader").click(function () {
-        $("#homePage").hide();
-        $("#driversPage").hide();
-        $("#addDriverPage").hide();
-        $("#vehiclesPage").hide();
-        $("#addVehiclePage").hide();
-        $("#viewVehicleTripsPage").hide();
-        $("#reportsPage").show();
         $('.menu-list ul li').removeClass("active");
         $('.sub-menu li').removeClass("active");
         $(this).addClass("active");
-        
+
         reportsViewVehicleDistanceTraveled();
         reportsViewDriverDistanceTraveled();
     });
 });
 
 function initializeDriversToLocalStorage() {
-    if (localStorage.getItem('localStorageDrivers') === null ||                         localStorage.getItem('localStorageDrivers') === '[]') {
+    if (localStorage.getItem('localStorageDrivers') === null || localStorage.getItem('localStorageDrivers') === '[]') {
         // When table empties, localStorageDrivers is '[]'; here it repopulates
         // Put the object into local storage
         localStorage.setItem('localStorageDrivers', JSON.stringify(allDrivers));
@@ -112,8 +60,8 @@ function initializeDriversToLocalStorage() {
 }
 
 function initializeVehiclesToLocalStorage() {
-    if (localStorage.getItem('localStorageVehicles') === null || 
-       localStorage.getItem('localStorageVehicles') === '[]') {
+    if (localStorage.getItem('localStorageVehicles') === null ||
+        localStorage.getItem('localStorageVehicles') === '[]') {
         // When table empties, localStorageVehicles is '[]'; here it repopulates
         // Put the object into local storage
         localStorage.setItem('localStorageVehicles', JSON.stringify(allVehicles));

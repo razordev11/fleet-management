@@ -9,26 +9,29 @@
     <meta name="description" content="Exercising my web dev skills.">
     <link rel="icon" type="image/png" href="/images/favicon.png">
 
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css">-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <link rel="stylesheet" href="/css/main.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
-
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>-->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/select2.min.js"></script>
     <script src="/js/moment.min.js"></script>
     <script src="/js/bootstrap-datetimepicker.min.js"></script>
-
     <script src="/js/data.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/driversPage.js"></script>
     <script src="/js/vehiclesPage.js"></script>
     <script src="/js/reportsPage.js"></script>
-
 </head>
 
 <body>
@@ -38,6 +41,7 @@
         <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
         <div class="menu-list">
             <ul id="menu-content" class="menu-content collapse out">
+
                 {{#if user}}
                 <ul>
                     <a href="/">
@@ -51,23 +55,33 @@
                     <a><i class="fa fa-users fa-lg"></i> Drivers <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="driversMenu">
-                    <li id="driversPageHeader"><a>View all drivers</a></li>
-                    <li id="addDriverHeader"><a>Add driver</a></li>
+                    <a href="/drivers">
+                        <li id="driversPageHeader">View all drivers</li>
+                    </a>
+                    <a href="/drivers/create">
+                        <li id="addDriverHeader">Add driver</li>
+                    </a>
                 </ul>
 
                 <li data-toggle="collapse" data-target="#vehiclesMenu" class="collapsed">
                     <a><i class="fa fa-car fa-lg"></i> Vehicles <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="vehiclesMenu">
-                    <li id="vehiclesPageHeader"><a>View all vehicles</a></li>
-                    <li id="addVehicleHeader"><a>Add vehicle</a></li>
+                    <a href="/vehicles">
+                        <li id="vehiclesPageHeader">View all vehicles</li>
+                    </a>
+                    <a href="/vehicles/create">
+                        <li id="addVehicleHeader">Add vehicle</li>
+                    </a>
                 </ul>
 
                 <li data-toggle="collapse" data-target="#reportsMenu" class="collapsed">
                     <a><i class="fa fa-globe fa-lg"></i> Reports <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="reportsMenu">
-                    <li id="reportsPageHeader"><a>View reports</a></li>
+                    <a href="/reports">
+                        <li id="reportsPageHeader">View reports</li>
+                    </a>
                 </ul>
                 <ul>
                     <a href="/users/logout">
@@ -105,128 +119,7 @@
 
     </div>
     <!-- END container -->
-
-    {{#if user}}
-    <div class="modal fade" id="editDriverModal" tabindex="-1" role="dialog" aria-labelledby="edit-driver" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Edit driver</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group" id="editDriverFirstName">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editDriverLastName">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editDriverID">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editDriverAddress">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editDriverEmail">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editDriverPhoneNumber">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editDriverDistanceTraveled">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="modal-footer ">
-                        <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-warning btn-lg" id="editDriverButton" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Problem: with modal, the delete function is called twice.
-    <div class="modal fade" id="deleteDriverModal" tabindex="-1" role="dialog" aria-labelledby="delete-driver" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
-
-                </div>
-                <div class="modal-footer ">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" id="deleteDriver"><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <div class="modal fade" id="editVehicleModal" tabindex="-1" role="dialog" aria-labelledby="edit-vehicle" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Edit vehicle</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group" id="editVehicleManufacturer">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleModel">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleRegistrationPlate">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleVIN">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleEngineCapacity">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleFuelType">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleHorsepower">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleFuelConsumption">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="form-group" id="editVehicleKilometrage">
-                        <input class="form-control " type="text">
-                    </div>
-                    <div class="modal-footer ">
-                        <button type="button" data-dismiss="modal" aria-hidden="true" class="btn btn-warning btn-lg" id="editVehicleButton" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Problem: with modal, the delete function is called twice.
-    <div class="modal fade" id="deleteVehicleModal" tabindex="-1" role="dialog" aria-labelledby="delete-vehicle" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                    <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
-
-                </div>
-                <div class="modal-footer ">
-                    <button type="button" class="btn btn-success" data-dismiss="modal" id="deleteVehicle"><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyDsJTbaW1r7umF7glryQiT1zdhliqBRhRs" async defer></script>
-    {{/if}}
 </body>
 
 </html>

@@ -1,0 +1,72 @@
+<div id="reportsPage">
+    <h2>Reports Page</h2>
+    <p>Here you view custom reports.</p>
+
+    <br> {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}} {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+
+    <div class="col-md-6 bd-callout">
+        <p>
+            <i>Distance traveled by vehicle: </i>
+            <span id="reportsVehicleDistanceTraveled"></span>
+            <span> km</span>
+        </p>
+        <select class="reports-vehicle-registration-plate" id="reportsVehicleRegistrationPlate"></select>
+
+        <br><br>
+
+        <p>From date:</p>
+        <div class="form-group">
+            <div class='input-group date' id='reportsVehicleStartDate'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <p>To date:</p>
+        <div class="form-group">
+            <div class='input-group date' id='reportsVehicleStopDate'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 bd-callout">
+        <p>
+            <i>Distance traveled by driver: </i>
+            <span id="reportsDriverDistanceTraveled"></span>
+            <span> km</span>
+        </p>
+        <select class="reports-driver-name" id="reportsDriverName"></select>
+
+        <br><br>
+
+        <p>From date:</p>
+        <div class="form-group">
+            <div class='input-group date' id='reportsDriverStartDate'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+
+        <p>To date:</p>
+        <div class="form-group">
+            <div class='input-group date' id='reportsDriverStopDate'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

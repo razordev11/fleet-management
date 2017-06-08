@@ -1,33 +1,37 @@
 {
-    "name": "fleet-management",
-    "version": "1.0.2",
-    "author": "Andrei Ulinici",
-    "license": "MIT",
-    "description": "Fleet Management website",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/andreiulinici/fleet-management.git"
-    },
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
-    },
-    "dependencies": {
-        "bcryptjs": "*",
-        "body-parser": "*",
-        "connect-flash": "*",
-        "cookie-parser": "^1.4.1",
-        "cors": "^2.7.1",
-        "express": "*",
-        "express-handlebars": "*",
-        "express-messages": "*",
-        "express-session": "*",
-        "express-validator": "*",
-        "mongodb": "*",
-        "mongoose": "*",
-        "passport": "*",
-        "passport-http": "*",
-        "passport-local": "*"
-    }
+  "name": "fleet-management",
+  "version": "1.0.2",
+  "private": true,
+  "author": "Andrei Ulinici",
+  "license": "MIT",
+  "description": "Fleet Management website",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andreiulinici/fleet-management.git"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.1",
+    "cors": "^2.7.1",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "passport": "*",
+    "passport-http": "*",
+    "passport-local": "*"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
 }
