@@ -11,10 +11,14 @@
     <div class="col-md-6 bd-callout">
         <p>
             <i>Distance traveled by vehicle: </i>
-            <span id="reportsVehicleDistanceTraveled"></span>
+            <span id="reportsVehicleDistanceTraveled">0</span>
             <span> km</span>
         </p>
-        <select class="reports-vehicle-registration-plate" id="reportsVehicleRegistrationPlate"></select>
+        <select class="reports-vehicle-registration-plate" id="reportsVehicleRegistrationPlate">
+            {{#each vehicles}}
+            <optgroup label="{{this.manufacturer}} {{this.model}}" class="size"><option>{{this.registrationPlate}}</option></optgroup>
+            {{/each}}
+        </select>
 
         <br><br>
 
@@ -42,10 +46,14 @@
     <div class="col-md-6 bd-callout">
         <p>
             <i>Distance traveled by driver: </i>
-            <span id="reportsDriverDistanceTraveled"></span>
+            <span id="reportsDriverDistanceTraveled">0</span>
             <span> km</span>
         </p>
-        <select class="reports-driver-name" id="reportsDriverName"></select>
+        <select class="reports-driver-name" id="reportsDriverName">
+            {{#each drivers}}
+            <option>{{this.firstName}} {{this.lastName}}</option>
+            {{/each}}
+        </select>
 
         <br><br>
 

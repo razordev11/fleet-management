@@ -17,16 +17,24 @@ router.get('/', function (req, res) {
 		req.flash('error_msg', err);
 		res.redirect('/reports');
 	});
-
 });
 
-function ensureAuthenticated(req, res, next) {
-	if (req.isAuthenticated()) {
-		return next();
-	} else {
-		//req.flash('error_msg','You are not logged in');
-		res.redirect('/users/login');
-	}
-}
+router.get('/getvehicledistance/:id', function (req, res) {
+	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((distance) => {
+		res.send(distance);
+	}).catch((err) => {
+		req.flash('error_msg', err);
+		res.redirect('/reports');
+	});
+});
+
+// function ensureAuthenticated(req, res, next) {
+// 	if (req.isAuthenticated()) {
+// 		return next();
+// 	} else {
+// 		//req.flash('error_msg','You are not logged in');
+// 		res.redirect('/users/login');
+// 	}
+// }
 
 module.exports = router;
