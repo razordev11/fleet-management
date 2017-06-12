@@ -8,6 +8,12 @@
     <div class="alert alert-danger">{{error_msg}}</div>
     {{/if}}
 
+    <script type="text/javascript">
+        $(function () {
+            initializeReportsPage();
+        });
+    </script>
+
     <div class="col-md-6 bd-callout">
         <p>
             <i>Distance traveled by vehicle: </i>
@@ -24,8 +30,8 @@
 
         <p>From date:</p>
         <div class="form-group">
-            <div class='input-group date' id='reportsVehicleStartDate'>
-                <input type='text' class="form-control" />
+            <div class='input-group date reports-date-time' id='reportsVehicleStartDate'>
+                <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -34,8 +40,8 @@
 
         <p>To date:</p>
         <div class="form-group">
-            <div class='input-group date' id='reportsVehicleStopDate'>
-                <input type='text' class="form-control" />
+            <div class='input-group date reports-date-time' id='reportsVehicleStopDate'>
+                <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -51,7 +57,7 @@
         </p>
         <select class="reports-driver-name" id="reportsDriverName">
             {{#each drivers}}
-            <option>{{this.firstName}} {{this.lastName}}</option>
+            <option>{{this.firstName}} {{this.lastName}}, {{this.nationalId}}</option>
             {{/each}}
         </select>
 
@@ -59,8 +65,8 @@
 
         <p>From date:</p>
         <div class="form-group">
-            <div class='input-group date' id='reportsDriverStartDate'>
-                <input type='text' class="form-control" />
+            <div class='input-group date reports-date-time' id='reportsDriverStartDate'>
+                <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -69,8 +75,8 @@
 
         <p>To date:</p>
         <div class="form-group">
-            <div class='input-group date' id='reportsDriverStopDate'>
-                <input type='text' class="form-control" />
+            <div class='input-group date reports-date-time' id='reportsDriverStopDate'>
+                <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                 </span>

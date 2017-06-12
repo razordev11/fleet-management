@@ -1,6 +1,6 @@
 <div id="viewVehicleTripsPage">
     <h2>Vehicle Trips Page</h2>
-    <p>Here you can view the trips of vehicle with registration plate {{ items.registrationPlate }}
+    <p>Here you can view the trips of vehicle with registration plate <b>{{ items.registrationPlate }}</b>
     </p>
 
     <br> {{#if success_msg}}
@@ -13,9 +13,9 @@
         <thead>
             <tr>
                 <th>Driver</th>
-                <th>Start date</th>
-                <th>Start location</th>
+                <th>Start date</th>                
                 <th>Stop date</th>
+                <th>Start location</th>
                 <th>Stop location</th>
                 <th>Trip distance</th>
                 <th>Trips</th>
@@ -25,9 +25,9 @@
             {{#each items.trips}}
             <tr>
                 <td data-label="Driver">{{ this.driver.firstName }} {{ this.driver.lastName }}</td>
-                <td data-label="Start date">{{ this.startDate }}</td>
-                <td data-label="Start location">{{ this.startLocation.lat }}, {{ this.startLocation.long }}</td>
+                <td data-label="Start date">{{ this.startDate }}</td>                
                 <td data-label="Stop date">{{ this.stopDate }}</td>
+                <td data-label="Start location">{{ this.startLocation.lat }}, {{ this.startLocation.long }}</td>
                 <td data-label="Stop location">{{ this.stopLocation.lat }}, {{  this.stopLocation.long }}</td>
                 <td data-label="Trip distance">{{ this.distance }}</td>
                 <td data-label="Trips">

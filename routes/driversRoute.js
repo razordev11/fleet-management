@@ -4,7 +4,7 @@ var objectId = require('mongodb').ObjectID;
 var Driver = require('../models/driver');
 
 // Get drivers
-router.get('/', function (req, res) {
+router.get('/', ensureAuthenticated, function (req, res) {
 	Driver.find({}).exec().then((drivers) => {
 		res.render('drivers', { items: drivers });
 	}).catch((err) => {
@@ -23,7 +23,7 @@ router.get('/id/:id', function (req, res) {
 });
 
 // Create driver
-router.get('/create', function (req, res) {
+router.get('/create', ensureAuthenticated, function (req, res) {
 	res.render('adddriver');
 });
 
@@ -84,13 +84,13 @@ router.get('/delete/:id', function (req, res) {
 	});
 });
 
-// function ensureAuthenticated(req, res, next) {
-// 	if (req.isAuthenticated()) {
-// 		return next();
-// 	} else {
-// 		//req.flash('error_msg','You are not logged in');
-// 		res.redirect('/users/login');
-// 	}
-// }
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	} else {
+		req.flash('error_msg','You are not logged in');
+		res.redirect('/users/login');
+	}
+}
 
 module.exports = router;

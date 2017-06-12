@@ -4,7 +4,7 @@ var objectId = require('mongodb').ObjectID;
 var Vehicle = require('../models/vehicle');
 
 // Get vehicles
-router.get('/', function (req, res) {
+router.get('/', ensureAuthenticated, function (req, res) {
 	Vehicle.find({}).exec().then((vehicles) => {
 		res.render('vehicles', { items: vehicles });
 	}).catch((err) => {
@@ -23,11 +23,11 @@ router.get('/id/:id', function (req, res) {
 });
 
 // Create vehicle
-router.get('/create', function (req, res) {
+router.get('/create', ensureAuthenticated, function (req, res) {
 	res.render('addvehicle');
 });
 
-router.post('/create', function (req, res) {
+router.post('/create', ensureAuthenticated, function (req, res) {
 	var newVehicle = new Vehicle({
 		manufacturer: req.body.manufacturer,
 		model: req.body.model,
@@ -37,7 +37,11 @@ router.post('/create', function (req, res) {
 		fuelType: req.body.fuelType,
 		horsepower: req.body.horsepower,
 		fuelConsumption: req.body.fuelConsumption,
-		kilometrage: req.body.kilometrage
+		kilometrage: req.body.kilometrage,
+		rca: req.body.rca,
+		itp: req.body.itp,
+		rovinieta: req.body.rovinieta,
+		status: req.body.status
 	});
 
 	newVehicle.save(function (err, vehicle) {
@@ -63,7 +67,11 @@ router.post('/update/:id', function (req, res) {
 			fuelType: req.body.fuelType,
 			horsepower: req.body.horsepower,
 			fuelConsumption: req.body.fuelConsumption,
-			kilometrage: req.body.kilometrage
+			kilometrage: req.body.kilometrage,
+			rca: req.body.rca,
+			itp: req.body.itp,
+			rovinieta: req.body.rovinieta,
+			status: req.body.status
 		};
 	Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $set: updatedVehicle }, { upsert: true }).exec().then((updatedVehicle) => {
 		req.flash('success_msg', 'Vehicle updated.');
@@ -89,7 +97,7 @@ router.get('/delete/:id', function (req, res) {
 });
 
 // Get all trips 	TODO TODO TODO TODO TODO TODO
-router.get('/trips', function (req, res) {
+router.get('/trips', ensureAuthenticated, function (req, res) {
 	Vehicle.find({}).exec().then((vehicles) => {
 		console.log(vehicles);
 		res.render('trips', { items: vehicles });
@@ -102,20 +110,20 @@ router.get('/trips', function (req, res) {
 // Get trip
 router.get('/trips/id/:id', function (req, res) {
 	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((vehicle) => {
-		res.render('trips', { items: vehicle });		
+		res.render('trips', { items: vehicle });
 	}).catch((err) => {
 		req.flash('error_msg', err);
 		res.redirect('/trips');
 	});
 });
 
-// function ensureAuthenticated(req, res, next) {
-// 	if (req.isAuthenticated()) {
-// 		return next();
-// 	} else {
-// 		//req.flash('error_msg','You are not logged in');
-// 		res.redirect('/users/login');
-// 	}
-// }
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	} else {
+		req.flash('error_msg', 'You are not logged in');
+		res.redirect('/users/login');
+	}
+}
 
 module.exports = router;

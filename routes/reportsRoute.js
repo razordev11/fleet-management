@@ -5,7 +5,7 @@ var Vehicle = require('../models/vehicle');
 var Driver = require('../models/driver');
 
 // Get reports
-router.get('/', function (req, res) {
+router.get('/', ensureAuthenticated, function (req, res) {
 	Driver.find({}).exec().then((drivers) => {
 		Vehicle.find({}).exec().then((vehicles) => {
 			res.render('reports', { vehicles: vehicles, drivers: drivers });
@@ -19,22 +19,22 @@ router.get('/', function (req, res) {
 	});
 });
 
-router.get('/getvehicledistance/:id', function (req, res) {
-	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((distance) => {
-		res.send(distance);
+router.get('/getdata', function (req, res) {
+	Vehicle.find({}).exec().then((vehicles) => {
+		res.send({ vehicles: vehicles });
 	}).catch((err) => {
 		req.flash('error_msg', err);
 		res.redirect('/reports');
 	});
 });
 
-// function ensureAuthenticated(req, res, next) {
-// 	if (req.isAuthenticated()) {
-// 		return next();
-// 	} else {
-// 		//req.flash('error_msg','You are not logged in');
-// 		res.redirect('/users/login');
-// 	}
-// }
+function ensureAuthenticated(req, res, next) {
+	if (req.isAuthenticated()) {
+		return next();
+	} else {
+		req.flash('error_msg', 'You are not logged in');
+		res.redirect('/users/login');
+	}
+}
 
 module.exports = router;

@@ -56,6 +56,18 @@ var VehicleSchema = mongoose.Schema({
     kilometrage: {
         type: Number
     },
+    rca: {
+        type: String
+    },
+    itp: {
+        type: String
+    },
+    rovinieta: {
+        type: String
+    },
+    status: {
+        type: String
+    },
     trips: {
         type: [TripsSchema],
         required: false

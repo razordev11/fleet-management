@@ -1,5 +1,5 @@
 function editVehicle(rowId, _id) {
-    rowId--;
+    rowId -= 2;
     var $row = $("#vehiclesTable tbody")[0].rows[rowId];
 
     $('#editVehicleManufacturer :input').attr('value', $row.cells[0].innerHTML);
@@ -7,16 +7,20 @@ function editVehicle(rowId, _id) {
     $('#editVehicleRegistrationPlate :input').attr('value', $row.cells[2].innerHTML);
     $('#editVehicleVin :input').attr('value', $row.cells[3].innerHTML);
     $('#editVehicleEngineCapacity :input').attr('value', $row.cells[4].innerHTML);
-    $('#editVehiclFuelType :input').attr('value', $row.cells[5].innerHTML);
+    $('#editVehicleFuelType :input').attr('value', $row.cells[5].innerHTML);
     $('#editVehicleHorsepower :input').attr('value', $row.cells[6].innerHTML);
     $('#editVehicleFuelConsumption :input').attr('value', $row.cells[7].innerHTML);
     $('#editVehicleKilometrage :input').attr('value', $row.cells[8].innerHTML);
+    $('#editVehicleRca :input').attr('value', $row.cells[9].innerHTML);
+    $('#editVehicleItp :input').attr('value', $row.cells[10].innerHTML);
+    $('#editVehicleRovinieta :input').attr('value', $row.cells[11].innerHTML);
+    $('#editVehicleStatus :input').attr('value', $row.cells[12].innerHTML);
 
     $('#editVehicleForm').attr('action', "/vehicles/update/" + _id);
 }
 
 function deleteVehicle(rowId, _id) {
-    rowId--;
+    rowId -= 2;
     var $row = $("#vehiclesTable tbody")[0].rows[rowId];
 
     $('#deleteVehicleRegistrationPlate').text($row.cells[0].innerHTML + " " + $row.cells[1].innerHTML);

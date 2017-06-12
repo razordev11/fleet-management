@@ -5,7 +5,7 @@ var allDrivers = [{
     "address": "Unirii 1, Bucharest",
     "email": "john.doe@gmail.com",
     "phoneNumber": "0732166221",
-    "distanceTraveled": 200
+    "distanceTraveled": 238
 	}, {
     "firstName": "Anna",
     "lastName": "Craig",
@@ -13,7 +13,7 @@ var allDrivers = [{
     "address": "Unirii 2, Bucharest",
     "email": "anna.craig@gmail.com",
     "phoneNumber": "0732166222",
-    "distanceTraveled": 40
+    "distanceTraveled": 178
 	}, {
     "firstName": "Michael",
     "lastName": "Douglas",
@@ -21,7 +21,7 @@ var allDrivers = [{
     "address": "Unirii 3, Bucharest",
     "email": "michael.douglas@gmail.com",
     "phoneNumber": "0732166223",
-    "distanceTraveled": 130
+    "distanceTraveled": 26
 	}, {
     "firstName": "Richard",
     "lastName": "Gere",
@@ -29,7 +29,7 @@ var allDrivers = [{
     "address": "Unirii 4, Bucharest",
     "email": "richard.gere@gmail.com",
     "phoneNumber": "0732166224",
-    "distanceTraveled": 120
+    "distanceTraveled": 1717
 	}, {
     "firstName": "Katy",
     "lastName": "Perry",
