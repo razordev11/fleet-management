@@ -10,11 +10,12 @@ function initializeReportsPage() {
         console.error(err);
     });
 
-    $('.datetimepicker').datetimepicker();
-    $('#reportsVehicleStartDate').datetimepicker();
-    $('#reportsVehicleStopDate').datetimepicker();
-    $('#reportsDriverStartDate').datetimepicker();
-    $('#reportsDriverStopDate').datetimepicker();
+    $('.datetimepicker').datetimepicker({
+        format: 'LLL'
+    });
+    $('.reports-date-time').datetimepicker({
+        format: 'LLL'
+    });
     $(".reports-vehicle-registration-plate").select2({
         placeholder: 'No vehicles available'
     });

@@ -39,18 +39,18 @@ var reportsRoute = require('./routes/reportsRoute');
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({
-  defaultLayout: 'layout'
-  // helpers: {
-  //   inc: function (value, options) {
-  //     return parseInt(value) + 1;
-  //   },
-  //   ifDate: function (value, options) {
-  //     console.log(Date(value) + ">" + new Date());
-  //     if (Date.parse(value) > new Date()) {
-  //       return value;
-  //     }
-  //   }
-  // }
+  defaultLayout: 'layout',
+  helpers: {
+    inc: function (value, options) {
+      return parseInt(value) + 1;
+    }
+    // ifDate: function (value, options) {
+    //   console.log(Date(value) + ">" + new Date());
+    //   if (Date.parse(value) > new Date()) {
+    //     return value;
+    //   }
+    // }
+  }
 }));
 app.set('view engine', 'handlebars');
 
@@ -64,7 +64,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session
 app.use(session({
-  secret: 'secret',
+  secret: 'randomsecretsession',
   saveUninitialized: true,
   resave: false
 }));

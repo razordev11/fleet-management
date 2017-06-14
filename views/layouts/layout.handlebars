@@ -45,13 +45,13 @@
                 {{#if user}}
                 <ul>
                     <a href="/">
-                        <li id="homePageHeader" class="active">
+                        <li id="homePageHeader">
                             <i class="fa fa-dashboard fa-lg"></i> Dashboard
                         </li>
                     </a>
                 </ul>
 
-                <li data-toggle="collapse" data-target="#driversMenu" class="collapsed">
+                <li data-toggle="collapse" data-target="#driversMenu" class="collapsed" id="driversTab">
                     <a><i class="fa fa-users fa-lg"></i> Drivers <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="driversMenu">
@@ -63,7 +63,7 @@
                     </a>
                 </ul>
 
-                <li data-toggle="collapse" data-target="#vehiclesMenu" class="collapsed">
+                <li data-toggle="collapse" data-target="#vehiclesMenu" class="collapsed" id="vehiclesTab">
                     <a><i class="fa fa-car fa-lg"></i> Vehicles <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="vehiclesMenu">
@@ -75,7 +75,7 @@
                     </a>
                 </ul>
 
-                <li data-toggle="collapse" data-target="#reportsMenu" class="collapsed">
+                <li data-toggle="collapse" data-target="#reportsMenu" class="collapsed" id="reportsTab">
                     <a><i class="fa fa-globe fa-lg"></i> Reports <span class="arrow"></span></a>
                 </li>
                 <ul class="sub-menu collapse" id="reportsMenu">
@@ -94,14 +94,14 @@
                 {{else}}
                 <ul>
                     <a href="/users/login">
-                        <li id="login" class="active">
+                        <li id="login">
                             <i class="fa fa-sign-in fa-lg"></i> Login
                         </li>
                     </a>
                 </ul>
                 <ul>
                     <a href="/users/register">
-                        <li id="register" class="active">
+                        <li id="register">
                             <i class="fa fa-id-card-o fa-lg"></i> Register
                         </li>
                     </a>

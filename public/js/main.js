@@ -1,41 +1,31 @@
 $(document).ready(function () {
-    // $('.menu-list ul li').removeClass("active");
-    // $('.sub-menu li').removeClass("active");
-    // $('#homePageHeader').addClass("active");
-    
-    $("#homePageHeader").click(function () {
-        $('.menu-list ul li').removeClass("active");
-        $('.sub-menu li').removeClass("active");
-        $(this).addClass("active");
-    });
+    var currentPathname = window.location.pathname
 
-    $("#driversPageHeader").click(function () {
-        $('.menu-list ul li').removeClass("active");
-        $('.sub-menu li').removeClass("active");
-        $(this).addClass("active");
-    });
-
-    $("#addDriverHeader").click(function () {
-        $('.menu-list ul li').removeClass("active");
-        $('.sub-menu li').removeClass("active");
-        $(this).addClass("active");
-    });
-
-    $("#vehiclesPageHeader").click(function () {
-        $('.menu-list ul li').removeClass("active");
-        $('.sub-menu li').removeClass("active");
-        $(this).addClass("active");
-    });
-
-    $("#addVehicleHeader").click(function () {
-        $('.menu-list ul li').removeClass("active");
-        $('.sub-menu li').removeClass("active");
-        $(this).addClass("active");
-    });
-
-    $("#reportsPageHeader").click(function () {
-        $('.menu-list ul li').removeClass("active");
-        $('.sub-menu li').removeClass("active");
-        $(this).addClass("active");
-    });
+    if (currentPathname == "") {
+        $("#homePageHeader").addClass("active");
+    } else if (currentPathname == "/drivers") {
+        $("#driversPageHeader").addClass("active");
+        $("#driversMenu").addClass("in");
+        $("#driversTab").addClass("active");
+    } else if (currentPathname == "/drivers/create") {
+        $("#addDriverHeader").addClass("active");
+        $("#driversMenu").addClass("in");
+        $("#driversTab").addClass("active");
+    } else if (currentPathname == "/vehicles/") {
+        $("#vehiclesPageHeader").addClass("active");
+        $("#vehiclesMenu").addClass("in");
+        $("#vehiclesTab").addClass("active");
+    } else if (currentPathname == "/vehicles/create") {
+        $("#addVehicleHeader").addClass("active");
+        $("#vehiclesMenu").addClass("in");
+        $("#vehiclesTab").addClass("active");
+    } else if (currentPathname == "/reports") {
+        $("#reportsPageHeader").addClass("active");
+        $("#reportsMenu").addClass("in");
+        $("#reportsTab").addClass("active");
+    } else if (currentPathname == "/users/login") {
+        $("#login").addClass("active");
+    } else if (currentPathname == "/users/register") {
+        $("#register").addClass("active");
+    }
 });

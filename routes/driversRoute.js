@@ -34,7 +34,7 @@ router.get('/create', ensureAuthenticated, function (req, res) {
     res.render('adddriver');
 });
 
-router.post('/create', function (req, res) {
+router.post('/create', ensureAuthenticated, function (req, res) {
     var newDriver = new Driver({
         userId: usersRoute.userId,
         firstName: req.body.firstName,
@@ -44,8 +44,15 @@ router.post('/create', function (req, res) {
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
         distanceTraveled: 0,
-        license: [{ category: req.body.category, expiryDate: req.body.expiryDate }]
+        license: [{ category: req.body.category1, expiryDate: req.body.expiryDate1 }]
     });
+    var size = Object.keys(req.body).length; // ES5+
+    if (size > 8) {
+        for (var i = 0; i < (size - 8) / 2; i++) {
+            var j = i + 2;
+            newDriver.license.push({ category: req.body['category' + j], expiryDate: req.body['expiryDate' + j] });
+        }
+    }
 
     newDriver.save(function (err, driver) {
         if (err) {
