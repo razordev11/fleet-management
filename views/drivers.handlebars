@@ -11,6 +11,11 @@
     <table class="table table-condensed" id="driversTable">
         <thead>
             <tr>
+                <th colspan=7>Driver info</th>
+                <th colspan=2>Driver license</th>
+                <th colspan=2>Operations</th>
+            </tr>
+            <tr>
                 <th>First name</th>
                 <th>Last name</th>
                 <th>National ID</th>
@@ -18,6 +23,8 @@
                 <th>Email</th>
                 <th>Phone Number</th>
                 <th>Distance traveled</th>
+                <th>Categories</th>
+                <th>Expiry dates</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -32,6 +39,8 @@
                 <td data-label="Email">{{ this.email }}</td>
                 <td data-label="Phone number">{{ this.phoneNumber }}</td>
                 <td data-label="Distance traveled">{{ this.distanceTraveled }}</td>
+                <td data-label="Categories">{{#each this.license}}{{category}}{{/each}}</td>
+                <td data-label="Expiry dates">{{#each this.license}}{{ expiryDate }}{{/each}}</td>
                 <td data-label="Edit driver">
                     <p class="operations" title="Edit">
                         <button class="btn btn-primary btn-md" data-toggle="modal" data-title="Edit" data-target="#editDriverModal" onclick="editDriver(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
@@ -92,7 +101,14 @@
                         <input type="text" class="form-control" name="phoneNumber" title="Phone number" placeholder="Phone number" required>
                     </div>
                     <div class="form-group" id="editDriverDistanceTraveled">
-                        <input type="number" class="form-control" name="distanceTraveled" title="Distance traveled" placeholder="Distance traveled" required>
+                        <input type="number" class="form-control" name="distanceTraveled" title="Distance traveled" placeholder="Distance traveled"
+                            required>
+                    </div>
+                    <div class="form-group" id="editDriverLicenseCategory">
+                        <input type="text" class="form-control" name="category" title="License category" placeholder="License category" required>
+                    </div>
+                    <div class="form-group" id="editDriverLicenseExpiryDate">
+                        <input type="text" class="form-control" name="expiryDate" title="License expiry date" placeholder="License expiry date" required>
                     </div>
                 </div>
                 <div class="modal-footer form-group">

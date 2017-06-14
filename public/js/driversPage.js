@@ -1,5 +1,5 @@
 function editDriver(rowId, _id) {
-    rowId--;
+    rowId -= 2;
     var $row = $("#driversTable tbody")[0].rows[rowId];
 
     $('#editDriverFirstName :input').attr('value', $row.cells[0].innerHTML);
@@ -9,12 +9,14 @@ function editDriver(rowId, _id) {
     $('#editDriverEmail :input').attr('value', $row.cells[4].innerHTML);
     $('#editDriverPhoneNumber :input').attr('value', $row.cells[5].innerHTML);
     $('#editDriverDistanceTraveled :input').attr('value', $row.cells[6].innerHTML);
+    $('#editDriverLicenseCategory :input').attr('value', $row.cells[7].innerHTML);
+    $('#editDriverLicenseExpiryDate :input').attr('value', $row.cells[8].innerHTML);
 
     $('#editDriverForm').attr('action', "/drivers/update/" + _id);
 }
 
 function deleteDriver(rowId, _id) {
-    rowId--;
+    rowId -= 2;
     var $row = $("#driversTable tbody")[0].rows[rowId];
 
     $('#deleteDriverFullName').text($row.cells[0].innerHTML + " " + $row.cells[1].innerHTML);

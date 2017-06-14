@@ -2,11 +2,18 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var objectId = require('mongodb').ObjectID;
 var Vehicle = require('../models/vehicle');
+var usersRoute = require('./usersRoute.js');
 
 // Get vehicles
 router.get('/', ensureAuthenticated, function (req, res) {
 	Vehicle.find({}).exec().then((vehicles) => {
-		res.render('vehicles', { items: vehicles });
+		var userVehicles = [];
+		for (var i = 0; i < vehicles.length; i++) {
+			if (vehicles[i].userId == usersRoute.userId) {
+				userVehicles.push(vehicles[i]);
+			}
+		}
+		res.render('vehicles', { items: userVehicles });
 	}).catch((err) => {
 		req.flash('error_msg', err);
 		res.redirect('/vehicles');
@@ -29,6 +36,7 @@ router.get('/create', ensureAuthenticated, function (req, res) {
 
 router.post('/create', ensureAuthenticated, function (req, res) {
 	var newVehicle = new Vehicle({
+		userId: usersRoute.userId,
 		manufacturer: req.body.manufacturer,
 		model: req.body.model,
 		registrationPlate: req.body.registrationPlate,

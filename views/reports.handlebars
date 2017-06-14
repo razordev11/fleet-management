@@ -22,7 +22,9 @@
         </p>
         <select class="reports-vehicle-registration-plate" id="reportsVehicleRegistrationPlate">
             {{#each vehicles}}
-            <optgroup label="{{this.manufacturer}} {{this.model}}" class="size"><option>{{this.registrationPlate}}</option></optgroup>
+            <optgroup label="{{this.manufacturer}} {{this.model}}" class="size">
+                <option>{{this.registrationPlate}}</option>
+            </optgroup>
             {{/each}}
         </select>
 
@@ -33,7 +35,7 @@
             <div class='input-group date reports-date-time' id='reportsVehicleStartDate'>
                 <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
@@ -43,7 +45,7 @@
             <div class='input-group date reports-date-time' id='reportsVehicleStopDate'>
                 <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
@@ -68,7 +70,7 @@
             <div class='input-group date reports-date-time' id='reportsDriverStartDate'>
                 <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
@@ -78,7 +80,7 @@
             <div class='input-group date reports-date-time' id='reportsDriverStopDate'>
                 <input type='text' class="form-control datetimepicker">
                 <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-calendar"></span>
+                    <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>

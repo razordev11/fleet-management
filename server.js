@@ -38,7 +38,20 @@ var reportsRoute = require('./routes/reportsRoute');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({ defaultLayout: 'layout' }));
+app.engine('handlebars', exphbs({
+  defaultLayout: 'layout'
+  // helpers: {
+  //   inc: function (value, options) {
+  //     return parseInt(value) + 1;
+  //   },
+  //   ifDate: function (value, options) {
+  //     console.log(Date(value) + ">" + new Date());
+  //     if (Date.parse(value) > new Date()) {
+  //       return value;
+  //     }
+  //   }
+  // }
+}));
 app.set('view engine', 'handlebars');
 
 // BodyParser Middleware
@@ -58,18 +71,18 @@ app.use(session({
 
 // Express Validator
 app.use(expressValidator({
-  errorFormatter: function(param, msg, value) {
-      var namespace = param.split('.')
-      , root    = namespace.shift()
+  errorFormatter: function (param, msg, value) {
+    var namespace = param.split('.')
+      , root = namespace.shift()
       , formParam = root;
 
-    while(namespace.length) {
+    while (namespace.length) {
       formParam += '[' + namespace.shift() + ']';
     }
     return {
-      param : formParam,
-      msg   : msg,
-      value : value
+      param: formParam,
+      msg: msg,
+      value: value
     };
   }
 }));

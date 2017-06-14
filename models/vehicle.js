@@ -29,6 +29,9 @@ var TripsSchema = mongoose.Schema({
 });
 
 var VehicleSchema = mongoose.Schema({
+    userId: {
+        type: String
+    },
     manufacturer: {
         type: String
     },

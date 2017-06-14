@@ -3,6 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/user');
+var userId;
 
 // Register
 router.get('/register', function (req, res) {
@@ -46,11 +47,10 @@ router.post('/register', function (req, res) {
 
 		User.createUser(newUser, function (err, user) {
 			if (err) throw err;
-			console.log(user);
+			// console.log(user);
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
-
 		res.redirect('/users/login');
 	}
 });
@@ -62,10 +62,11 @@ passport.use(new LocalStrategy(
 			if (!user) {
 				return done(null, false, { message: 'Unknown User' });
 			}
-
 			User.comparePassword(password, user.password, function (err, isMatch) {
 				if (err) throw err;
 				if (isMatch) {
+					userId = user._id;
+					module.exports.userId = userId;
 					return done(null, user);
 				} else {
 					return done(null, false, { message: 'Invalid password' });
@@ -92,9 +93,7 @@ router.post('/login',
 
 router.get('/logout', function (req, res) {
 	req.logout();
-	
 	req.flash('success_msg', 'You are logged out');
-
 	res.redirect('/users/login');
 });
 
