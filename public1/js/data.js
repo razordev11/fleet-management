@@ -1,47 +1,47 @@
 var allDrivers = [{
     "firstName": "John",
     "lastName": "Doe",
-    "id": "1810329135411",
+    "nationalId": "1810329135411",
     "address": "Unirii 1, Bucharest",
     "email": "john.doe@gmail.com",
     "phoneNumber": "0732166221",
-    "distanceTraveled": 200
+    "distanceTraveled": 238
 	}, {
     "firstName": "Anna",
     "lastName": "Craig",
-    "id": "2820329135412",
+    "nationalId": "2820329135412",
     "address": "Unirii 2, Bucharest",
     "email": "anna.craig@gmail.com",
     "phoneNumber": "0732166222",
-    "distanceTraveled": 40
+    "distanceTraveled": 178
 	}, {
     "firstName": "Michael",
     "lastName": "Douglas",
-    "id": "1830329135413",
+    "nationalId": "1830329135413",
     "address": "Unirii 3, Bucharest",
     "email": "michael.douglas@gmail.com",
     "phoneNumber": "0732166223",
-    "distanceTraveled": 130
+    "distanceTraveled": 26
 	}, {
     "firstName": "Richard",
     "lastName": "Gere",
-    "id": "1840329135414",
+    "nationalId": "1840329135414",
     "address": "Unirii 4, Bucharest",
     "email": "richard.gere@gmail.com",
     "phoneNumber": "0732166224",
-    "distanceTraveled": 120
+    "distanceTraveled": 1717
 	}, {
     "firstName": "Katy",
     "lastName": "Perry",
-    "id": "2850329135415",
+    "nationalId": "2850329135415",
     "address": "Unirii 5, Bucharest",
-    "email": "richard.gere@gmail.com",
+    "email": "katy.perry@gmail.com",
     "phoneNumber": "0732166225",
     "distanceTraveled": 0
 	}, {
     "firstName": "Sam",
     "lastName": "Smith",
-    "id": "1860329135416",
+    "nationalId": "1860329135416",
     "address": "Unirii 6, Bucharest",
     "email": "sam.smith@gmail.com",
     "phoneNumber": "0732166226",
@@ -49,7 +49,7 @@ var allDrivers = [{
 	}, {
     "firstName": "Will",
     "lastName": "Smith",
-    "id": "1870329135417",
+    "nationalId": "1870329135417",
     "address": "Unirii 7, Bucharest",
     "email": "will.smith@gmail.com",
     "phoneNumber": "0732166227",
@@ -69,11 +69,11 @@ var allVehicles = [{
         "kilometrage": 10000
     },
     "trips": [{
-        "id": "B-58-PKA-0000",
+        "tripId": "B-58-PKA-0000",
         "driver": {
             "firstName": "John",
             "lastName": "Doe",
-            "id": "1810329135411"
+            "nationalId": "1810329135411"
         },
         "startDate": "2017-04-29T13:28:06.419Z",
         "stopDate": "2017-04-29T15:40:00.000Z",
@@ -87,11 +87,11 @@ var allVehicles = [{
         },
         "distance": 171
 		}, {
-        "id": "B-58-PKA-0001",
+        "tripId": "B-58-PKA-0001",
         "driver": {
             "firstName": "John",
             "lastName": "Doe",
-            "id": "1810329135411"
+            "nationalId": "1810329135411"
         },
         "startDate": "2017-04-30T10:28:06.000Z",
         "stopDate": "2017-04-30T11:20:06.000Z",
@@ -118,11 +118,11 @@ var allVehicles = [{
         "kilometrage": 20000
     },
     "trips": [{
-        "id": "B-58-PKB-0000",
+        "tripId": "B-58-PKB-0000",
         "driver": {
             "firstName": "Anna",
             "lastName": "Craig",
-            "id": "2820329135412"
+            "nationalId": "2820329135412"
         },
         "startDate": "2017-04-20T08:00:00.000Z",
         "stopDate": "2017-04-20T10:00:00.000Z",
@@ -136,11 +136,11 @@ var allVehicles = [{
         },
         "distance": 131
 		}, {
-        "id": "B-58-PKB-0001",
+        "tripId": "B-58-PKB-0001",
         "driver": {
             "firstName": "Anna",
             "lastName": "Craig",
-            "id": "2820329135412"
+            "nationalId": "2820329135412"
         },
         "startDate": "2017-04-21T09:00:00.000Z",
         "stopDate": "2017-04-21T10:00:00.000Z",
@@ -167,11 +167,11 @@ var allVehicles = [{
         "kilometrage": 30000
     },
     "trips": [{
-        "id": "B-58-PKC-0000",
+        "tripId": "B-58-PKC-0000",
         "driver": {
             "firstName": "Michael",
             "lastName": "Douglas",
-            "id": "1830329135413"
+            "nationalId": "1830329135413"
         },
         "startDate": "2017-04-10T11:28:06.419Z",
         "stopDate": "2017-04-10T11:50:06.419Z",
@@ -185,11 +185,11 @@ var allVehicles = [{
         },
         "distance": 5
 		}, {
-        "id": "B-58-PKC-0001",
+        "tripId": "B-58-PKC-0001",
         "driver": {
             "firstName": "Michael",
             "lastName": "Douglas",
-            "id": "1830329135413"
+            "nationalId": "1830329135413"
         },
         "startDate": "2017-04-10T13:20:06.419Z",
         "stopDate": "2017-04-10T13:40:06.419Z",
@@ -203,11 +203,11 @@ var allVehicles = [{
         },
         "distance": 5.6
 		}, {
-        "id": "B-58-PKC-0002",
+        "tripId": "B-58-PKC-0002",
         "driver": {
             "firstName": "Michael",
             "lastName": "Douglas",
-            "id": "1830329135413"
+            "nationalId": "1830329135413"
         },
         "startDate": "2017-03-10T17:00:06.419Z",
         "stopDate": "2017-03-10T17:20:06.419Z",
@@ -234,11 +234,11 @@ var allVehicles = [{
         "kilometrage": 40000
     },
     "trips": [{
-        "id": "B-58-PKD-0000",
+        "tripId": "B-58-PKD-0000",
         "driver": {
             "firstName": "Richard",
             "lastName": "Gere",
-            "id": "1840329135414"
+            "nationalId": "1840329135414"
         },
         "startDate": "2017-04-15T00:00:00.000Z",
         "stopDate": "2017-04-15T18:35:00.000Z",

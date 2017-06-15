@@ -164,7 +164,8 @@ body {
     table#tripsTable tr {
         margin-bottom: 25px;
         display: block;
-        border-bottom: 2px solid #ddd;
+        
+        border-bottom: 2px solid #d19b3d;
     }
     table#driversTable td,
     table#vehiclesTable td,
@@ -172,12 +173,6 @@ body {
         display: block;
         text-align: right;
         font-size: 14px;
-        border-bottom: 1px dotted #ccc;
-    }
-    table#driversTable td:last-child,
-    table#vehiclesTable td:last-child,
-    table#tripsTable td:last-child {
-        border-bottom: 0;
     }
     table#driversTable td:before,
     table#vehiclesTable td:before,

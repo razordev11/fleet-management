@@ -1,7 +1,9 @@
 <h2 class="page-header">Register</h2>
-{{#if errors}} {{#each errors}}
+
+<br> {{#if errors}} {{#each errors}}
 <div class="alert alert-danger">{{msg}}</div>
 {{/each}} {{/if}}
+
 <form method="post" action="/users/register" class="form">
     <div class="form-group">
         <label>Name</label>
@@ -23,5 +25,5 @@
         <label>Confirm Password</label>
         <input type="password" class="form-control" placeholder="Password" name="password2">
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
 </form>

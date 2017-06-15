@@ -1,0 +1,195 @@
+<div id="vehiclesPage">
+    <h2>Vehicles Page</h2>
+    <p>Here you can view all registered vehicles.</p>
+
+    <br> {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}} {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                format: 'LL',
+                useCurrent: true
+            });
+        });
+    </script>
+
+    <table class="table table-condensed" id="vehiclesTable">
+        <thead>
+            <tr>
+                <th colspan=5>Vehicle Identity</th>
+                <th colspan=5>Technical specifications</th>
+                <th colspan=3>Expiry dates</th>
+                <th colspan=4>Operations</th>
+            </tr>
+            <tr>
+                <th>#</th>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Registration plate</th>
+                <th>VIN</th>
+                <th>Engine capacity</th>
+                <th>Fuel type</th>
+                <th>Horsepower</th>
+                <th>Fuel consumption</th>
+                <th>Kilometrage</th>
+                <th title="Vehicle insurance">RCA</th>
+                <th title="Periodic motor vehicle inspection">ITP</th>
+                <th title="Vignette - road tax">Rovinieta</th>
+                <th>Vehicle status</th>
+                <th>View trips</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each items}}
+            <tr>
+                <td data-label="#">{{inc @index}}</td>
+                <td data-label="Manufacturer">{{ this.manufacturer }}</td>
+                <td data-label="Model">{{ this.model }}</td>
+                <td data-label="Registration plate">{{ this.registrationPlate }}</td>
+                <td data-label="VIN">{{ this.vin }}</td>
+                <td data-label="Engine capacity">{{ this.engineCapacity }}</td>
+                <td data-label="Fuel type">{{ this.fuelType }}</td>
+                <td data-label="Horsepower">{{ this.horsepower }}</td>
+                <td data-label="Fuel consumption">{{ this.fuelConsumption }}</td>
+                <td data-label="Kilometrage">{{ this.kilometrage }}</td>
+                <td data-label="RCA expiry date">{{ this.rca }}</td>
+                <td data-label="ITP expiry date">{{ this.itp }}</td>
+                <td data-label="Rovinieta expiry date">{{ this.rovinieta }}</td>
+                <td data-label="Vehicle state">{{ this.status }}</td>
+                <td data-label="View trips">
+                    <p class="operations" title="View vehicle trips">
+                        <a href="/vehicles/trips/id/{{ this._id }}">
+                            <button class="btn btn-success btn-md">
+                                <span class="glyphicon glyphicon-road"></span>
+                            </button>
+                        </a>
+                    </p>
+                </td>
+                <td data-label="Edit vehicle">
+                    <p class="operations" title="Edit">
+                        <button class="btn btn-primary btn-md" data-toggle="modal" data-title="Edit" data-target="#editVehicleModal" onclick="editVehicle(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </button>
+                    </p>
+                </td>
+                <td data-label="Delete vehicle">
+                    {{!-- Without confirmation:
+                    <p class="operations" title="Delete">
+                        <a href="/vehicles/delete/{{ this._id }}">
+                            <button class="btn btn-danger btn-md">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </a>
+                    </p>--}}
+                    <p class="operations" title="Delete">
+                        <button class="btn btn-danger btn-md" data-toggle="modal" data-title="Edit" data-target="#deleteVehicleModal" onclick="deleteVehicle(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    </p>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="editVehicleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span class="glyphicon glyphicon-remove"></span>
+                </button>
+                <h4 class="modal-title custom_align" id="Heading">Edit vehicle</h4>
+            </div>
+            <form method="post" id="editVehicleForm">
+                <div class="modal-body">
+                    <div class="form-group" id="editVehicleManufacturer">
+                        <input type="text" class="form-control" name="manufacturer" title="Manufacturer" placeholder="Manufacturer" required>
+                    </div>
+                    <div class="form-group" id="editVehicleModel">
+                        <input type="text" class="form-control" name="model" title="Model" placeholder="Model" required>
+                    </div>
+                    <div class="form-group" id="editVehicleRegistrationPlate">
+                        <input type="text" class="form-control" name="registrationPlate" title="Registration plate" placeholder="Registration plate"
+                            required>
+                    </div>
+                    <div class="form-group" id="editVehicleVin">
+                        <input type="text" class="form-control" name="vin" title="VIN" placeholder="Vehicle Identification Number" pattern="[a-zA-Z0-9]{17}"
+                            maxlength="17" required>
+                    </div>
+                    <div class="form-group" id="editVehicleEngineCapacity">
+                        <input type="text" class="form-control" name="engineCapacity" title="Engine capacity" placeholder="Engine capacity" required>
+                    </div>
+                    <div class="form-group" id="editVehicleFuelType">
+                        <input type="text" class="form-control" name="fuelType" title="Fuel type" placeholder="Fuel type" required>
+                    </div>
+                    <div class="form-group" id="editVehicleHorsepower">
+                        <input type="text" class="form-control" name="horsepower" title="Horsepower" placeholder="Horsepower" required>
+                    </div>
+                    <div class="form-group" id="editVehicleFuelConsumption">
+                        <input type="text" class="form-control" name="fuelConsumption" title="Fuel consumption" placeholder="Fuel consumption" required>
+                    </div>
+                    <div class="form-group" id="editVehicleKilometrage">
+                        <input type="number" class="form-control" name="kilometrage" title="Kilometrage" placeholder="kilometrage" required>
+                    </div>
+                    <div class="form-group" id="editVehicleRca">
+                        <input type="text" class="form-control datetimepicker" name="rca" title="RCA" placeholder="Click to select date" required>
+                    </div>
+                    <div class="form-group" id="editVehicleItp">
+                        <input type="text" class="form-control datetimepicker" name="itp" title="ITP" placeholder="Click to select date" required>
+                    </div>
+                    <div class="form-group" id="editVehicleRovinieta">
+                        <input type="text" class="form-control datetimepicker" name="rovinieta" title="Rovinieta" placeholder="Click to select date"
+                            required>
+                    </div>
+                    <div class="form-group" id="editVehicleStatus">
+                        <input type="text" class="form-control" name="status" title="Status" placeholder="Type of damage, if any." required>
+                    </div>
+                </div>
+                <div class="modal-footer form-group">
+                    <button type="submit" class="btn btn-warning btn-md" style="width: 100%;">
+                        <span class="glyphicon glyphicon-ok-sign"></span> Update
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteVehicleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
+            </div>
+            <form method="get">
+                <div class="modal-body">
+                    <div class="alert alert-danger">
+                        <span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete
+                        <b><span id="deleteVehicleRegistrationPlate"></b>?</span>
+                    </div>
+                    <div class="modal-footer form-group">
+                        <a id="deleteVehicleHref">
+                            <button type="button" class="btn btn-success" id="deleteVehicle">
+                                <span class="glyphicon glyphicon-ok-sign"></span> Yes
+                            </button>
+                        </a>
+                        <button type="button" class="btn btn-default">
+                            <span class="glyphicon glyphicon-remove"></span> No
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
