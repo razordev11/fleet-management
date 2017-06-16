@@ -104,16 +104,16 @@ router.get('/delete/:id', function (req, res) {
 	});
 });
 
-// Get all trips 	TODO TODO TODO TODO TODO TODO
-router.get('/trips', ensureAuthenticated, function (req, res) {
-	Vehicle.find({}).exec().then((vehicles) => {
-		console.log(vehicles);
-		res.render('trips', { items: vehicles });
-	}).catch((err) => {
-		req.flash('error_msg', err);
-		res.redirect('/trips');
-	});
-});
+// Get all trips	TODO
+// router.get('/trips', ensureAuthenticated, function (req, res) {
+// 	Vehicle.find({}).exec().then((vehicles) => {
+// 		console.log(vehicles);
+// 		res.render('trips', { items: vehicles });
+// 	}).catch((err) => {
+// 		req.flash('error_msg', err);
+// 		res.redirect('/trips');
+// 	});
+// });
 
 // Get trip
 router.get('/trips/id/:id', function (req, res) {
@@ -122,6 +122,38 @@ router.get('/trips/id/:id', function (req, res) {
 	}).catch((err) => {
 		req.flash('error_msg', err);
 		res.redirect('/trips');
+	});
+});
+
+// Update vehicle
+router.post('/trips/create/:id', function (req, res) {
+	var _id = req.params.id;
+	var updatedTrip = {
+		tripId: req.body.tripId,
+		driver: {
+			firstName: req.body.firstName,
+			lastName: req.body.lastName,
+			nationalId: req.body.nationalId
+		},
+		startDate: req.body.startDate,
+		stopDate: req.body.stopDate,
+		startLocation: {
+			lat: req.body.startLat,
+			long: req.body.startLong
+		},
+		stopLocation: {
+			lat: req.body.stopLat,
+			long: req.body.stopLong
+		},
+		distance: req.body.distance
+	};
+	Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "trips": updatedTrip } }, { upsert: true }).exec().then((updatedTrip) => {
+		req.flash('success_msg', 'Trip updated.');
+		res.redirect('/vehicles/trips/id/' + req.params.id);
+		// res.json(updatedTrip);
+	}).catch((err) => {
+		req.flash('error_msg', err);
+		res.redirect('/vehicles');
 	});
 });
 

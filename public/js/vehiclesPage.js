@@ -22,7 +22,7 @@ function editVehicle(rowId, _id) {
 function deleteVehicle(rowId, _id) {
     rowId -= 2;
     var $row = $("#vehiclesTable tbody")[0].rows[rowId];
-    
+
     $('#deleteVehicleRegistrationPlate').text($row.cells[0].innerHTML + " " + $row.cells[1].innerHTML);
 
     $('#deleteVehicleHref').attr('href', "/vehicles/delete/" + _id);
@@ -61,6 +61,32 @@ function sleep(milliseconds) {
             break;
         }
     }
+}
+
+function showLocation(coordinates) {
+    var loc = coordinates.split(', ');
+    var latitude = parseFloat(loc[0]);
+    var longitude = parseFloat(loc[1]);
+    var location = { lat: latitude, lng: longitude };
+    //var location = new google.maps.LatLng(44.4460, 26.0531);
+    var mapOptions = {
+        center: location,
+        zoom: 9,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
+    var marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: coordinates
+    });
+
+    $('#viewTripModal').on('shown.bs.modal', function () {
+        map.getCenter();
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(location);
+    });
+    $('#viewTripModal').modal("show");
 }
 
 // Transform lat/long into address

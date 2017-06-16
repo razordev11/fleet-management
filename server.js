@@ -22,13 +22,14 @@ var fs = require('fs');
 
 // Cors for allowing "cross origin resources"
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
-var cors = require('cors');
-app.use(cors());
+// var cors = require('cors');
+// app.use(cors());
 
-var dbUrl = 'mongodb://test:testPassword2017@ds141351.mlab.com:41351/mlab-db';
+// var dbUrl = 'mongodb://test:testPassword2017@ds141351.mlab.com:41351/mlab-db';
+var dbUrl = 'mongodb://localhost/fleetmanagement';
 mongoose.Promise = global.Promise;
 mongoose.connect(dbUrl);
-var db = mongoose.connection;
+// mongoose.coonnection.close();
 
 var routes = require('./routes/index');
 var usersRoute = require('./routes/usersRoute');

@@ -1,20 +1,14 @@
 var mongoose = require('mongoose');
 
 var TripsSchema = mongoose.Schema({
-    tripId: {
-        type: String
-    },
+    tripId: String,
     driver: {
         firstName: String,
         lastName: String,
         nationalId: String
     },
-    startDate: {
-        type: Date, default: Date.now
-    },
-    stopDate: {
-        type: Date, default: Date.now
-    },
+    startDate: String,
+    stopDate: String,
     startLocation: {
         lat: String,
         long: String
@@ -23,10 +17,8 @@ var TripsSchema = mongoose.Schema({
         lat: String,
         long: String
     },
-    distance: {
-        type: Number, default: 0
-    }
-});
+    distance: Number
+}, { _id: false });
 
 var VehicleSchema = mongoose.Schema({
     userId: {
@@ -71,10 +63,7 @@ var VehicleSchema = mongoose.Schema({
     status: {
         type: String
     },
-    trips: {
-        type: [TripsSchema],
-        required: false
-    }
+    trips: [TripsSchema]
 });
 
 var Vehicle = module.exports = mongoose.model('Vehicle', VehicleSchema);
