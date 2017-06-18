@@ -21,7 +21,7 @@ router.get('/', ensureAuthenticated, function (req, res) {
 	});
 });
 
-router.get('/id/:id', function (req, res) {
+router.get('/id/:id', ensureAuthenticated, function (req, res) {
 	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((vehicle) => {
 		res.json(vehicle);
 	}).catch((err) => {
@@ -35,7 +35,7 @@ router.get('/create', ensureAuthenticated, function (req, res) {
 	res.render('addvehicle');
 });
 
-router.post('/create', ensureAuthenticated, function (req, res) {
+router.post('/create', function (req, res) {
 	var newVehicle = new Vehicle({
 		userId: usersRoute.userId,
 		manufacturer: req.body.manufacturer,
@@ -93,7 +93,7 @@ router.post('/update/:id', function (req, res) {
 });
 
 // Delete vehicle
-router.get('/delete/:id', function (req, res) {
+router.get('/delete/:id', ensureAuthenticated, function (req, res) {
 	Vehicle.findOneAndRemove({
 		_id: objectId(req.params.id)
 	}).exec().then((vehicle) => {
@@ -124,7 +124,7 @@ router.get('/trips', ensureAuthenticated, function (req, res) {
 });
 
 // Get trip
-router.get('/trips/id/:id', function (req, res) {
+router.get('/trips/id/:id', ensureAuthenticated, function (req, res) {
 	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((vehicle) => {
 		res.render('trips', { items: vehicle });
 	}).catch((err) => {
@@ -134,7 +134,7 @@ router.get('/trips/id/:id', function (req, res) {
 });
 
 // Create trip
-router.get('/trips/create', function (req, res) {
+router.get('/trips/create', ensureAuthenticated, function (req, res) {
 	Driver.find({}).exec().then((drivers) => {
 		var userDrivers = [];
 		for (var i = 0; i < drivers.length; i++) {
@@ -216,7 +216,7 @@ router.post('/trips/create', function (req, res) {
 });
 
 // Get live trip
-router.get('/live/id/:id', function (req, res) {
+router.get('/live/id/:id', ensureAuthenticated, function (req, res) {
 	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((vehicle) => {
 		res.render('live', { items: vehicle });
 	}).catch((err) => {
@@ -239,7 +239,17 @@ router.post('/live/id/:id', function (req, res) {
 	};
 	Vehicle.findOne({ _id: req.params.id }).exec().then((vehicle) => {
 		var _id = vehicle._id;
-		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(res.send("sent!")).catch((err) => {
+		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(
+			function () {
+				console.log(req);
+				console.log("---------BODY:---------");
+				console.log(req.body);
+				console.log("---------PARAMS:---------");
+				console.log(req.params);
+				res.send('sent!');
+				console.log(req.data);
+			}
+		).catch((err) => {
 			res.send("Error at POST: " + err);
 		});
 	}).catch((err) => {

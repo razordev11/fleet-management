@@ -20,7 +20,7 @@ router.get('/', ensureAuthenticated, function (req, res) {
     });
 });
 
-router.get('/id/:id', function (req, res) {
+router.get('/id/:id', ensureAuthenticated, function (req, res) {
     Driver.findOne({ _id: objectId(req.params.id) }).exec().then((driver) => {
         res.json(driver);
     }).catch((err) => {
@@ -34,7 +34,7 @@ router.get('/create', ensureAuthenticated, function (req, res) {
     res.render('adddriver');
 });
 
-router.post('/create', ensureAuthenticated, function (req, res) {
+router.post('/create', function (req, res) {
     var newDriver = new Driver({
         userId: usersRoute.userId,
         firstName: req.body.firstName,
@@ -89,7 +89,7 @@ router.post('/update/:id', function (req, res) {
 });
 
 // Delete driver
-router.get('/delete/:id', function (req, res) {
+router.get('/delete/:id', ensureAuthenticated, function (req, res) {
     Driver.findOneAndRemove({
         _id: objectId(req.params.id)
     }).exec().then((driver) => {
