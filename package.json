@@ -14,7 +14,8 @@
     "start": "node server.js"
   },
   "engines": {
-    "npm": "*"
+    "npm": "*",
+    "node": "*"
   },
   "dependencies": {
     "bcryptjs": "*",
