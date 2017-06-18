@@ -12,7 +12,7 @@
     <script type="text/javascript">
         var liveMap;
         function initLiveTrip() {
-            var liveTrip = {{{json items.live }}};
+            var liveTrip = {{{json items.live}}};
             var points = [];
             var bounds = new google.maps.LatLngBounds();
             var mapOptions = {
@@ -20,28 +20,37 @@
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             liveMap = new google.maps.Map(document.getElementById("liveMapCanvas"), mapOptions);
+            var infowindow = new google.maps.InfoWindow({});
 
             for (i = 0; i < liveTrip.length; i++) {
                 var d = new Date(liveTrip[i].date);
 	            var date = d.toLocaleString();
+                var position = new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long);
+                var speed = liveTrip[i].speed;
+                var contentString = "<div>" + "Date: " + date + "<br>Coordinates: " + String(position) + "<br>Speed: " + speed + " km/h" + "</div>";
+
                 var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long),
-                    title: date + ", " + liveTrip[i].speed + " km/h"
+                    position: position,
+                    map: liveMap,
+                    title: String(position),
+                    contentString: contentString
                 });
-                marker.setMap(liveMap);
-                liveMap.setCenter(new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long));
+                marker.addListener('click', function() {
+                    infowindow.setContent(this.contentString);
+                    infowindow.open(liveMap, this);
+                    liveMap.setCenter(this.getPosition());
+                });
                 
                 // for Poly
-                var p = new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long);
-                points.push(p);
-                bounds.extend(p);
+                points.push(position);
+                bounds.extend(position);
             }
 
             var poly = new google.maps.Polyline({
                 path: points,
                 strokeColor: "#FF0000",
-                strokeOpacity: .7,
-                strokeWeight: 4
+                strokeOpacity: .3,
+                strokeWeight: 2
             });
             poly.setMap(liveMap);
             liveMap.fitBounds(bounds);
@@ -93,6 +102,7 @@
         <table class="table table-condensed" id="tripsTable">
             <thead>
                 <tr>
+                    <th>#</th>
                     <th>Date</th>
                     <th>Coordinates</th>
                     <th>Speed</th>
@@ -103,6 +113,7 @@
             <tbody>
                 {{#each items.live}}
                 <tr>
+                    <td data-label="#">{{@index}}</td>
                     <td data-label="Start date">{{ this.date }}</td>
                     <td data-label="Coordinates" onclick="showLocation(this.innerHTML)">{{ this.lat }}, {{ this.long }}</td>
                     <td data-label="Speed">{{ this.speed }}</td>
