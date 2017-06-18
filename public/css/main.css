@@ -239,7 +239,7 @@ body {
     }
 }
 
-#mapCanvas {
+#mapCanvas, #liveMapCanvas {
     height: 400px;
     width: auto;
 }

@@ -20,6 +20,15 @@ var TripsSchema = mongoose.Schema({
     distance: Number
 }, { _id: false });
 
+var LiveSchema = mongoose.Schema({
+    date: String,
+    lat: String,
+    long: String,
+    speed: String,
+    altitude: String,
+    heading: String
+}, { _id: false, required: false });
+
 var VehicleSchema = mongoose.Schema({
     userId: {
         type: String
@@ -63,7 +72,8 @@ var VehicleSchema = mongoose.Schema({
     status: {
         type: String
     },
-    trips: [TripsSchema]
+    trips: [TripsSchema],
+    live: [LiveSchema]
 });
 
 var Vehicle = module.exports = mongoose.model('Vehicle', VehicleSchema);

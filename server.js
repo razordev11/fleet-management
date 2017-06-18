@@ -44,6 +44,9 @@ app.engine('handlebars', exphbs({
   helpers: {
     inc: function (value, options) {
       return parseInt(value) + 1;
+    },
+    json: function (content) {
+      return JSON.stringify(content);
     }
     // ifDate: function (value, options) {
     //   console.log(Date(value) + ">" + new Date());

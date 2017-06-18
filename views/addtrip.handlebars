@@ -1,0 +1,104 @@
+<div id="addTripPage">
+    <h2>Add trip</h2>
+    <p>Here you can add a new trip for a specific vehicle and a specific driver.</p>
+
+    <br> {{#if success_msg}}
+    <div class="alert alert-success">{{success_msg}}</div>
+    {{/if}} {{#if error_msg}}
+    <div class="alert alert-danger">{{error_msg}}</div>
+    {{/if}}
+
+    <script type="text/javascript">
+        $(function () {
+            $('.datetimepicker').datetimepicker({
+                format: 'LLL',
+                useCurrent: true
+            });
+            $("#selectVehicle").select2({
+                placeholder: 'No vehicles available'
+            });
+        });
+    </script>
+
+    <br><br>
+    <form action="/vehicles/trips/create" method="post" class="form-horizontal" id="addTripForm">
+        <div class="form-group">
+            <label class="col-md-2 control-label">Select a vehicle:</label>
+            <div class="col-md-4">
+                <select class="form-control" name="regPlate" required>
+                    {{#each vehicles}}
+                    <optgroup label="{{this.manufacturer}} {{this.model}}" class="size">
+                        <option>{{this.registrationPlate}}</option>
+                    </optgroup>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Select a driver:</label>
+            <div class="col-md-4">
+                <select class="form-control" name="driver" required>
+                   {{#each drivers}}
+                    <option>{{this.firstName}} {{this.lastName}}, {{this.nationalId}}</option>
+                    {{/each}}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Trip id</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Trip file name, e.g. B-58-PKA-0001" value="B-58-PKA-0001" name="tripId"
+                    title="Trip file name, e.g. B-58-PKA-0001" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Start date</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control datetimepicker" placeholder="Click to select start date" name="startDate" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Stop date</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control datetimepicker" placeholder="Click to select stop date" name="stopDate" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Start latitude</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Start latitude" name="startLat" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Start longitude</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Start longitude" name="startLong" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Stop latitude</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Stop latitude" name="stopLat" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Stop longitude</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Stop longitude" name="stopLong" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-2 control-label">Distance traveled (km)</label>
+            <div class="col-md-4">
+                <input type="text" class="form-control" placeholder="Distance" name="distance" required>
+            </div>
+        </div>
+        <br>
+        <div class="form-group" align="center">
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-success" id="addTripButton">Submit</button>
+            </div>
+        </div>
+    </form>
+    <br>
+</div>

@@ -1,6 +1,6 @@
 <div id="viewVehicleTripsPage">
-    <h2>Vehicle Trips Page</h2>
-    <p>Here you can view the trips of the vehicle <b>{{items.manufacturer}} {{items.model}}</b> with the registration plate <b>{{ items.registrationPlate }}</b>
+    <h2>All Trips Page</h2>
+    <p>Here you can view the all trips</b>
     </p>
 
     <br> {{#if success_msg}}
@@ -9,21 +9,11 @@
     <div class="alert alert-danger">{{error_msg}}</div>
     {{/if}}
 
-    <div title="Live trip">
-        <div>View live trip: </div>
-        <a href="/vehicles/live/id/{{items._id}}">
-            <button class="btn btn-success btn-md" data-toggle="modal" data-title="Live trip">
-                <span class="glyphicon glyphicon-map-marker"></span>
-            </button>
-        </a>
-    </div>
-    <br>
-
     <table class="table table-condensed" id="tripsTable">
         <thead>
             <tr>
                 <th>Driver</th>
-                <th>Start date</th>
+                <th>Start date</th>                
                 <th>Stop date</th>
                 <th>Start location</th>
                 <th>Stop location</th>
@@ -32,16 +22,16 @@
             </tr>
         </thead>
         <tbody>
-            {{#each items.trips}}
+            {{#each items}}
             <tr>
                 <td data-label="Driver">{{ this.driver.firstName }} {{ this.driver.lastName }}</td>
                 <td data-label="Start date">{{ this.startDate }}</td>
                 <td data-label="Stop date">{{ this.stopDate }}</td>
                 <td data-label="Start location" onclick="showLocation(this.innerHTML)">{{ this.startLocation.lat }}, {{ this.startLocation.long }}</td>
-                <td data-label="Stop location" onclick="showLocation(this.innerHTML)">{{ this.stopLocation.lat }}, {{ this.stopLocation.long }}</td>
+                <td data-label="Stop location" onclick="showLocation(this.innerHTML)">{{ this.stopLocation.lat }}, {{  this.stopLocation.long }}</td>
                 <td data-label="Trip distance (km)">{{ this.distance }}</td>
                 <td data-label="Trips">
-                    <p class="operations" title="View trip">
+                    <p class="operations" data-placement="top" data-toggle="tooltip" title="View trip">
                         <button class="btn btn-success btn-md" data-toggle="modal" data-title="View trip" onclick="initMap('{{ this.tripId }}')">
                             <span class="glyphicon glyphicon-road"></span>
                         </button>

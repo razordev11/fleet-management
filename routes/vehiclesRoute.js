@@ -2,6 +2,7 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var objectId = require('mongodb').ObjectID;
 var Vehicle = require('../models/vehicle');
+var Driver = require('../models/driver');
 var usersRoute = require('./usersRoute.js');
 
 // Get vehicles
@@ -104,16 +105,23 @@ router.get('/delete/:id', function (req, res) {
 	});
 });
 
-// Get all trips	TODO
-// router.get('/trips', ensureAuthenticated, function (req, res) {
-// 	Vehicle.find({}).exec().then((vehicles) => {
-// 		console.log(vehicles);
-// 		res.render('trips', { items: vehicles });
-// 	}).catch((err) => {
-// 		req.flash('error_msg', err);
-// 		res.redirect('/trips');
-// 	});
-// });
+// Get all trips
+router.get('/trips', ensureAuthenticated, function (req, res) {
+	Vehicle.find({}).exec().then((vehicles) => {
+		var userTrips = [];
+		for (var i = 0; i < vehicles.length; i++) {
+			if (vehicles[i].userId == usersRoute.userId) {
+				for (var j = 0; j < vehicles[i].trips.length; j++) {
+					userTrips.push(vehicles[i].trips[j]);
+				}
+			}
+		}
+		res.render('alltrips', { items: userTrips });
+	}).catch((err) => {
+		req.flash('error_msg', err);
+		res.redirect('/vehicles');
+	});
+});
 
 // Get trip
 router.get('/trips/id/:id', function (req, res) {
@@ -121,39 +129,121 @@ router.get('/trips/id/:id', function (req, res) {
 		res.render('trips', { items: vehicle });
 	}).catch((err) => {
 		req.flash('error_msg', err);
-		res.redirect('/trips');
+		res.redirect('/vehicles');
 	});
 });
 
-// Update vehicle
-router.post('/trips/create/:id', function (req, res) {
-	var _id = req.params.id;
-	var updatedTrip = {
-		tripId: req.body.tripId,
-		driver: {
-			firstName: req.body.firstName,
-			lastName: req.body.lastName,
-			nationalId: req.body.nationalId
-		},
-		startDate: req.body.startDate,
-		stopDate: req.body.stopDate,
-		startLocation: {
-			lat: req.body.startLat,
-			long: req.body.startLong
-		},
-		stopLocation: {
-			lat: req.body.stopLat,
-			long: req.body.stopLong
-		},
-		distance: req.body.distance
-	};
-	Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "trips": updatedTrip } }, { upsert: true }).exec().then((updatedTrip) => {
-		req.flash('success_msg', 'Trip updated.');
-		res.redirect('/vehicles/trips/id/' + req.params.id);
-		// res.json(updatedTrip);
+// Create trip
+router.get('/trips/create', function (req, res) {
+	Driver.find({}).exec().then((drivers) => {
+		var userDrivers = [];
+		for (var i = 0; i < drivers.length; i++) {
+			if (drivers[i].userId == usersRoute.userId) {
+				userDrivers.push(drivers[i]);
+			}
+		}
+		Vehicle.find({}).exec().then((vehicles) => {
+			var userVehicles = [];
+			for (var i = 0; i < vehicles.length; i++) {
+				if (vehicles[i].userId == usersRoute.userId) {
+					userVehicles.push(vehicles[i]);
+				}
+			}
+			res.render('addtrip', { vehicles: userVehicles, drivers: userDrivers });
+		}).catch((err) => {
+			req.flash('error_msg', err);
+			res.redirect('/vehicles');
+		});
+	}).catch((err) => {
+		req.flash('error_msg', err);
+		res.redirect('/reports');
+	});
+});
+
+// Create trip
+router.post('/trips/create', function (req, res) {
+	var _id;
+	var driver = req.body.driver;
+	driver = driver.split(', ');
+	var nationalId = driver[1], firstName, lastName;
+
+	Driver.find({}).exec().then((drivers) => {
+		var userDrivers = [];
+		for (var i = 0; i < drivers.length; i++) {
+			if (drivers[i].userId == usersRoute.userId) {
+				if (drivers[i].nationalId == nationalId) {
+					firstName = drivers[i].firstName;
+					lastName = drivers[i].lastName;
+				}
+			}
+		}
+		var trip = {
+			tripId: req.body.tripId,
+			driver: {
+				firstName: firstName,
+				lastName: lastName,
+				nationalId: nationalId
+			},
+			startDate: req.body.startDate,
+			stopDate: req.body.stopDate,
+			startLocation: {
+				lat: req.body.startLat,
+				long: req.body.startLong
+			},
+			stopLocation: {
+				lat: req.body.stopLat,
+				long: req.body.stopLong
+			},
+			distance: req.body.distance
+		};
+		Vehicle.findOne({ registrationPlate: req.body.regPlate }).exec().then((vehicle) => {
+			_id = vehicle._id;
+		}).catch((err) => {
+			req.flash('error_msg', err);
+			res.redirect('/vehicles');
+		});
+		Vehicle.findOneAndUpdate({ registrationPlate: req.body.regPlate }, { $push: { "trips": trip } }, { upsert: true }).exec().then((trip) => {
+			req.flash('success_msg', 'Trip updated.');
+			res.redirect('/vehicles/trips/id/' + _id);
+		}).catch((err) => {
+			req.flash('error_msg', err);
+			res.redirect('/vehicles');
+		});
+	}).catch((err) => {
+		req.flash('error_msg', err);
+		res.redirect('/vehicle');
+	});
+});
+
+// Get live trip
+router.get('/live/id/:id', function (req, res) {
+	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((vehicle) => {
+		res.render('live', { items: vehicle });
 	}).catch((err) => {
 		req.flash('error_msg', err);
 		res.redirect('/vehicles');
+	});
+});
+
+// Update live trip
+router.post('/live/id/:id', function (req, res) {
+	var d = new Date();
+	var date = d.toISOString();
+	var liveTrip = {
+		date: date,
+		lat: req.body.lat,
+		long: req.body.long,
+		speed: req.body.speed,
+		altitude: req.body.altitude,
+		heading: req.body.heading
+	};
+	Vehicle.findOne({ _id: req.params.id }).exec().then((vehicle) => {
+		var _id = vehicle._id;
+		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(res.send("sent!")).catch((err) => {
+			res.send("Error at POST: " + err);
+		});
+	}).catch((err) => {
+		res.send("Error at POST: " + err);
 	});
 });
 
