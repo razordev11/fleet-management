@@ -24,7 +24,7 @@ router.post('/p', function (req, res) {
 		long: req.body,
 		speed: req.params,
 		altitude: req.headers,
-		heading: req
+		heading: "100"
 	};
 	Vehicle.findOne({ _id: objectId("59390d5aee16f443e9641e55") }).exec().then((vehicle) => {
 		var _id = vehicle._id;
@@ -34,7 +34,7 @@ router.post('/p', function (req, res) {
 				res.send('sent');
 			}
 		).catch((err) => {
-			res.send("Error at POST: " + err);
+			res.send("Error at POST update: " + err);
 		});
 	}).catch((err) => {
 		res.send("Error at POST: " + err);
