@@ -215,48 +215,6 @@ router.post('/trips/create', function (req, res) {
 	});
 });
 
-// Get live trip
-router.get('/live/id/:id', ensureAuthenticated, function (req, res) {
-	Vehicle.findOne({ _id: objectId(req.params.id) }).exec().then((vehicle) => {
-		res.render('live', { items: vehicle });
-	}).catch((err) => {
-		req.flash('error_msg', err);
-		res.redirect('/vehicles');
-	});
-});
-
-// Update live trip
-router.post('/live/id/:id', function (req, res) {
-	var d = new Date();
-	var date = d.toISOString();
-	var liveTrip = {
-		date: date,
-		lat: req.body.lat,
-		long: req.body.long,
-		speed: req.body.speed,
-		altitude: req.body.altitude,
-		heading: req.body.heading
-	};
-	Vehicle.findOne({ _id: req.params.id }).exec().then((vehicle) => {
-		var _id = vehicle._id;
-		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(
-			function () {
-				console.log(req);
-				console.log("---------BODY:---------");
-				console.log(req.body);
-				console.log("---------PARAMS:---------");
-				console.log(req.params);
-				res.send('sent!');
-				console.log(req.data);
-			}
-		).catch((err) => {
-			res.send("Error at POST: " + err);
-		});
-	}).catch((err) => {
-		res.send("Error at POST: " + err);
-	});
-});
-
 function ensureAuthenticated(req, res, next) {
 	if (req.isAuthenticated()) {
 		return next();

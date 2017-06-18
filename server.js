@@ -36,6 +36,7 @@ var usersRoute = require('./routes/usersRoute');
 var driversRoute = require('./routes/driversRoute');
 var vehiclesRoute = require('./routes/vehiclesRoute');
 var reportsRoute = require('./routes/reportsRoute');
+var liveRoute = require('./routes/liveRoute');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
@@ -111,6 +112,7 @@ app.use('/users', usersRoute);
 app.use('/drivers', driversRoute);
 app.use('/vehicles', vehiclesRoute);
 app.use('/reports', reportsRoute);
+app.use('/live', liveRoute);
 
 // Set up the server
 // process.env.PORT is related to deploying on heroku
