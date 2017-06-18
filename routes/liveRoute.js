@@ -24,7 +24,7 @@ router.post('/p', function (req, res) {
 		long: JSON.stringify(req.body),
 		speed: JSON.stringify(req.params),
 		altitude: JSON.stringify(req.headers),
-		heading: "100"
+		heading: JSON.stringify(req.json)
 	};
 	
 	Vehicle.findOne({ _id: objectId("59390d5aee16f443e9641e55") }).exec().then((vehicle) => {
