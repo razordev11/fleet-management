@@ -20,12 +20,13 @@ router.post('/p', function (req, res) {
 	var date = d.toISOString();
 	var liveTrip = {
 		date: date,
-		lat: req.data,
-		long: req.body,
-		speed: "req.params",
-		altitude: "req.headers",
+		lat: JSON.stringify(req.data),
+		long: JSON.stringify(req.body),
+		speed: JSON.stringify(req.params),
+		altitude: JSON.stringify(req.headers),
 		heading: "100"
 	};
+	
 	Vehicle.findOne({ _id: objectId("59390d5aee16f443e9641e55") }).exec().then((vehicle) => {
 		var _id = vehicle._id;
 		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(
