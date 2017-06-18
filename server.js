@@ -25,8 +25,8 @@ var fs = require('fs');
 // var cors = require('cors');
 // app.use(cors());
 
-// var dbUrl = 'mongodb://test:testPassword2017@ds141351.mlab.com:41351/mlab-db';
-var dbUrl = 'mongodb://localhost/fleetmanagement';
+var dbUrl = 'mongodb://test:testPassword2017@ds141351.mlab.com:41351/mlab-db';
+// var dbUrl = 'mongodb://localhost/fleetmanagement';
 mongoose.Promise = global.Promise;
 mongoose.connect(dbUrl);
 // mongoose.coonnection.close();
