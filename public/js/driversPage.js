@@ -1,6 +1,10 @@
 function editDriver(rowId, _id) {
     rowId -= 2;
     var $row = $("#driversTable tbody")[0].rows[rowId];
+    var licExp = new Date($row.cells[9].innerHTML);
+    var licExpM = licExp.getMonth();
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    licExp = months[licExpM] + " " + licExp.getDate() + ", " + licExp.getFullYear();
 
     $('#editDriverFirstName :input').attr('value', $row.cells[1].innerHTML);
     $('#editDriverLastName :input').attr('value', $row.cells[2].innerHTML);
@@ -10,7 +14,7 @@ function editDriver(rowId, _id) {
     $('#editDriverPhoneNumber :input').attr('value', $row.cells[6].innerHTML);
     $('#editDriverDistanceTraveled :input').attr('value', $row.cells[7].innerHTML);
     $('#editDriverLicenseCategory :input').attr('value', $row.cells[8].innerHTML);
-    $('#editDriverLicenseExpiryDate :input').attr('value', $row.cells[9].innerHTML);
+    $('#editDriverLicenseExpiryDate :input').attr('value', licExp);
 
     $('#editDriverForm').attr('action', "/drivers/update/" + _id);
 }

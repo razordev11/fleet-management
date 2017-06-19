@@ -1,6 +1,16 @@
 function editVehicle(rowId, _id) {
     rowId -= 2;
     var $row = $("#vehiclesTable tbody")[0].rows[rowId];
+    var rca = new Date($row.cells[10].innerHTML);
+    var itp = new Date($row.cells[11].innerHTML);
+    var rov = new Date($row.cells[12].innerHTML);
+    var rcaM = rca.getMonth();
+    var itpM = itp.getMonth();
+    var rovM = rov.getMonth();
+    var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    rca = months[rcaM] + " " + rca.getDate() + ", " + rca.getFullYear();
+    itp = months[itpM] + " " + itp.getDate() + ", " + itp.getFullYear();
+    rov = months[rovM] + " " + rov.getDate() + ", " + rov.getFullYear();
 
     $('#editVehicleManufacturer :input').attr('value', $row.cells[1].innerHTML);
     $('#editVehicleModel :input').attr('value', $row.cells[2].innerHTML);
@@ -11,9 +21,9 @@ function editVehicle(rowId, _id) {
     $('#editVehicleHorsepower :input').attr('value', $row.cells[7].innerHTML);
     $('#editVehicleFuelConsumption :input').attr('value', $row.cells[8].innerHTML);
     $('#editVehicleKilometrage :input').attr('value', $row.cells[9].innerHTML);
-    $('#editVehicleRca :input').attr('value', $row.cells[10].innerHTML);
-    $('#editVehicleItp :input').attr('value', $row.cells[11].innerHTML);
-    $('#editVehicleRovinieta :input').attr('value', $row.cells[12].innerHTML);
+    $('#editVehicleRca :input').attr('value', rca);
+    $('#editVehicleItp :input').attr('value', itp);
+    $('#editVehicleRovinieta :input').attr('value', rov);
     $('#editVehicleStatus :input').attr('value', $row.cells[13].innerHTML);
 
     $('#editVehicleForm').attr('action', "/vehicles/update/" + _id);

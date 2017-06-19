@@ -58,15 +58,21 @@ app.engine('handlebars', exphbs({
       var threshold = 1200000000; // two weeks alert
       if (x1 < y1) {
         return "Expired";
-      } else if (x1 === y1) {
+      } else if (+x == +y) {
         return "Expires today";
       } else if ( (x1 - y1) < threshold) {
         return "Expires";
-      }
+      }      
+    },
+    convertTime: function (value, options) {
+      d = new Date(value);
+      return d.toLocaleTimeString();
     },
     convertDate: function (value, options) {
       d = new Date(value);
-      return d.toLocaleString();
+      dM = d.getMonth();
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      return months[dM] + " " + d.getDate() + ", " + d.getFullYear();
     }
   }
 }));

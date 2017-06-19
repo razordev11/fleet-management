@@ -79,8 +79,11 @@
                         if (document.cookie == "unchecked") {
                             document.cookie = "checked";
                             refresh();
+                        } else {
+                            refresh();
                         }
-                    } else {
+                    }
+                    else {
                         document.cookie = "unchecked";
                     }
                 });
@@ -95,7 +98,7 @@
 
     <div class="col-md-8">
         {{!--<button onclick='location.reload()'>Refresh</button>--}}
-        <p>Refresh every 10 seconds <input type="checkbox" name="refresh" id="checkboxButton"></p>
+        <p>Refresh every 10 seconds: <input type="checkbox" title="Check to refresh page every 10 seconds" name="refresh" id="checkboxButton"></p>
         <br /><b> SIM808 GPS position </b><br /><br />
         <div id="liveMapCanvas" style="width=500px"></div><br />
     </div>
@@ -106,9 +109,9 @@
                 <tr>
                     <th>#</th>
                     <th>Date</th>
-                    <th>Coordinates</th>
-                    <th>Speed</th>
-                    <th>Altitude</th>
+                    <th>Coordinates (lat, long)</th>
+                    <th>Speed (km/h)</th>
+                    <th>Altitude (m)</th>
                     <th>Heading</th>
                 </tr>
             </thead>
@@ -116,8 +119,8 @@
                 {{#each items.live}}
                 <tr>
                     <td data-label="#"><b>{{inc @index}}</b></td>
-                    <td data-label="Start date">{{convertDate this.date }}</td>
-                    <td data-label="Coordinates" onclick="showLocation(this.innerHTML)">{{ this.lat }}, {{ this.long }}</td>
+                    <td data-label="Date">{{convertDate this.date }} {{convertTime this.date }}</td>
+                    <td data-label="Coordinates" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.lat }}, {{ this.long }}</td>
                     <td data-label="Speed">{{ this.speed }}</td>
                     <td data-label="Altitude (m)">{{ this.altitude }}</td>
                     <td data-label="Heading">{{this.heading}}</td>

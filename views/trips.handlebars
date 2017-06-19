@@ -1,6 +1,7 @@
 <div id="viewVehicleTripsPage">
     <h2>Vehicle Trips Page</h2>
-    <p>Here you can view the trips of the vehicle <b>{{items.manufacturer}} {{items.model}}</b> with the registration plate <b>{{ items.registrationPlate }}</b>
+    <p>Here you can view the trips of the vehicle <b>{{items.manufacturer}} {{items.model}}</b> with the registration plate
+        <b>{{ items.registrationPlate }}</b>
     </p>
 
     <br> {{#if success_msg}}
@@ -10,12 +11,13 @@
     {{/if}}
 
     <div title="Live trip">
-        <div>View live trip: </div>
-        <a href="/live/id/{{items._id}}">
-            <button class="btn btn-success btn-md" data-toggle="modal" data-title="Live trip">
+        <h3>View live trip:
+            <a href="/live/id/{{items._id}}">
+            <button class="btn btn-success btn-lg" data-toggle="modal" data-title="Live trip">
                 <span class="glyphicon glyphicon-map-marker"></span>
             </button>
-        </a>
+            </a>
+        </h3>
     </div>
     <br>
 
@@ -37,10 +39,10 @@
             <tr>
                 <td data-label="#"><b>{{inc @index}}</b></td>
                 <td data-label="Driver">{{ this.driver.firstName }} {{ this.driver.lastName }}</td>
-                <td data-label="Start date">{{ this.startDate }}</td>
-                <td data-label="Stop date">{{ this.stopDate }}</td>
-                <td data-label="Start location" onclick="showLocation(this.innerHTML)">{{ this.startLocation.lat }}, {{ this.startLocation.long }}</td>
-                <td data-label="Stop location" onclick="showLocation(this.innerHTML)">{{ this.stopLocation.lat }}, {{ this.stopLocation.long }}</td>
+                <td data-label="Start date">{{convertDate this.startDate }} {{convertTime this.startDate }}</td>
+                <td data-label="Stop date">{{convertDate this.stopDate }} {{convertTime this.stopDate }}</td>
+                <td data-label="Start location" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.startLocation.lat }}, {{ this.startLocation.long }}</td>
+                <td data-label="Stop location" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.stopLocation.lat }}, {{ this.stopLocation.long }}</td>
                 <td data-label="Trip distance (km)">{{ this.distance }}</td>
                 <td data-label="Trips">
                     <p class="operations" title="View trip">
