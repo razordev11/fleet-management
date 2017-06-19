@@ -23,7 +23,7 @@ function deleteVehicle(rowId, _id) {
     rowId -= 2;
     var $row = $("#vehiclesTable tbody")[0].rows[rowId];
 
-    $('#deleteVehicleRegistrationPlate').text($row.cells[0].innerHTML + " " + $row.cells[1].innerHTML);
+    $('#deleteVehicleRegistrationPlate').text($row.cells[3].innerHTML);
 
     $('#deleteVehicleHref').attr('href', "/vehicles/delete/" + _id);
 }
@@ -137,10 +137,10 @@ function initMap(tripID) {
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
-
+    var path = "/trips/";
     $.ajax({
         type: "GET",
-        url: tripID + ".gpx",
+        url: path + tripID + ".gpx",
         dataType: "xml",
         success: function (xml) {
             var points = [];

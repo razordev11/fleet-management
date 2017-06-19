@@ -115,7 +115,7 @@
             <tbody>
                 {{#each items.live}}
                 <tr>
-                    <td data-label="#">{{@index}}</td>
+                    <td data-label="#"><b>{{inc @index}}</b></td>
                     <td data-label="Start date">{{ this.date }}</td>
                     <td data-label="Coordinates" onclick="showLocation(this.innerHTML)">{{ this.lat }}, {{ this.long }}</td>
                     <td data-label="Speed">{{ this.speed }}</td>

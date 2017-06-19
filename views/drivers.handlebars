@@ -33,7 +33,7 @@
         <tbody>
             {{#each items}}
             <tr>
-                <td data-label="#">{{@index}}</td>
+                <td data-label="#"><b>{{inc @index}}</b></td>
                 <td data-label="First name">{{ this.firstName }}</td>
                 <td data-label="Last name">{{ this.lastName }}</td>
                 <td data-label="National ID">{{ this.nationalId }}</td>

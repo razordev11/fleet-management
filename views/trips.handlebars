@@ -22,6 +22,7 @@
     <table class="table table-condensed" id="tripsTable">
         <thead>
             <tr>
+                <th>#</th>
                 <th>Driver</th>
                 <th>Start date</th>
                 <th>Stop date</th>
@@ -34,6 +35,7 @@
         <tbody>
             {{#each items.trips}}
             <tr>
+                <td data-label="#"><b>{{inc @index}}</b></td>
                 <td data-label="Driver">{{ this.driver.firstName }} {{ this.driver.lastName }}</td>
                 <td data-label="Start date">{{ this.startDate }}</td>
                 <td data-label="Stop date">{{ this.stopDate }}</td>

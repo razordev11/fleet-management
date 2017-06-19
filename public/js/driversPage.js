@@ -19,7 +19,7 @@ function deleteDriver(rowId, _id) {
     rowId -= 2;
     var $row = $("#driversTable tbody")[0].rows[rowId];
 
-    $('#deleteDriverFullName').text($row.cells[0].innerHTML + " " + $row.cells[1].innerHTML);
+    $('#deleteDriverFullName').text($row.cells[1].innerHTML + " " + $row.cells[2].innerHTML);
 
     $('#deleteDriverHref').attr('href', "/drivers/delete/" + _id);
 }
