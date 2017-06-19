@@ -63,6 +63,10 @@ app.engine('handlebars', exphbs({
       } else if ( (x1 - y1) < threshold) {
         return "Expires";
       }
+    },
+    convertDate: function (value, options) {
+      d = new Date(value);
+      return d.toLocaleString();
     }
   }
 }));

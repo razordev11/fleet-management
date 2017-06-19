@@ -25,7 +25,7 @@
             for (i = 0; i < liveTrip.length; i++) {
                 var d = new Date(liveTrip[i].date);
 	            var date = d.toLocaleString();
-                {{!--var position = new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long);--}}
+                {{!--var position1 = new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long);--}}
                 var lat = parseFloat(liveTrip[i].lat);
                 var long = parseFloat(liveTrip[i].long);
                 var position = { lat: lat, lng: long};
@@ -116,7 +116,7 @@
                 {{#each items.live}}
                 <tr>
                     <td data-label="#"><b>{{inc @index}}</b></td>
-                    <td data-label="Start date">{{ this.date }}</td>
+                    <td data-label="Start date">{{convertDate this.date }}</td>
                     <td data-label="Coordinates" onclick="showLocation(this.innerHTML)">{{ this.lat }}, {{ this.long }}</td>
                     <td data-label="Speed">{{ this.speed }}</td>
                     <td data-label="Altitude (m)">{{ this.altitude }}</td>
