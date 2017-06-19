@@ -48,13 +48,22 @@ app.engine('handlebars', exphbs({
     },
     json: function (content) {
       return JSON.stringify(content);
+    },
+    ifDate: function (value, options) {
+      // console.log(Date(value) + ">" + new Date());
+      var x = new Date(value);
+      var y = new Date();
+      x1 = +x; // convert to number
+      y1 = +y;
+      var threshold = 1200000000; // two weeks alert
+      if (x1 < y1) {
+        return "Expired";
+      } else if (x1 === y1) {
+        return "Expires today";
+      } else if ( (x1 - y1) < threshold) {
+        return "Expires";
+      }
     }
-    // ifDate: function (value, options) {
-    //   console.log(Date(value) + ">" + new Date());
-    //   if (Date.parse(value) > new Date()) {
-    //     return value;
-    //   }
-    // }
   }
 }));
 app.set('view engine', 'handlebars');

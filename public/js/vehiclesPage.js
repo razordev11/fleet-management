@@ -92,7 +92,10 @@ function showLocation(coordinates) {
 // Transform lat/long into address
 function getAddress(myLatitude, myLongitude, row, col) {
     var geocoder = new google.maps.Geocoder(); // create a geocoder object
-    var location = new google.maps.LatLng(myLatitude, myLongitude); // turn coordinates into an object
+    // var location = new google.maps.LatLng(myLatitude, myLongitude); // turn coordinates into an object
+    var latitude = parseFloat(myLatitude);
+    var longitude = parseFloat(myLongitude);
+    var location = { lat: latitude, lng: longitude };
 
     // Avoid more than 5 requests in a second, otherwise Geocode failure: OVER_QUERY_LIMIT
     setTimeout(function () {

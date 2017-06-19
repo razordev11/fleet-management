@@ -58,9 +58,9 @@
                 <td data-label="Horsepower">{{ this.horsepower }}</td>
                 <td data-label="Fuel consumption">{{ this.fuelConsumption }}</td>
                 <td data-label="Kilometrage">{{ this.kilometrage }}</td>
-                <td data-label="RCA expiry date">{{ this.rca }}</td>
-                <td data-label="ITP expiry date">{{ this.itp }}</td>
-                <td data-label="Rovinieta expiry date">{{ this.rovinieta }}</td>
+                <td data-label="RCA expiry date"><b class="expire-alert">{{ifDate this.rca }}</b> {{ this.rca }}</td>
+                <td data-label="ITP expiry date"><b class="expire-alert">{{ifDate this.itp }}</b> {{ this.itp }}</td>
+                <td data-label="Rovinieta expiry date"><b class="expire-alert">{{ifDate this.rovinieta }}</b> {{ this.rovinieta }}</td>
                 <td data-label="Vehicle state">{{ this.status }}</td>
                 <td data-label="View trips">
                     <p class="operations" title="View vehicle trips">

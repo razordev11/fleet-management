@@ -25,14 +25,16 @@
             for (i = 0; i < liveTrip.length; i++) {
                 var d = new Date(liveTrip[i].date);
 	            var date = d.toLocaleString();
-                var position = new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long);
+                {{!--var position = new google.maps.LatLng(liveTrip[i].lat, liveTrip[i].long);--}}
+                var lat = parseFloat(liveTrip[i].lat);
+                var long = parseFloat(liveTrip[i].long);
+                var position = { lat: lat, lng: long};
                 var speed = liveTrip[i].speed;
-                var contentString = "<div>" + "Date: " + date + "<br>Coordinates: " + String(position) + "<br>Speed: " + speed + " km/h" + "</div>";
-
+                var contentString = "<div>" + "Date: " + date + "<br>Coordinates: " + position.lat + ", " + position.lng + "<br>Speed: " + speed + " km/h" + "</div>";
                 var marker = new google.maps.Marker({
                     position: position,
                     map: liveMap,
-                    title: String(position),
+                    title: String(position.lat + ", " + position.lng),
                     contentString: contentString
                 });
                 marker.addListener('click', function() {

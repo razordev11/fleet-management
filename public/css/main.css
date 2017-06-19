@@ -271,3 +271,7 @@ body {
 .form {
     width: 400px;
 }
+
+.expire-alert {
+    color: #FF0000;
+}

@@ -32,7 +32,7 @@ router.post('/p', function (req, res) {
 		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(
 			function () {
 		        res.status(200);
-				res.send('sent');
+				res.send('sent!');
 			}
 		).catch((err) => {
 			res.send("Error at POST update: " + err);
