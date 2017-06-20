@@ -2,18 +2,38 @@ var router = require('express').Router();
 var mongoose = require('mongoose');
 var objectId = require('mongodb').ObjectID;
 var Driver = require('../models/driver');
+var Vehicle = require('../models/vehicle');
 var usersRoute = require('./usersRoute.js');
 
 // Get drivers
 router.get('/', ensureAuthenticated, function (req, res) {
-    Driver.find({}).exec().then((drivers) => {
-        var userDrivers = [];
-        for (var i = 0; i < drivers.length; i++) {
-            if (drivers[i].userId == usersRoute.userId) {
-                userDrivers.push(drivers[i]);
+    Vehicle.find({}).exec().then((vehicles) => {
+        Driver.find({}).exec().then((drivers) => {
+            var userDrivers = [];
+            for (var i = 0; i < drivers.length; i++) {
+                var totalDistanceTraveled = 0;
+                // Get drivers and vehicles of the logged in user
+                if (drivers[i].userId == usersRoute.userId) {
+                    for (var j = 0; j < vehicles.length; j++) {
+                        if (vehicles[j].userId == usersRoute.userId) {
+                            for (var k = 0; k < vehicles[j].trips.length; k++) {
+                                if (vehicles[j].trips[k].driver.nationalId == drivers[i].nationalId) {
+                                    totalDistanceTraveled += vehicles[j].trips[k].distance;
+                                }
+                            }
+                        }
+                    }
+                    if (totalDistanceTraveled != drivers[i].distanceTraveled) {
+                        Driver.findOneAndUpdate({ nationalId: drivers[i].nationalId }, { $set: { distanceTraveled: totalDistanceTraveled } }, { upsert: true }).exec();
+                    }
+                    userDrivers.push(drivers[i]);
+                }
             }
-        }
-        res.render('drivers', { items: userDrivers });
+            res.render('drivers', { items: userDrivers });
+        }).catch((err) => {
+            req.flash('error_msg', err);
+            res.redirect('/drivers');
+        });
     }).catch((err) => {
         req.flash('error_msg', err);
         res.redirect('/drivers');

@@ -1,7 +1,8 @@
 {
   "name": "fleet-management",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "author": "Andrei Ulinici",
+  "private": true,
   "license": "MIT",
   "description": "Fleet Management website",
   "repository": {

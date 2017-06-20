@@ -68,13 +68,7 @@ router.post('/id/:id', function (req, res) {
 		var _id = vehicle._id;
 		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(
 			function () {
-				// console.log(req);
-				// console.log("---------BODY:---------");
-				// console.log(req.body);
-				// console.log("---------PARAMS:---------");
-				// console.log(req.params);
 				res.send('sent!');
-				// console.log(req.data);
 			}
 		).catch((err) => {
 			res.send("Error at POST: " + err);
