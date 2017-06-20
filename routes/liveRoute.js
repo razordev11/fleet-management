@@ -25,8 +25,7 @@ router.post('/p', function (req, res) {
 		speed: req.body.s,
 		altitude: req.body.a,
 		heading: req.body.h
-	};
-	
+	};	
 	Vehicle.findOne({ _id: objectId("593fe40d70d93e2bfc9ca8cd") }).exec().then((vehicle) => {
 		var _id = vehicle._id;
 		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(
@@ -53,16 +52,16 @@ router.get('/id/:id', function (req, res) {
 });
 
 // Update live trip
-router.post('/id/:id', function (req, res) {
+router.post('/p/:id', function (req, res) {
 	var d = new Date();
 	var date = d.toISOString();
 	var liveTrip = {
 		date: date,
-		lat: req.body.lat,
-		long: req.body.long,
-		speed: req.body.speed,
-		altitude: req.body.altitude,
-		heading: req.body.heading
+		lat: req.body.l,
+		long: req.body.L,
+		speed: req.body.s,
+		altitude: req.body.a,
+		heading: req.body.h
 	};
 	Vehicle.findOne({ _id: req.params.id }).exec().then((vehicle) => {
 		var _id = vehicle._id;
