@@ -7,14 +7,14 @@ var usersRoute = require('./usersRoute.js');
 
 // Get reports
 router.get('/', ensureAuthenticated, function (req, res) {
-	Driver.find({}).exec().then((drivers) => {
-		var userDrivers = [];
-		for (var i = 0; i < drivers.length; i++) {
-			if (drivers[i].userId == usersRoute.userId) {
-				userDrivers.push(drivers[i]);
+	Vehicle.find({}).exec().then((vehicles) => {
+		Driver.find({}).exec().then((drivers) => {
+			var userDrivers = [];
+			for (var i = 0; i < drivers.length; i++) {
+				if (drivers[i].userId == usersRoute.userId) {
+					userDrivers.push(drivers[i]);
+				}
 			}
-		}
-		Vehicle.find({}).exec().then((vehicles) => {
 			var userVehicles = [];
 			for (var i = 0; i < vehicles.length; i++) {
 				if (vehicles[i].userId == usersRoute.userId) {

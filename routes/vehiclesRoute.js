@@ -177,6 +177,10 @@ router.post('/trips/create', function (req, res) {
 				}
 			}
 		}
+		var startD = new Date(req.body.startDate);
+		var stopD = new Date(req.body.stopDate);
+		startD = startD.toISOString();
+		stopD = stopD.toISOString();
 		var trip = {
 			tripId: req.body.tripId,
 			driver: {
@@ -184,8 +188,8 @@ router.post('/trips/create', function (req, res) {
 				lastName: lastName,
 				nationalId: nationalId
 			},
-			startDate: req.body.startDate,
-			stopDate: req.body.stopDate,
+			startDate: startD,
+			stopDate: stopD,
 			startLocation: {
 				lat: req.body.startLat,
 				long: req.body.startLong
