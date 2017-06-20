@@ -11,6 +11,7 @@ function initializeReportsPage() {
     });
 
     $('.datetimepicker').datetimepicker({
+        // January 3, 2017 8:55 PM
         format: 'LLL'
     });
     $('.reports-date-time').datetimepicker({
@@ -33,12 +34,13 @@ function reportsViewVehicleDistanceTraveled() {
 
     $("#reportsVehicleStartDate").on("dp.change", function (e) {
         $('#reportsVehicleStopDate').data("DateTimePicker").minDate(e.date);
-        startDate = moment(e.date._d).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+        // startDate = moment(e.date._d).format('LLL');
+        startDate = Date.parse(e.date._d);
         calculateVehicleDistanceTraveled(startDate, stopDate);
     });
     $("#reportsVehicleStopDate").on("dp.change", function (e) {
         $('#reportsVehicleStartDate').data("DateTimePicker").maxDate(e.date);
-        stopDate = moment(e.date._d).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+        stopDate = Date.parse(e.date._d);
         calculateVehicleDistanceTraveled(startDate, stopDate);
     });
     $("#reportsVehicleRegistrationPlate").on("change", function (e) {
@@ -58,7 +60,7 @@ function calculateVehicleDistanceTraveled(startDate, stopDate) {
     var distanceTraveled = 0;
 
     for (var i = 0; i < vehicles[index].trips.length; i++) {
-        if (startDate <= vehicles[index].trips[i].startDate && stopDate >= vehicles[index].trips[i].stopDate) {
+        if (startDate <= Date.parse(vehicles[index].trips[i].startDate) && stopDate >= Date.parse(vehicles[index].trips[i].stopDate)) {
             distanceTraveled += vehicles[index].trips[i].distance;
         }
     }
@@ -71,12 +73,12 @@ function reportsViewDriverDistanceTraveled() {
 
     $("#reportsDriverStartDate").on("dp.change", function (e) {
         $('#reportsDriverStopDate').data("DateTimePicker").minDate(e.date);
-        startDate = moment(e.date._d).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+        startDate = Date.parse(e.date._d);
         calculateDriverDistanceTraveled(startDate, stopDate);
     });
     $("#reportsDriverStopDate").on("dp.change", function (e) {
         $('#reportsDriverStartDate').data("DateTimePicker").maxDate(e.date);
-        stopDate = moment(e.date._d).utc().format("YYYY-MM-DDTHH:mm:ss.SSS[Z]");
+        stopDate = Date.parse(e.date._d);
         calculateDriverDistanceTraveled(startDate, stopDate);
     });
     $("#reportsDriverName").on("change", function (e) {
@@ -88,11 +90,10 @@ function calculateDriverDistanceTraveled(startDate, stopDate) {
     var distanceTraveled = 0;
     var selectedDriver = $('#reportsDriverName').val();
     var driverID = selectedDriver.substr(selectedDriver.indexOf(",") + 2);
-
     for (var i = 0; i < vehicles.length; i++) {
         for (var j = 0; j < vehicles[i].trips.length; j++) {
             if (vehicles[i].trips[j].driver.nationalId === driverID) {
-                if (startDate <= vehicles[i].trips[j].startDate && stopDate >= vehicles[i].trips[j].stopDate) {
+                if (startDate <= Date.parse(vehicles[i].trips[j].startDate) && stopDate >= Date.parse(vehicles[i].trips[j].stopDate)) {
                     distanceTraveled += vehicles[i].trips[j].distance;
                 }
             }

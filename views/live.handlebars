@@ -119,7 +119,7 @@
                 {{#each items.live}}
                 <tr>
                     <td data-label="#"><b>{{inc @index}}</b></td>
-                    <td data-label="Date">{{convertDate this.date }} {{convertTime this.date }}</td>
+                    <td data-label="Date">{{ this.date }}</td>
                     <td data-label="Coordinates" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.lat }}, {{ this.long }}</td>
                     <td data-label="Speed">{{ this.speed }}</td>
                     <td data-label="Altitude (m)">{{ this.altitude }}</td>

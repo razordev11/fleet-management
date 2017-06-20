@@ -17,7 +17,9 @@ router.post('/', function (req, res) {
 // Test live post
 router.post('/p', function (req, res) {
 	var d = new Date();
-	var date = d.toISOString();
+	var dM = d.getMonth();
+	var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
 	var liveTrip = {
 		date: date,
 		lat: req.body.l,
@@ -25,12 +27,12 @@ router.post('/p', function (req, res) {
 		speed: req.body.s,
 		altitude: req.body.a,
 		heading: req.body.h
-	};	
+	};
 	Vehicle.findOne({ _id: objectId("593fe40d70d93e2bfc9ca8cd") }).exec().then((vehicle) => {
 		var _id = vehicle._id;
 		Vehicle.findOneAndUpdate({ _id: objectId(_id) }, { $push: { "live": liveTrip } }, { upsert: true }).exec().then(
 			function () {
-		        res.status(200);
+				res.status(200);
 				res.send('sent!');
 			}
 		).catch((err) => {
@@ -54,7 +56,9 @@ router.get('/id/:id', function (req, res) {
 // Update live trip
 router.post('/p/:id', function (req, res) {
 	var d = new Date();
-	var date = d.toISOString();
+	var dM = d.getMonth();
+	var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
 	var liveTrip = {
 		date: date,
 		lat: req.body.l,

@@ -27,8 +27,8 @@
             <tr>
                 <td data-label="#"><b>{{inc @index}}</b></td>
                 <td data-label="Driver">{{ this.driver.firstName }} {{ this.driver.lastName }}</td>
-                <td data-label="Start date">{{convertDate this.startDate }} {{convertTime this.startDate }}</td>
-                <td data-label="Stop date">{{convertDate this.stopDate }} {{convertTime this.stopDate }}</td>
+                <td data-label="Start date">{{ this.startDate }}</td>
+                <td data-label="Stop date">{{ this.stopDate }}</td>
                 <td data-label="Start location" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.startLocation.lat }}, {{ this.startLocation.long }}</td>
                 <td data-label="Stop location" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.stopLocation.lat }}, {{  this.stopLocation.long }}</td>
                 <td data-label="Trip distance (km)">{{ this.distance }}</td>

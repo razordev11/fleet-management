@@ -133,7 +133,7 @@ router.get('/trips/id/:id', ensureAuthenticated, function (req, res) {
 	});
 });
 
-// Create trip
+// Create trip page
 router.get('/trips/create', ensureAuthenticated, function (req, res) {
 	Driver.find({}).exec().then((drivers) => {
 		var userDrivers = [];
@@ -177,10 +177,13 @@ router.post('/trips/create', function (req, res) {
 				}
 			}
 		}
+		var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 		var startD = new Date(req.body.startDate);
+		var startM = startD.getMonth();
+		var startDate = months[startM] + " " + startD.getDate() + ", " + startD.getFullYear() + " " + startD.toLocaleTimeString();
 		var stopD = new Date(req.body.stopDate);
-		startD = startD.toISOString();
-		stopD = stopD.toISOString();
+		var stopM = stopD.getMonth();
+		var stopDate = months[stopM] + " " + stopD.getDate() + ", " + stopD.getFullYear() + " " + stopD.toLocaleTimeString();
 		var trip = {
 			tripId: req.body.tripId,
 			driver: {
@@ -188,8 +191,8 @@ router.post('/trips/create', function (req, res) {
 				lastName: lastName,
 				nationalId: nationalId
 			},
-			startDate: startD,
-			stopDate: stopD,
+			startDate: startDate,
+			stopDate: stopDate,
 			startLocation: {
 				lat: req.body.startLat,
 				long: req.body.startLong
@@ -203,19 +206,19 @@ router.post('/trips/create', function (req, res) {
 		Vehicle.findOne({ registrationPlate: req.body.regPlate }).exec().then((vehicle) => {
 			_id = vehicle._id;
 		}).catch((err) => {
-			req.flash('error_msg', err);
+			req.flash('error_msg', "Eroare findOne: " + err);
 			res.redirect('/vehicles');
 		});
 		Vehicle.findOneAndUpdate({ registrationPlate: req.body.regPlate }, { $push: { "trips": trip } }, { upsert: true }).exec().then((trip) => {
 			req.flash('success_msg', 'Trip updated.');
 			res.redirect('/vehicles/trips/id/' + _id);
 		}).catch((err) => {
-			req.flash('error_msg', err);
+			req.flash('error_msg', "Eroare findOneAndUpdate: " + err);
 			res.redirect('/vehicles');
 		});
 	}).catch((err) => {
-		req.flash('error_msg', err);
-		res.redirect('/vehicle');
+		req.flash('error_msg', "Eroare: " + err);
+		res.redirect('/vehicles');
 	});
 });
 
