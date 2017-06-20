@@ -23,8 +23,8 @@ router.post('/p', function (req, res) {
 		lat: req.body.l,
 		long: req.body.L,
 		speed: req.body.s,
-		altitude: "250",
-		heading:"100"
+		altitude: req.body.a,
+		heading: req.body.h
 	};
 	
 	Vehicle.findOne({ _id: objectId("593fe40d70d93e2bfc9ca8cd") }).exec().then((vehicle) => {
