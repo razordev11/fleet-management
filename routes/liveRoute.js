@@ -20,9 +20,9 @@ router.post('/p', function (req, res) {
 	var date = d.toISOString();
 	var liveTrip = {
 		date: date,
-		lat: req.body.lat,
-		long: req.body.lng,
-		speed: "90",
+		lat: req.body.l,
+		long: req.body.L,
+		speed: req.body.s,
 		altitude: "250",
 		heading:"100"
 	};
