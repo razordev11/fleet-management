@@ -17,9 +17,10 @@ router.post('/', function (req, res) {
 // Test live post
 router.post('/p', function (req, res) {
 	var d = new Date();
-	var dM = d.getMonth();
-	var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
+	// var dM = d.getMonth();
+	// var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	// var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
+	var date = d.toString();
 	var liveTrip = {
 		date: date,
 		lat: req.body.l,
@@ -56,9 +57,10 @@ router.get('/id/:id', function (req, res) {
 // Update live trip
 router.post('/p/:id', function (req, res) {
 	var d = new Date();
-	var dM = d.getMonth();
-	var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-	var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
+	// var dM = d.getMonth();
+	// var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+	// var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
+	var date = d.toString();
 	var liveTrip = {
 		date: date,
 		lat: req.body.l,
