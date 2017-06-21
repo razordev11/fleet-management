@@ -22,7 +22,7 @@ router.post('/p', function (req, res) {
 	// var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
 	// var date = d.toString();
 	// en-GB format: "20/12/2012 03:00:00"
-	var d = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Bucharest' });
+	var date = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Bucharest' });
 	var liveTrip = {
 		date: date,
 		lat: req.body.l,
@@ -64,7 +64,7 @@ router.post('/p/:id', function (req, res) {
 	// var date = months[dM] + " " + d.getDate() + ", " + d.getFullYear() + " " + d.toLocaleTimeString();
 	// var date = d.toString();
 	// en-GB format: "20/12/2012 03:00:00"
-	var d = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Bucharest' });
+	var date = new Date().toLocaleString('en-GB', { timeZone: 'Europe/Bucharest' });
 	var liveTrip = {
 		date: date,
 		lat: req.body.l,
