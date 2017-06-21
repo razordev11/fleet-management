@@ -76,7 +76,7 @@
                 $("#checkboxButton").change(function () {
                     var checked = $("input[name='refresh']").is(':checked');
                     if (checked == true) {
-                        if (document.cookie == "unchecked") {
+                        if (document.cookie == "unchecked" || document.cookie == "") {
                             document.cookie = "checked";
                             refresh();
                         } else {
