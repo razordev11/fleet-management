@@ -21,7 +21,9 @@
             };
             liveMap = new google.maps.Map(document.getElementById("liveMapCanvas"), mapOptions);
             var infowindow = new google.maps.InfoWindow({});
-
+            var iconsetngs = {
+                path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW
+            };
             for (i = 0; i < liveTrip.length; i++) {
                 var d = new Date(liveTrip[i].date);
 	            var date = d.toLocaleString();
@@ -41,18 +43,20 @@
                     infowindow.setContent(this.contentString);
                     infowindow.open(liveMap, this);
                     liveMap.setCenter(this.getPosition());
-                });
-                
+                });                
                 // for Poly
                 points.push(position);
                 bounds.extend(position);
             }
-
             var poly = new google.maps.Polyline({
                 path: points,
                 strokeColor: "#FF0000",
                 strokeOpacity: .3,
-                strokeWeight: 2
+                strokeWeight: 2,
+                icons: [{
+                    icon: iconsetngs,
+                    repeat:'35px',
+                    offset: '100%'}]
             });
             poly.setMap(liveMap);
             liveMap.fitBounds(bounds);
