@@ -64,6 +64,9 @@ app.engine('handlebars', exphbs({
         return "Expires";
       }      
     },
+    reverse: function (value, options) {
+      value.reverse();
+    },
     convertTime: function (value, options) {
       d = new Date(value);
       return d.toLocaleTimeString();
