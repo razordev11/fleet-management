@@ -275,3 +275,7 @@ body {
 .expire-alert {
     color: #FF0000;
 }
+
+.table-header {
+    background-color: #82cfe5
+}
