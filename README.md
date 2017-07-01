@@ -4,10 +4,11 @@
 
 This is a fleet management website. You can run it locally, by following 
 the Installation steps, or access it live, from any device, at:
-https://afm.herokuapp.com/
+https://afm.herokuapp.com
 
 The web server runs Node.js and is hosted on https://heroku.com
-The database is MongoDB and is hosted on https://mlab.com/
+
+The database is MongoDB and is hosted on https://mlab.com
 
 ### Installation
 
