@@ -1,5 +1,6 @@
-# fleet-management
-# GitHub repository: https://github.com/andreiulinici/fleet-management
+## Fleet Management Web Application
+
+### [GitHub repository link](https://github.com/andreiulinici/fleet-management)
 
 This is a fleet management website. You can run it locally, by following 
 the Installation steps, or access it live, from any device, at:
