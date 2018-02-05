@@ -103,6 +103,7 @@ app.use(session({
     secure: true,
     httpOnly: true,
     domain: 'afm.herokuapp.com',
+    path: 'users/login',
     expires: expiryDate
   }
 }));
