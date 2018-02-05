@@ -1,6 +1,6 @@
 {
   "name": "fleet-management",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Andrei Ulinici",
   "private": true,
   "license": "MIT",
@@ -15,25 +15,26 @@
     "start": "node server.js"
   },
   "engines": {
-    "npm": "*",
-    "node": "*"
+    "npm": "latest",
+    "node": "latest"
   },
   "dependencies": {
-    "bcryptjs": "*",
-    "body-parser": "*",
-    "connect-flash": "*",
-    "cookie-parser": "*",
-    "cors": "*",
-    "express": "*",
-    "express-handlebars": "*",
-    "express-messages": "*",
-    "express-session": "*",
-    "express-validator": "*",
-    "mongodb": "*",
-    "mongoose": "*",
-    "passport": "*",
-    "passport-http": "*",
-    "passport-local": "*"
+    "bcryptjs": "latest",
+    "body-parser": "latest",
+    "connect-flash": "latest",
+    "cookie-parser": "latest",
+    "cors": "latest",
+    "express": "latest",
+    "express-handlebars": "latest",
+    "express-messages": "latest",
+    "express-session": "latest",
+    "express-validator": "latest",
+    "mongodb": "latest",
+    "mongoose": "latest",
+    "passport": "latest",
+    "passport-http": "latest",
+    "passport-local": "latest",
+    "helmet": "latest"
   },
   "devDependencies": {}
 }

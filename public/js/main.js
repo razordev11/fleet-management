@@ -11,12 +11,20 @@ $(document).ready(function () {
         $("#addDriverHeader").addClass("active");
         $("#driversMenu").addClass("in");
         $("#driversTab").addClass("active");
-    } else if (currentPathname == "/vehicles/") {
+    } else if (currentPathname == "/vehicles") {
         $("#vehiclesPageHeader").addClass("active");
+        $("#vehiclesMenu").addClass("in");
+        $("#vehiclesTab").addClass("active");
+    } else if (currentPathname == "/vehicles/trips") {
+        $("#allTripsHeader").addClass("active");
         $("#vehiclesMenu").addClass("in");
         $("#vehiclesTab").addClass("active");
     } else if (currentPathname == "/vehicles/create") {
         $("#addVehicleHeader").addClass("active");
+        $("#vehiclesMenu").addClass("in");
+        $("#vehiclesTab").addClass("active");
+    } else if (currentPathname == "/vehicles/trips/create") {
+        $("#addTripHeader").addClass("active");
         $("#vehiclesMenu").addClass("in");
         $("#vehiclesTab").addClass("active");
     } else if (currentPathname == "/reports") {

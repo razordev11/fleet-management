@@ -15,6 +15,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb').MongoClient;
 var mongoose = require('mongoose');
+var helmet = require('helmet');
 //var assert = require('assert');
 
 // File System for loading the list of words
@@ -24,6 +25,9 @@ var fs = require('fs');
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS
 // var cors = require('cors');
 // app.use(cors());
+
+// Helmet Middleware to secure HTTP headers
+app.use(helmet());
 
 var dbUrl = 'mongodb://test:testPassword2017@ds141351.mlab.com:41351/mlab-db';
 // var dbUrl = 'mongodb://localhost/fleetmanagement';
@@ -90,10 +94,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Express Session
+var expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
 app.use(session({
-  secret: 'randomsecretsession',
+  secret: 'rand0ms3cr3tSession',
   saveUninitialized: true,
-  resave: false
+  resave: false,
+  cookie: {
+    secure: true,
+    httpOnly: true,
+    domain: 'afm.herokuapp.com',
+    expires: expiryDate
+  }
 }));
 
 // Express Validator

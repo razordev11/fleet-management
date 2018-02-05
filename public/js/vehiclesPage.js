@@ -100,7 +100,7 @@ function showLocation(coordinates) {
 }
 
 // Transform lat/long into address
-function getAddress(myLatitude, myLongitude, row, col) {
+/*function getAddress(myLatitude, myLongitude, row, col) {
     var geocoder = new google.maps.Geocoder(); // create a geocoder object
     // var location = new google.maps.LatLng(myLatitude, myLongitude); // turn coordinates into an object
     var latitude = parseFloat(myLatitude);
@@ -138,7 +138,7 @@ function getAddress(myLatitude, myLongitude, row, col) {
             }
         })
     }, 1000);
-}
+}*/
 
 function initMap(tripID) {
     //var route1Latlng = new google.maps.LatLng(44.4460, 26.0531);
