@@ -102,8 +102,6 @@ app.use(session({
   cookie: {
     secure: true,
     httpOnly: true,
-    domain: 'afm.herokuapp.com',
-    path: '/users/login',
     expires: expiryDate
   }
 }));
