@@ -100,7 +100,6 @@ app.use(session({
   saveUninitialized: true,
   resave: false,
   cookie: {
-    secure: true,
     httpOnly: true,
     expires: expiryDate
   }
