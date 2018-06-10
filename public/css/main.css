@@ -6,6 +6,12 @@ body {
     font-family: verdana;
 }
 
+#userWelcome {
+    font-size: 13px;
+    margin-left: 15px;
+    color: #d19b3d;
+}
+
 .nav-side-menu {
     font-size: 14px;
     font-weight: 200;

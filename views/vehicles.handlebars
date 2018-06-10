@@ -58,9 +58,12 @@
                 <td data-label="Horsepower">{{ this.horsepower }}</td>
                 <td data-label="Fuel consumption">{{ this.fuelConsumption }}</td>
                 <td data-label="Kilometrage">{{ this.kilometrage }}</td>
-                <td data-label="RCA expiry date"><b class="expire-alert">{{ifDate this.rca }}</b> {{ this.rca }}</td>
-                <td data-label="ITP expiry date"><b class="expire-alert">{{ifDate this.itp }}</b> {{ this.itp }}</td>
-                <td data-label="Rovinieta expiry date"><b class="expire-alert">{{ifDate this.rovinieta }}</b> {{ this.rovinieta }}</td>
+                <td data-label="RCA expiry date"><b class="expire-alert">
+                    {{ifDate this.rca }}</b> {{ this.rca }}</td>
+                <td data-label="ITP expiry date"><b class="expire-alert">
+                    {{ifDate this.itp }}</b> {{ this.itp }}</td>
+                <td data-label="Rovinieta expiry date"><b class="expire-alert">
+                    {{ifDate this.rovinieta }}</b> {{ this.rovinieta }}</td>
                 <td data-label="Vehicle state">{{ this.status }}</td>
                 <td data-label="View trips">
                     <p class="operations" title="View vehicle trips">
@@ -73,7 +76,9 @@
                 </td>
                 <td data-label="Edit vehicle">
                     <p class="operations" title="Edit">
-                        <button class="btn btn-primary btn-md" data-toggle="modal" data-title="Edit" data-target="#editVehicleModal" onclick="editVehicle(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                        <button class="btn btn-primary btn-md" data-toggle="modal" 
+                        data-title="Edit" data-target="#editVehicleModal" 
+                        onclick="editVehicle(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                     </p>
@@ -88,7 +93,9 @@
                         </a>
                     </p>--}}
                     <p class="operations" title="Delete">
-                        <button class="btn btn-danger btn-md" data-toggle="modal" data-title="Edit" data-target="#deleteVehicleModal" onclick="deleteVehicle(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                        <button class="btn btn-danger btn-md" data-toggle="modal" 
+                        data-title="Edit" data-target="#deleteVehicleModal" 
+                        onclick="deleteVehicle(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </p>
@@ -111,46 +118,69 @@
             <form method="post" id="editVehicleForm">
                 <div class="modal-body">
                     <div class="form-group" id="editVehicleManufacturer">
-                        <input type="text" class="form-control" name="manufacturer" title="Manufacturer" placeholder="Manufacturer" required>
+                        <input type="text" class="form-control" name="manufacturer" 
+                        title="Manufacturer" placeholder="Manufacturer" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleModel">
-                        <input type="text" class="form-control" name="model" title="Model" placeholder="Model" required>
+                        <input type="text" class="form-control" name="model" 
+                        title="Model" placeholder="Model" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleRegistrationPlate">
-                        <input type="text" class="form-control" name="registrationPlate" title="Registration plate" placeholder="Registration plate"
-                            required>
+                        <input type="text" class="form-control" name="registrationPlate" 
+                        title="Registration plate" placeholder="Registration plate"
+                        required autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleVin">
-                        <input type="text" class="form-control" name="vin" title="VIN" placeholder="Vehicle Identification Number" pattern="[a-zA-Z0-9]{17}"
-                            maxlength="17" required>
+                        <input type="text" class="form-control" name="vin" title="VIN" 
+                        placeholder="Vehicle Identification Number" pattern="[a-zA-Z0-9]{17}"
+                        maxlength="17" required autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleEngineCapacity">
-                        <input type="text" class="form-control" name="engineCapacity" title="Engine capacity" placeholder="Engine capacity" required>
+                        <input type="text" class="form-control" name="engineCapacity" 
+                        title="Engine capacity" placeholder="Engine capacity" required
+                        autocomplete="new-password">
                     </div>
                     <div class="form-group" id="editVehicleFuelType">
-                        <input type="text" class="form-control" name="fuelType" title="Fuel type" placeholder="Fuel type" required>
+                        <input type="text" class="form-control" name="fuelType"
+                         title="Fuel type" placeholder="Fuel type" required
+                         autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleHorsepower">
-                        <input type="text" class="form-control" name="horsepower" title="Horsepower" placeholder="Horsepower" required>
+                        <input type="text" class="form-control" name="horsepower" 
+                        title="Horsepower" placeholder="Horsepower" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleFuelConsumption">
-                        <input type="text" class="form-control" name="fuelConsumption" title="Fuel consumption" placeholder="Fuel consumption" required>
+                        <input type="text" class="form-control" name="fuelConsumption" 
+                        title="Fuel consumption" placeholder="Fuel consumption" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleKilometrage">
-                        <input type="number" class="form-control" name="kilometrage" title="Kilometrage" placeholder="kilometrage" required>
+                        <input type="number" class="form-control" name="kilometrage" 
+                        title="Kilometrage" placeholder="kilometrage" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleRca">
-                        <input type="text" class="form-control datetimepicker" name="rca" title="RCA" placeholder="Click to select date" required>
+                        <input type="text" class="form-control datetimepicker" name="rca" 
+                        title="RCA" placeholder="Click to select date" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleItp">
-                        <input type="text" class="form-control datetimepicker" name="itp" title="ITP" placeholder="Click to select date" required>
+                        <input type="text" class="form-control datetimepicker" name="itp" 
+                        title="ITP" placeholder="Click to select date" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleRovinieta">
-                        <input type="text" class="form-control datetimepicker" name="rovinieta" title="Rovinieta" placeholder="Click to select date"
-                            required>
+                        <input type="text" class="form-control datetimepicker" name="rovinieta" 
+                        title="Rovinieta" placeholder="Click to select date"
+                        required autocomplete="off">
                     </div>
                     <div class="form-group" id="editVehicleStatus">
-                        <input type="text" class="form-control" name="status" title="Status" placeholder="Type of damage, if any." required>
+                        <input type="text" class="form-control" name="status" title="Status" 
+                        placeholder="Type of damage, if any." required
+                        autocomplete="off">
                     </div>
                 </div>
                 <div class="modal-footer form-group">
@@ -175,7 +205,8 @@
             <form method="get">
                 <div class="modal-body">
                     <div class="alert alert-danger">
-                        <span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete
+                        <span class="glyphicon glyphicon-warning-sign"></span> 
+                        Are you sure you want to delete
                         <b><span id="deleteVehicleRegistrationPlate"></b>?</span>
                     </div>
                     <div class="modal-footer form-group">

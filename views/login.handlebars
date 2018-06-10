@@ -11,7 +11,9 @@
         <form method="post" action="/users/login">
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Username" pattern="^([A-Za-z]+)[0-9]*[_]*" title="Letters, numbers and underscore. Must begin with a letter.">
+                <input type="text" class="form-control" name="username" placeholder="Username" 
+                pattern="^([A-Za-z]+)[0-9]*[_]*" title="Letters, numbers and underscore. Must begin with a letter."
+                autocomplete="off">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>

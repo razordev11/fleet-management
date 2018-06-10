@@ -42,10 +42,18 @@
                 <td data-label="Phone number">{{ this.phoneNumber }}</td>
                 <td data-label="Distance traveled (km)">{{ this.distanceTraveled }}</td>
                 <td data-label="Categories">{{#each this.license}}{{category}}{{/each}}</td>
-                <td data-label="Expiry dates">{{#each this.license}}<b class="expire-alert">{{ifDate this.expiryDate }}</b> {{ this.expiryDate }} {{/each}}</td>
+                <td data-label="Expiry dates">
+                    {{#each this.license}}
+                        <b class="expire-alert">
+                            {{ifDate this.expiryDate }}
+                        </b> {{ this.expiryDate }}
+                    {{/each}}
+                </td>
                 <td data-label="Edit driver">
                     <p class="operations" title="Edit">
-                        <button class="btn btn-primary btn-md" data-toggle="modal" data-title="Edit" data-target="#editDriverModal" onclick="editDriver(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                        <button class="btn btn-primary btn-md" data-toggle="modal" 
+                        data-title="Edit" data-target="#editDriverModal" 
+                        onclick="editDriver(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
                             <span class="glyphicon glyphicon-pencil"></span>
                         </button>
                     </p>
@@ -60,7 +68,9 @@
                         </a>
                     </p>--}}
                     <p class="operations" title="Delete">
-                        <button class="btn btn-danger btn-md" data-toggle="modal" data-title="Edit" data-target="#deleteDriverModal" onclick="deleteDriver(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
+                        <button class="btn btn-danger btn-md" data-toggle="modal" data-title="Edit" 
+                        data-target="#deleteDriverModal" 
+                        onclick="deleteDriver(this.parentNode.parentNode.parentNode.rowIndex, '{{ this._id }}')">
                             <span class="glyphicon glyphicon-trash"></span>
                         </button>
                     </p>
@@ -85,32 +95,50 @@
             <form method="post" id="editDriverForm">
                 <div class="modal-body">
                     <div class="form-group" id="editDriverFirstName">
-                        <input type="text" class="form-control" name="firstName" title="First Name" placeholder="First Name" required>
+                        <input type="text" class="form-control" name="firstName" 
+                        title="First Name" placeholder="First Name" required
+                        autocomplete="given-name">
                     </div>
                     <div class="form-group" id="editDriverLastName">
-                        <input type="text" class="form-control" name="lastName" title="Last Name" placeholder="Last Name" required>
+                        <input type="text" class="form-control" name="lastName" 
+                        title="Last Name" placeholder="Last Name" required
+                        autocomplete="family-name">
                     </div>
                     <div class="form-group" id="editDriverNationalId">
-                        <input type="text" class="form-control" name="nationalId" title="National ID" placeholder="CNP (13 figures)" pattern="[0-9]{13}" maxlength="13" required>
+                        <input type="text" class="form-control" name="nationalId" 
+                        title="National ID" placeholder="CNP (13 figures)" 
+                        pattern="[0-9]{13}" maxlength="13" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editDriverAddress">
-                        <input type="text" class="form-control" name="address" title="Address" placeholder="Address" required>
+                        <input type="text" class="form-control" name="address" 
+                        title="Address" placeholder="Address" required
+                        autocomplete="address-line1">
                     </div>
                     <div class="form-group" id="editDriverEmail">
-                        <input type="text" class="form-control" name="email" title="Email" placeholder="Email" required>
+                        <input type="text" class="form-control" name="email" 
+                        title="Email" placeholder="Email" required
+                        autocomplete="email">
                     </div>
                     <div class="form-group" id="editDriverPhoneNumber">
-                        <input type="text" class="form-control" name="phoneNumber" title="Phone number" placeholder="Phone number" required>
+                        <input type="text" class="form-control" name="phoneNumber" 
+                        title="Phone number" placeholder="Phone number" required
+                        autocomplete="tel-national">
                     </div>
                     <div class="form-group" id="editDriverDistanceTraveled">
-                        <input type="number" class="form-control" name="distanceTraveled" title="Distance traveled" placeholder="Distance traveled"
-                            required>
+                        <input type="number" class="form-control" name="distanceTraveled" 
+                        title="Distance traveled" placeholder="Distance traveled" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editDriverLicenseCategory">
-                        <input type="text" class="form-control" name="category" title="License category" placeholder="License category" required>
+                        <input type="text" class="form-control" name="category" 
+                        title="License category" placeholder="License category" required
+                        autocomplete="off">
                     </div>
                     <div class="form-group" id="editDriverLicenseExpiryDate">
-                        <input type="text" class="form-control" name="expiryDate" title="License expiry date" placeholder="License expiry date" required>
+                        <input type="text" class="form-control" name="expiryDate" 
+                        title="License expiry date" placeholder="License expiry date" required
+                        autocomplete="off">
                     </div>
                 </div>
                 <div class="modal-footer form-group">
@@ -135,7 +163,8 @@
             <form method="get">
                 <div class="modal-body">
                     <div class="alert alert-danger">
-                        <span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete
+                        <span class="glyphicon glyphicon-warning-sign"></span> 
+                        Are you sure you want to delete
                         <b><span id="deleteDriverFullName"></b>?</span>
                     </div>
                     <div class="modal-footer form-group">

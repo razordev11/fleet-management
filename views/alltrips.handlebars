@@ -29,12 +29,19 @@
                 <td data-label="Driver">{{ this.driver.firstName }} {{ this.driver.lastName }}</td>
                 <td data-label="Start date">{{ this.startDate }}</td>
                 <td data-label="Stop date">{{ this.stopDate }}</td>
-                <td data-label="Start location" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.startLocation.lat }}, {{ this.startLocation.long }}</td>
-                <td data-label="Stop location" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.stopLocation.lat }}, {{  this.stopLocation.long }}</td>
+                <td data-label="Start location" onclick="showLocation(this.innerHTML)" 
+                onmouseover="" style="cursor: pointer;">
+                    {{ this.startLocation.lat }}, {{ this.startLocation.long }}
+                </td>
+                <td data-label="Stop location" onclick="showLocation(this.innerHTML)" 
+                onmouseover="" style="cursor: pointer;">
+                    {{ this.stopLocation.lat }}, {{  this.stopLocation.long }}
+                </td>
                 <td data-label="Trip distance (km)">{{ this.distance }}</td>
                 <td data-label="Trips">
                     <p class="operations" data-placement="top" data-toggle="tooltip" title="View trip">
-                        <button class="btn btn-success btn-md" data-toggle="modal" data-title="View trip" onclick="initMap('{{ this.tripId }}')">
+                        <button class="btn btn-success btn-md" data-toggle="modal" 
+                        data-title="View trip" onclick="initMap('{{ this.tripId }}')">
                             <span class="glyphicon glyphicon-road"></span>
                         </button>
                     </p>
@@ -48,14 +55,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
                     <h4 class="modal-title custom_align" id="Heading">Vehicle Trip</h4>
                 </div>
                 <div class="modal-body">
                     <div id="mapCanvas"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success center-block" data-dismiss="modal" align="center"><span></span>Close</button>
+                    <button type="button" class="btn btn-success center-block" 
+                    data-dismiss="modal" align="center">
+                        <span></span>Close
+                    </button>
                 </div>
             </div>
         </div>

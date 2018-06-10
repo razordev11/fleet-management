@@ -1,6 +1,7 @@
 <div>
     <h2>View live trip</h2>
-    <p>Here you can track live the vehicle <b>{{items.manufacturer}} {{items.model}}</b> with the registration plate <b>{{ items.registrationPlate }}</b>
+    <p>Here you can track live the vehicle <b>{{items.manufacturer}} {{items.model}}</b> 
+    with the registration plate <b>{{ items.registrationPlate }}</b>
     </p>
 
     <br /> {{#if success_msg}}
@@ -32,7 +33,9 @@
                 var long = parseFloat(liveTrip[i].long);
                 var position = { lat: lat, lng: long};
                 var speed = liveTrip[i].speed;
-                var contentString = "<div>" + "Date: " + date + "<br>Coordinates: " + position.lat + ", " + position.lng + "<br>Speed: " + speed + " km/h" + "</div>";
+                var contentString = "<div>" + "Date: " + date + "<br>Coordinates: " + 
+                    position.lat + ", " + position.lng + "<br>Speed: " + 
+                    speed + " km/h" + "</div>";
                 var marker = new google.maps.Marker({
                     position: position,
                     map: liveMap,
@@ -102,7 +105,9 @@
 
     <div class="col-md-8">
         {{!--<button onclick='location.reload()'>Refresh</button>--}}
-        <p>Refresh every 10 seconds: <input type="checkbox" title="Check to refresh page every 10 seconds" name="refresh" id="checkboxButton"></p>
+        <p>Refresh every 10 seconds: <input type="checkbox" 
+        title="Check to refresh page every 10 seconds" name="refresh" id="checkboxButton">
+        </p>
         <br /><b> SIM808 GPS position </b><br /><br />
         <div id="liveMapCanvas" style="width=500px"></div><br />
     </div>
@@ -125,7 +130,10 @@
                 <tr>
                     <td data-label="#"><b>{{inc @index}}</b></td>
                     <td data-label="Date">{{ this.date }}</td>
-                    <td data-label="Coordinates" onclick="showLocation(this.innerHTML)" onmouseover="" style="cursor: pointer;">{{ this.lat }}, {{ this.long }}</td>
+                    <td data-label="Coordinates" onclick="showLocation(this.innerHTML)" 
+                    onmouseover="" style="cursor: pointer;">
+                        {{ this.lat }}, {{ this.long }}
+                    </td>
                     <td data-label="Speed">{{ this.speed }}</td>
                     <td data-label="Altitude (m)">{{ this.altitude }}</td>
                     <td data-label="Heading">{{this.heading}}</td>
@@ -139,14 +147,16 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove"></span></button>
                     <h4 class="modal-title custom_align" id="Heading">Vehicle location</h4>
                 </div>
                 <div class="modal-body">
                     <div id="mapCanvas"></div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success center-block" data-dismiss="modal" align="center"><span></span>Close</button>
+                    <button type="button" class="btn btn-success center-block" 
+                    data-dismiss="modal" align="center"><span></span>Close</button>
                 </div>
             </div>
         </div>
