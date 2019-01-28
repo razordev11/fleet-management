@@ -31,8 +31,31 @@ app.use(helmet());
 
 var dbUrl = 'mongodb://test:testPassword2017@ds141351.mlab.com:41351/mlab-db';
 // var dbUrl = 'mongodb://localhost/fleetmanagement';
-mongoose.Promise = global.Promise;
-mongoose.connect(dbUrl);
+
+const options = {
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  autoIndex: false, // Don't build indexes
+  reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+  reconnectInterval: 500, // Reconnect every 500ms
+  poolSize: 10, // Maintain up to 10 socket connections
+  // If not connected, return errors immediately rather than waiting for reconnect
+  bufferMaxEntries: 0,
+  connectTimeoutMS: 10000, // Give up initial connection after 10 seconds
+  socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+  family: 4 // Use IPv4, skip trying IPv6
+};
+mongoose.connect(dbUrl, options).then(
+  () => {
+    console.log("Connected to database.")
+  },
+  err => {
+    console.err("Error connecting to database:");
+    console.log(err);
+  }
+);
+
 // mongoose.coonnection.close();
 
 var routes = require('./routes/index');
@@ -64,9 +87,9 @@ app.engine('handlebars', exphbs({
         return "Expired";
       } else if (+x == +y) {
         return "Expires today";
-      } else if ( (x1 - y1) < threshold) {
+      } else if ((x1 - y1) < threshold) {
         return "Expires";
-      }      
+      }
     },
     reverse: function (value, options) {
       value.reverse();
@@ -87,7 +110,9 @@ app.set('view engine', 'handlebars');
 
 // BodyParser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 
 // Set Static Folder
@@ -108,9 +133,9 @@ app.use(session({
 // Express Validator
 app.use(expressValidator({
   errorFormatter: function (param, msg, value) {
-    var namespace = param.split('.')
-      , root = namespace.shift()
-      , formParam = root;
+    var namespace = param.split('.'),
+      root = namespace.shift(),
+      formParam = root;
 
     while (namespace.length) {
       formParam += '[' + namespace.shift() + ']';

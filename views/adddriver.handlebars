@@ -16,20 +16,20 @@
                 useCurrent: true
             });
             $('#addCategory').click(function () {
-                var newLicenseHtml = '<div class="form-group"><label class="col-md-2 control-label">License category</label>';
-                newLicenseHtml += '<div class="col-md-4"><select class="form-control" name="category' + categoryIndex + '" required>';
-                newLicenseHtml += '<optgroup label="Mopeds"><option>AM</option><option>P</option><option>Q</option></optgroup>';
-                newLicenseHtml += '<optgroup label="Motorcycles"><option>A1</option><option>A2</option><option>A</option></optgroup>';
-                newLicenseHtml += '<optgroup label="Cars and quad bikes"><option>B1</option><option selected>B</option><option>BE</option></optgroup>';
-                newLicenseHtml += '<optgroup label="Medium-sized vehicles"><option>C1</option><option>C1E</option></optgroup>';
-                newLicenseHtml += '<optgroup label="Large vehicles"><option>C</option><option>CE</option></optgroup>';
-                newLicenseHtml += '<optgroup label="Minibuses"><option>D1</option><option>D1E</option></optgroup>';
-                newLicenseHtml += '<optgroup label="Buses"><option>D</option><option>DE</option></optgroup>';
-                newLicenseHtml += '<optgroup label="Other categories"><option>Tr</option><option>Tb</option><option>TV</option><option>f</option>';
-                newLicenseHtml += '<option>G</option><option>H</option><option>k</option><option>l</option><option>M</option><option>n</option></optgroup>';
-                newLicenseHtml += '</select></div></div><div class="form-group"><label class="col-md-2 control-label">Category expiry date</label>';
-                newLicenseHtml += '<div class="col-md-4"><input type="text" class="form-control datetimepicker" placeholder="Click to select" name="expiryDate';
-                newLicenseHtml += categoryIndex + '" required></div></div>';
+                var newLicenseHtml = '<div class="form-group"><label class="col-md-2 control-label">License category</label>' +
+                    '<div class="col-md-4"><select class="form-control" name="category' + categoryIndex + '" required>' +
+                    '<optgroup label="Mopeds"><option>AM</option><option>P</option><option>Q</option></optgroup>' +
+                    '<optgroup label="Motorcycles"><option>A1</option><option>A2</option><option>A</option></optgroup>' +
+                    '<optgroup label="Cars and quad bikes"><option>B1</option><option selected>B</option><option>BE</option></optgroup>' +
+                    '<optgroup label="Medium-sized vehicles"><option>C1</option><option>C1E</option></optgroup>' +
+                    '<optgroup label="Large vehicles"><option>C</option><option>CE</option></optgroup>' +
+                    '<optgroup label="Minibuses"><option>D1</option><option>D1E</option></optgroup>' +
+                    '<optgroup label="Buses"><option>D</option><option>DE</option></optgroup>' +
+                    '<optgroup label="Other categories"><option>Tr</option><option>Tb</option><option>TV</option><option>f</option>' +
+                    '<option>G</option><option>H</option><option>k</option><option>l</option><option>M</option><option>n</option></optgroup>' +
+                    '</select></div></div><div class="form-group"><label class="col-md-2 control-label">Category expiry date</label>' +
+                    '<div class="col-md-4"><input type="text" class="form-control datetimepicker" placeholder="Click to select" name="expiryDate' + 
+                    categoryIndex + '" required></div></div>';
                 categoryIndex++;
                 $("#licenseCategories").append(newLicenseHtml);
                 $('.datetimepicker').datetimepicker({

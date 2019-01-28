@@ -7,7 +7,7 @@ var usersRoute = require('./usersRoute.js');
 
 // Get drivers
 router.get('/', ensureAuthenticated, function (req, res) {
-    Vehicle.find({}).exec().then((vehicles) => {
+    Vehicle.find({}).exec().then((vehicles) => {    // TODO: adaugat proprietate userId in obiect
         Driver.find({}).exec().then((drivers) => {
             var userDrivers = [];
             for (var i = 0; i < drivers.length; i++) {
