@@ -8,7 +8,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbs = require('express-handlebars');
-var expressValidator = require('express-validator');
+const { validationResult } = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
@@ -29,7 +29,8 @@ var fs = require('fs');
 // Helmet Middleware to secure HTTP headers
 app.use(helmet());
 
-var dbUrl = 'mongodb://test:testPassword2017@ds141351.mlab.com:41351/mlab-db';
+var dbUrl =
+  'mongodb+srv://pushp123:pushp123@devconnector-yrete.mongodb.net/test?retryWrites=true&w=majority';
 // var dbUrl = 'mongodb://localhost/fleetmanagement';
 
 const options = {
@@ -37,7 +38,7 @@ const options = {
   useCreateIndex: true,
   useFindAndModify: false,
   autoIndex: false, // Don't build indexes
-  reconnectTries: Number.MAX_VALUE, // Never stop trying to reconnect
+  reconnectTries: 5, // Never stop trying to reconnect
   reconnectInterval: 500, // Reconnect every 500ms
   poolSize: 10, // Maintain up to 10 socket connections
   // If not connected, return errors immediately rather than waiting for reconnect
@@ -48,10 +49,10 @@ const options = {
 };
 mongoose.connect(dbUrl, options).then(
   () => {
-    console.log("Connected to database.")
+    console.log('Connected to database.');
   },
   err => {
-    console.err("Error connecting to database:");
+    console.err('Error connecting to database:');
     console.log(err);
   }
 );
@@ -67,72 +68,94 @@ var liveRoute = require('./routes/liveRoute');
 
 // View Engine
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({
-  defaultLayout: 'layout',
-  helpers: {
-    inc: function (value, options) {
-      return parseInt(value) + 1;
-    },
-    json: function (content) {
-      return JSON.stringify(content);
-    },
-    ifDate: function (value, options) {
-      // console.log(Date(value) + ">" + new Date());
-      var x = new Date(value);
-      var y = new Date();
-      x1 = +x; // convert to number
-      y1 = +y;
-      var threshold = 1200000000; // two weeks alert
-      if (x1 < y1) {
-        return "Expired";
-      } else if (+x == +y) {
-        return "Expires today";
-      } else if ((x1 - y1) < threshold) {
-        return "Expires";
+app.engine(
+  'handlebars',
+  exphbs({
+    defaultLayout: 'layout',
+    helpers: {
+      inc: function(value, options) {
+        return parseInt(value) + 1;
+      },
+      json: function(content) {
+        return JSON.stringify(content);
+      },
+      ifDate: function(value, options) {
+        // console.log(Date(value) + ">" + new Date());
+        var x = new Date(value);
+        var y = new Date();
+        x1 = +x; // convert to number
+        y1 = +y;
+        var threshold = 1200000000; // two weeks alert
+        if (x1 < y1) {
+          return 'Expired';
+        } else if (+x == +y) {
+          return 'Expires today';
+        } else if (x1 - y1 < threshold) {
+          return 'Expires';
+        }
+      },
+      reverse: function(value, options) {
+        value.reverse();
+      },
+      convertTime: function(value, options) {
+        d = new Date(value);
+        return d.toLocaleTimeString();
+      },
+      convertDate: function(value, options) {
+        d = new Date(value);
+        dM = d.getMonth();
+        var months = [
+          'Jan',
+          'Feb',
+          'Mar',
+          'Apr',
+          'May',
+          'Jun',
+          'Jul',
+          'Aug',
+          'Sep',
+          'Oct',
+          'Nov',
+          'Dec'
+        ];
+        return months[dM] + ' ' + d.getDate() + ', ' + d.getFullYear();
       }
-    },
-    reverse: function (value, options) {
-      value.reverse();
-    },
-    convertTime: function (value, options) {
-      d = new Date(value);
-      return d.toLocaleTimeString();
-    },
-    convertDate: function (value, options) {
-      d = new Date(value);
-      dM = d.getMonth();
-      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-      return months[dM] + " " + d.getDate() + ", " + d.getFullYear();
     }
-  }
-}));
+  })
+);
 app.set('view engine', 'handlebars');
 
 // BodyParser Middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false
+  })
+);
 app.use(cookieParser());
 
 // Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Express Session
-var expiryDate = new Date(Date.now() + 60 * 60 * 1000) // 1 hour
-app.use(session({
-  secret: 'rand0ms3cr3tSession',
-  saveUninitialized: true,
-  resave: false,
-  cookie: {
-    httpOnly: true,
-    expires: expiryDate
-  }
-}));
+//   Session
+var expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+app.use(
+  session({
+    secret: 'rand0ms3cr3tSession',
+    saveUninitialized: true,
+    resave: false,
+    cookie: {
+      httpOnly: true,
+      expires: expiryDate
+    }
+  })
+);
 
 // Express Validator
-app.use(expressValidator({
-  errorFormatter: function (param, msg, value) {
+const myValidationResult = validationResult.withDefaults({
+  // todo: use it
+  // https://express-validator.github.io/docs/validation-result-api.html
+  formatter: error => {
     var namespace = param.split('.'),
       root = namespace.shift(),
       formParam = root;
@@ -141,12 +164,15 @@ app.use(expressValidator({
       formParam += '[' + namespace.shift() + ']';
     }
     return {
-      param: formParam,
-      msg: msg,
-      value: value
+      msg: 'The error message',
+      param: 'param.name.with.index[0]',
+      value: 'param value',
+      // Location of the param that generated this error.
+      // It's either body, query, params, cookies or headers.
+      location: 'body'
     };
   }
-}));
+});
 
 // Passport init
 app.use(passport.initialize());
@@ -156,7 +182,7 @@ app.use(passport.session());
 app.use(flash());
 
 // Global Vars
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.user = req.user || null;
